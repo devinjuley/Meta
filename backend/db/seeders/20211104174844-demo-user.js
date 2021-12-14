@@ -6,20 +6,26 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [
       {
+        firstName: 'Demo',
+        lastName: 'User',
         email: 'demo@user.io',
-        username: 'Demo-lition',
+        workplace: 'Meta',
+        city: 'Spacetown',
+        state: 'Mooncrator',
+        birthCity: 'Meta',
+        birthState: 'Database',
+        profileImageUrl: 'https://media.discordapp.net/attachments/920401341472444467/920401355011682314/unknown.png',
+        backgroundImageUrl: 'https://media.discordapp.net/attachments/920401341472444467/920411110610456606/a-space-cartoon-background-scene-free-vector.png?width=1154&height=686',
         hashedPassword: bcrypt.hashSync('password'),
       },
-      {
-        email: faker.internet.email(),
-        username: 'FakeUser1',
-        hashedPassword: bcrypt.hashSync(faker.internet.password()),
-      },
-      {
-        email: faker.internet.email(),
-        username: 'FakeUser2',
-        hashedPassword: bcrypt.hashSync(faker.internet.password()),
-      },
+      // {
+      //   email: faker.internet.email(),
+      //   hashedPassword: bcrypt.hashSync(faker.internet.password()),
+      // },
+      // {
+      //   email: faker.internet.email(),
+      //   hashedPassword: bcrypt.hashSync(faker.internet.password()),
+      // },
     ], {});
   },
 

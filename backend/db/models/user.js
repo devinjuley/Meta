@@ -5,23 +5,80 @@ const bcrypt = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {
 
   const User = sequelize.define('User', {
-    username: {
+    // username: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    //   validate: {
+    //     len: [3, 30],
+    //     isNotEmail(value) {
+    //       if (Validator.isEmail(value)) {
+    //         throw new Error('Cannot be an email.');
+    //       }
+    //     },
+    //   },
+    // },
+    firstName: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [3, 30],
-        isNotEmail(value) {
-          if (Validator.isEmail(value)) {
-            throw new Error('Cannot be an email.');
-          }
-        },
+        len: [1, 256]
+      },
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 256]
       },
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
       validate: {
-        len: [4, 256]
+        len: [1, 256]
+      },
+    },
+    workplace: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [1, 256]
+      },
+    },
+    city: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [1, 256]
+      },
+    },
+    state: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [1, 256]
+      },
+    },
+    birthCity: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [1, 256]
+      },
+    },
+    birthState: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [1, 256]
+      },
+    },
+    profileImageUrl: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [1, 256]
+      },
+    },
+    backgroundImageUrl: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [1, 256]
       },
     },
     hashedPassword: {
@@ -61,15 +118,12 @@ module.exports = (sequelize, DataTypes) => {
     return await User.scope('currentUser').findByPk(id);
   };
 
-  User.login = async function ({ credential, password }) {
+  User.login = async function ({ email, password }) {
     const { Op } = require('sequelize');
     const user = await User.scope('loginUser').findOne({
       where: {
-        [Op.or]: {
-          username: credential,
-          email: credential,
-        },
-      },
+        email: email
+      }
     });
     if (user && user.validatePassword(password)) {
       return await User.scope('currentUser').findByPk(user.id);

@@ -11,7 +11,7 @@ const LoginFormPage = () => {
    const dispatch = useDispatch();
    const sessionUser = useSelector(state => state.session.user);
 
-   const [credential, setCredential] = useState('');
+   const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [errors, setErrors] = useState([]);
 
@@ -24,7 +24,7 @@ const LoginFormPage = () => {
    const handleSubmit = (e) => {
       e.preventDefault();
       setErrors([]);
-      return dispatch(login({ credential, password }))
+      return dispatch(login({ email, password }))
          .catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors);
@@ -41,11 +41,11 @@ const LoginFormPage = () => {
                ))}
             </ul>
             <label>
-               Username or Email
+               Email
                <input
                   type='text'
-                  value={credential}
-                  onChange={(e) => setCredential(e.target.value)}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                />
             </label>
