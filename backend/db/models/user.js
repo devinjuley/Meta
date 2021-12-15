@@ -21,14 +21,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [1, 256]
+        len: [1, 100]
       },
     },
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [1, 256]
+        len: [1, 100]
       },
     },
     email: {
@@ -36,49 +36,49 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
       validate: {
-        len: [1, 256]
+        len: [1, 500]
       },
     },
     workplace: {
       type: DataTypes.STRING,
       validate: {
-        len: [1, 256]
+        len: [0, 100]
       },
     },
     city: {
       type: DataTypes.STRING,
       validate: {
-        len: [1, 256]
+        len: [0, 200]
       },
     },
     state: {
       type: DataTypes.STRING,
       validate: {
-        len: [1, 256]
+        len: [0, 200]
       },
     },
     birthCity: {
       type: DataTypes.STRING,
       validate: {
-        len: [1, 256]
+        len: [0, 200]
       },
     },
     birthState: {
       type: DataTypes.STRING,
       validate: {
-        len: [1, 256]
+        len: [0, 200]
       },
     },
     profileImageUrl: {
       type: DataTypes.STRING,
       validate: {
-        len: [1, 256]
+        len: [1, 3000]
       },
     },
     backgroundImageUrl: {
       type: DataTypes.STRING,
       validate: {
-        len: [1, 256]
+        len: [1, 3000]
       },
     },
     hashedPassword: {
@@ -106,8 +106,8 @@ module.exports = (sequelize, DataTypes) => {
     });
 
   User.prototype.toSafeObject = function () { // remember, this cannot be an arrow function
-    const { id, username, email } = this; // context will be the User instance
-    return { id, username, email };
+    const { id, email } = this; // context will be the User instance
+    return { id, email };
   };
 
   User.prototype.validatePassword = function (password) {
@@ -150,22 +150,26 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function (models) {
     User.belongsToMany(models.User, {
+      as: 'Friend',
       through: 'Friends',
       otherKey: 'id',
       foreignKey: 'friendId'
     })
     User.belongsToMany(models.User, {
+      as: 'Self',
       through: 'Friends',
       otherKey: 'id',
       foreignKey: 'sessionUserId'
     })
 
     User.belongsToMany(models.User, {
+      as: 'FriendRequest',
       through: 'FriendRequests',
       otherKey: 'id',
       foreignKey: 'friendId'
     })
     User.belongsToMany(models.User, {
+      as: 'Requester',
       through: 'FriendRequests',
       otherKey: 'id',
       foreignKey: 'sessionUserId'
