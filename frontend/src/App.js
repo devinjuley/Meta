@@ -9,6 +9,8 @@ import { restoreUser } from './store/session'
 import LoginFormPage from './components/LoginFormPage';
 import SignUpFormPage from './components/SignUpFormPage';
 import NavigationBar from './components/Navigation/NavigationBar';
+import MainFeed from './components/MainFeed/MainFeed';
+import ProfilePage from './components/ProfilePage/ProfilePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +32,12 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignUpFormPage />
+          </Route>
+          <Route exact path='/'>
+            <MainFeed />
+          </Route>
+          <Route path='/profile/:id'>
+            <ProfilePage />
           </Route>
         </Switch>
       )}
