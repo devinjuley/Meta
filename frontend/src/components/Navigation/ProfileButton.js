@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { logout } from '../../store/session';
 
-const ProfileButton = ({user}) => {
+const ProfileButton = ({ user }) => {
    const dispatch = useDispatch();
    const [showMenu, setShowMenu] = useState(false);
 
@@ -33,9 +33,9 @@ const ProfileButton = ({user}) => {
 
    return (
       <div>
-         <button onClick={openMenu}>
-            <i className="far fa-user" />
-         </button>
+         {/* <button > */}
+         <div onClick={openMenu} className='navbar-logo'>P</div>
+         {/* </button> */}
          {showMenu && (
             <ul className='profile-dropdown'>
                <li>{user.username}</li>

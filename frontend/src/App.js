@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // thunk inport
 import { restoreUser } from './store/session'
@@ -11,38 +11,52 @@ import SignUpFormPage from './components/SignUpFormPage';
 import NavigationBar from './components/Navigation/NavigationBar';
 import MainFeed from './components/MainFeed/MainFeed';
 import ProfilePage from './components/ProfilePage/ProfilePage';
+import FriendsPage from './components/FriendsPage/FriendsPage';
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const sessionUser = useSelector(state => state.session.user)
 
   useEffect(() => {
     dispatch(restoreUser())
       .then(() => setIsLoaded(true));
   }, [dispatch])
 
-  return (
-    <>
-      <NavigationBar isLoaded={isLoaded} />
+  if (sessionUser?.id) {
+    return (
+      <>
+        <NavigationBar isLoaded={isLoaded} />
 
-      {isLoaded && (
-        <Switch>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignUpFormPage />
-          </Route>
-          <Route exact path='/'>
-            <MainFeed />
-          </Route>
-          <Route path='/profile/:id'>
-            <ProfilePage />
-          </Route>
-        </Switch>
-      )}
-    </>
-  );
+        {isLoaded && (
+          <Switch>
+
+
+            <Route exact path='/'>
+              <MainFeed />
+            </Route>
+            <Route path='/profile/:id'>
+              <ProfilePage />
+            </Route>
+            <Route to='/friends'>
+              <FriendsPage />
+            </Route>
+          </Switch>
+        )}
+      </>
+    );
+  } else {
+    return (
+      <Switch>
+        <Route path="/">
+          <LoginFormPage />
+        </Route>
+        <Route path="/signup">
+          <SignUpFormPage />
+        </Route>
+      </Switch>
+    )
+  }
 }
 
 export default App;
