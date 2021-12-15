@@ -1,0 +1,36 @@
+.main-feed-parent-div {
+    padding-top: 70px;
+}
+
+.user-fullname-and-pic-mainfeed {
+    display: flex;
+    align-items: center;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.friends-logo-mainfeed {
+    border: 1px solid gray;
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+}
+.mainfeed-profile-image {
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    object-fit: cover;
+    
+}
+
+.friends-parent-mainfeed {
+    display: flex;
+    align-items: center;
+    color: white;
+    width: fit-content;
+    text-decoration: none;
+}

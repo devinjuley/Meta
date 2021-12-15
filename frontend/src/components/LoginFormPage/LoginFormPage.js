@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 
 import { login } from '../../store/session'
 
-import styles from './LoginForm.module.css';
+import './LoginForm.css';
 
 
 const LoginFormPage = () => {
@@ -33,34 +33,50 @@ const LoginFormPage = () => {
 
 
    return (
-      <div>
-         <form onSubmit={handleSubmit}>
-            <ul>
-               {errors.map((error, i) => (
-                  <li key={i}>{error}</li>
-               ))}
-            </ul>
-            <label>
-               Email
+      <div className='login-splash-page-parent'>
+         <div className='div-around-logo-and-slogan'>
+            <div className='splash-meta-logo'>Meta</div>
+            <div className='splash-slogan'>Connect with friends and the world around you on Meta.</div>
+         </div>
+         <div className='div-for-login-form-splash'>
+            <form onSubmit={handleSubmit} className='login-form-splash'>
+               {/* <div> */}
+               <ul>
+                  {errors.map((error, i) => (
+                     <li key={i}>{error}</li>
+                  ))}
+               </ul>
+               {/* </div> */}
+               {/* <div> */}
                <input
                   type='text'
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  placeholder='Email'
+                  className='login-email-field-splash'
                />
-            </label>
-            <label>
-               Password
+               {/* </div> */}
+               {/* <div> */}
                <input
                   type='password'
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  placeholder='Password'
+                  className='login-password-field-splash'
                />
-            </label>
-            <button type='submit'>Log In</button>
-         </form>
-      </div>
+               {/* </div> */}
+               <button type='submit' className='login-button-splash'>Log In</button>
+            </form>
+            {/* <div> */}
+            <button className='demo-button-splash'>Demo</button>
+            {/* </div> */}
+            {/* <div> */}
+            <button className='create-account-button-splash'>Create New Account</button>
+            {/* </div> */}
+         </div >
+      </div >
    );
 };
 
