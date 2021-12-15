@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+import SignUpFormModal from '../SignUpFormPage';
 
 import { login } from '../../store/session'
+// import Sign
 
 import './LoginForm.css';
 
 
 const LoginFormPage = () => {
+   const history = useHistory()
    const dispatch = useDispatch();
    const sessionUser = useSelector(state => state.session.user);
 
@@ -73,7 +77,7 @@ const LoginFormPage = () => {
             <button className='demo-button-splash'>Demo</button>
             {/* </div> */}
             {/* <div> */}
-            <button className='create-account-button-splash'>Create New Account</button>
+            <SignUpFormModal />
             {/* </div> */}
          </div >
       </div >
