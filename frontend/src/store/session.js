@@ -17,12 +17,20 @@ const removeUser = () => ({
 // THUNK CREATORS
 // sign up
 export const signUp = (user) => async (dispatch) => {
-   const { username, email, password } = user;
+   const { firstName, lastName, email, workplace, city, state, birthCity, birthState, profileImageUrl, backgroundImageUrl, password } = user;
    const res = await csrfFetch('api/users', {
       method: 'POST',
       body: JSON.stringify({
-         username,
+         firstName,
+         lastName,
          email,
+         workplace,
+         city,
+         state,
+         birthCity,
+         birthState,
+         profileImageUrl,
+         backgroundImageUrl,
          password
       })
    });
@@ -32,11 +40,11 @@ export const signUp = (user) => async (dispatch) => {
 
 // login
 export const login = (user) => async (dispatch) => {
-   const { credential, password } = user;
+   const { email, password } = user;
    const response = await csrfFetch('/api/session', {
       method: 'POST',
       body: JSON.stringify({
-         credential,
+         email,
          password,
       }),
    });

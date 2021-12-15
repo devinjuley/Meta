@@ -8,15 +8,39 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      username: {
-        type: Sequelize.STRING(30),
+      firstName: {
+        type: Sequelize.STRING(100),
+        allowNull: false,
+      },
+      lastName: {
+        type: Sequelize.STRING(100),
+        allowNull: false,
+      },
+      email: {
+        type: Sequelize.STRING(500),
         allowNull: false,
         unique: true,
       },
-      email: {
-        type: Sequelize.STRING(256),
-        allowNull: false,
-        unique: true,
+      workplace: {
+        type: Sequelize.STRING(100),
+      },
+      city: {
+        type: Sequelize.STRING(200),
+      },
+      state: {
+        type: Sequelize.STRING(200),
+      },
+      birthCity: {
+        type: Sequelize.STRING(200),
+      },
+      birthState: {
+        type: Sequelize.STRING(200),
+      },
+      profileImageUrl: {
+        type: Sequelize.STRING(3000),
+      },
+      backgroundImageUrl: {
+        type: Sequelize.STRING(3000),
       },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
