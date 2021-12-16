@@ -48,7 +48,7 @@ function App() {
   } else {
     return (
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
           <LoginFormPage />
         </Route>
         <Route path="/signup">
