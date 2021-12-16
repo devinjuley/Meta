@@ -34,6 +34,11 @@ const LoginFormPage = () => {
             if (data && data.errors) setErrors(data.errors);
          });
    }
+   const handleDemoLogin = async () => {
+      const email = 'demo@user.io';
+      const password = 'password'
+      return await dispatch(login({ email, password }))
+   };
 
 
    return (
@@ -44,14 +49,11 @@ const LoginFormPage = () => {
          </div>
          <div className='div-for-login-form-splash'>
             <form onSubmit={handleSubmit} className='login-form-splash'>
-               {/* <div> */}
                <ul>
                   {errors.map((error, i) => (
                      <li key={i}>{error}</li>
                   ))}
                </ul>
-               {/* </div> */}
-               {/* <div> */}
                <input
                   type='text'
                   value={email}
@@ -60,8 +62,6 @@ const LoginFormPage = () => {
                   placeholder='Email'
                   className='login-email-field-splash'
                />
-               {/* </div> */}
-               {/* <div> */}
                <input
                   type='password'
                   value={password}
@@ -70,15 +70,10 @@ const LoginFormPage = () => {
                   placeholder='Password'
                   className='login-password-field-splash'
                />
-               {/* </div> */}
                <button type='submit' className='login-button-splash'>Log In</button>
             </form>
-            {/* <div> */}
-            <button className='demo-button-splash'>Demo</button>
-            {/* </div> */}
-            {/* <div> */}
+            <button onClick={handleDemoLogin} className='demo-button-splash'>Demo</button>
             <SignUpFormModal />
-            {/* </div> */}
          </div >
       </div >
    );
