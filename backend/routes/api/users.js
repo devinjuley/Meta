@@ -4,9 +4,44 @@ const { check } = require('express-validator');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
-const { User } = require('../../db/models');
+const { User, Friend, Post } = require('../../db/models');
 
 const router = express.Router();
+
+
+
+router.get('/:id(\\d+)/friends', asyncHandler(async (req, res) => {
+   const { id } = req.params
+   const friends = await Friend.findAll({
+      where: {
+         sessionUserId: id
+      },
+      include: User
+   })
+
+   const posts = await Post.findAll({
+      include: User
+   })
+
+   const friendIds = []
+   friends.forEach(friend => {
+      friendIds.push(friend.User.id)
+   })
+
+   const friendsPosts = []
+   posts.forEach(post => {
+      if (friendIds.includes(post.userId)) {
+         friendsPosts.push(post)
+      }
+   })
+
+   return res.json({ friends, friendsPosts })
+}))
+
+
+
+
+
 
 // SIGN UP
 //sign up validators

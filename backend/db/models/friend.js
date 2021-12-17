@@ -4,8 +4,10 @@ module.exports = (sequelize, DataTypes) => {
     sessionUserId: DataTypes.INTEGER,
     friendId: DataTypes.INTEGER
   }, {});
-  Friend.associate = function(models) {
-    // associations can be defined here
+  Friend.associate = function (models) {
+    Friend.belongsTo(models.User, { foreignKey: 'sessionUserId' })
+    Friend.belongsTo(models.User, { foreignKey: 'friendId' })
+
   };
   return Friend;
 };

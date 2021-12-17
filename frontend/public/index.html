@@ -6,7 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <script src="https://cdn.tiny.cloud/1/2gvxj1k9gzeot4xtclwsammjnu7txrkgylmzf7w8ul0vqjfm/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
   <script src="https://kit.fontawesome.com/76ac418df4.js" crossorigin="anonymous"></script>
+  <script>
+    tinymce.init({
+      selector: "#emojs-for-text-box",
+      plugins: "emoticons",
+      toolbar: "emoticons",
+      toolbar_location: "bottom",
+      menubar: true
+    });
+  </script>
   <title>Meta</title>
 </head>
 
