@@ -49,14 +49,18 @@ function App() {
   } else {
     history.push('/')
     return (
-      <Switch>
-        <Route exact path="/">
-          <LoginFormPage />
-        </Route>
-        <Route path="/signup">
-          <SignUpFormPage />
-        </Route>
-      </Switch>
+      <>
+        {isLoaded && (
+          <Switch>
+            <Route exact path="/">
+              <LoginFormPage />
+            </Route>
+            <Route path="/signup">
+              <SignUpFormPage />
+            </Route>
+          </Switch>
+        )}
+      </>
     )
   }
 }

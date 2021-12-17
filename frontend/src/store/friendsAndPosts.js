@@ -2,10 +2,16 @@ import { csrfFetch } from './csrf';
 
 //action type
 const GET_FRIENDS_AND_POSTS = 'user/GET_FRIENDS_AND_POSTS'
+const CREATE_POST = 'post/CREATE_POST'
 
 //action creators
 const mainFeed = (payload) => ({
     type: GET_FRIENDS_AND_POSTS,
+    payload
+})
+
+const createPost = (payload) => ({
+    type: CREATE_POST,
     payload
 })
 
@@ -19,6 +25,19 @@ export const getMainFeed = (sessionUserId) => async (dispatch) => {
     }
 }
 
+export const createPostThunk = (post) => async (dispatch) => {
+    const response = await csrfFetch('/api/post/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(post)
+    })
+    if (response.ok) {
+        const post = await response.json()
+        dispatch(createPost(post))
+        return post;
+    }
+}
+
 //reducer
 const initialState = {}
 const friendsAndPostsReducer = (state = initialState, action) => {
@@ -27,6 +46,13 @@ const friendsAndPostsReducer = (state = initialState, action) => {
         case GET_FRIENDS_AND_POSTS: {
             newState = { ...state }
             newState = action.payload
+            return newState
+        }
+        case CREATE_POST: {
+            newState = {
+                ...state,
+                [action.payload.id]: action.payload
+            }
             return newState
         }
         default:
