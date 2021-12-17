@@ -12,8 +12,20 @@ module.exports = {
         updatedAt: new Date()
       },
       {
+        sessionUserId: 2,
+        friendId: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
         sessionUserId: 1,
         friendId: 3,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        sessionUserId: 3,
+        friendId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -24,20 +36,20 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        sessionUserId: 4,
-        friendId: 1,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        sessionUserId: 4,
-        friendId: 2,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
         sessionUserId: 3,
-        friendId: 5,
+        friendId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        sessionUserId: 4,
+        friendId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        sessionUserId: 2,
+        friendId: 4,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -48,8 +60,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        sessionUserId: 6,
-        friendId: 1,
+        sessionUserId: 5,
+        friendId: 6,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -60,8 +72,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        sessionUserId: 7,
-        friendId: 5,
+        sessionUserId: 2,
+        friendId: 6,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -72,8 +84,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        sessionUserId: 7,
-        friendId: 6,
+        sessionUserId: 4,
+        friendId: 7,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -84,8 +96,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        sessionUserId: 8,
-        friendId: 2,
+        sessionUserId: 1,
+        friendId: 8,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -94,7 +106,13 @@ module.exports = {
         friendId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
-      }
+      },
+      {
+        sessionUserId: 3,
+        friendId: 9,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], {});
 
   },

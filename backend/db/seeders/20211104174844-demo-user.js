@@ -14,7 +14,7 @@ module.exports = {
         state: 'Mooncrator',
         birthCity: 'Meta',
         birthState: 'Database',
-        profileImageUrl: 'https://media.discordapp.net/attachments/920421183860641792/920449144823353354/indoor-photo-of-handsome-european-guy-pictured-isolated-on-grey-to-picture-id1034357476.png',
+        profileImageUrl: 'https://media.discordapp.net/attachments/920401341472444467/920401355011682314/unknown.png',
         backgroundImageUrl: 'https://media.discordapp.net/attachments/920401341472444467/920411110610456606/a-space-cartoon-background-scene-free-vector.png?width=1154&height=686',
         hashedPassword: bcrypt.hashSync('password'),
         createdAt: new Date(),

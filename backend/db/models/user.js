@@ -149,34 +149,37 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.associate = function (models) {
-    User.belongsToMany(models.User, {
-      as: 'Friend',
-      through: 'Friends',
-      otherKey: 'id',
-      foreignKey: 'friendId'
-    })
-    User.belongsToMany(models.User, {
-      as: 'Self',
-      through: 'Friends',
-      otherKey: 'id',
-      foreignKey: 'sessionUserId'
-    })
+    // User.belongsToMany(models.User, {
+    //   as: 'Friend',
+    //   through: 'Friends',
+    //   otherKey: 'id',
+    //   foreignKey: 'friendId'
+    // })
+    // User.belongsToMany(models.User, {
+    //   as: 'Self',
+    //   through: 'Friends',
+    //   otherKey: 'id',
+    //   foreignKey: 'sessionUserId'
+    // })
 
-    User.belongsToMany(models.User, {
-      as: 'FriendRequest',
-      through: 'FriendRequests',
-      otherKey: 'id',
-      foreignKey: 'friendId'
-    })
-    User.belongsToMany(models.User, {
-      as: 'Requester',
-      through: 'FriendRequests',
-      otherKey: 'id',
-      foreignKey: 'sessionUserId'
-    })
+    // User.belongsToMany(models.User, {
+    //   as: 'FriendRequest',
+    //   through: 'FriendRequests',
+    //   otherKey: 'id',
+    //   foreignKey: 'friendId'
+    // })
+    // User.belongsToMany(models.User, {
+    //   as: 'Requester',
+    //   through: 'FriendRequests',
+    //   otherKey: 'id',
+    //   foreignKey: 'sessionUserId'
+    // })
 
     User.hasMany(models.Post, { foreignKey: 'userId' })
     User.hasMany(models.Comment, { foreignKey: 'userId' })
+    User.hasMany(models.Friend, { foreignKey: 'sessionUserId' })
+    User.hasMany(models.Friend, { foreignKey: 'friendId' })
+
 
   };
 

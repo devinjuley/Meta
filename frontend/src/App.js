@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // thunk inport
@@ -14,6 +14,7 @@ import ProfilePage from './components/ProfilePage/ProfilePage';
 import FriendsPage from './components/FriendsPage/FriendsPage';
 
 function App() {
+  const history = useHistory()
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const sessionUser = useSelector(state => state.session.user)
@@ -46,6 +47,7 @@ function App() {
       </>
     );
   } else {
+    history.push('/')
     return (
       <Switch>
         <Route exact path="/">
