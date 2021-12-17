@@ -41,6 +41,7 @@
 }
 
 .post-profile-image-mainfeed {
+    
     height: 40px;
     width: 40px;
     border-radius: 20px;
@@ -57,6 +58,7 @@
 .friends-posts-parent-mainfeed {
     width: 100%;
     border: none;
+   
     border-radius: 7px;
     /* width: 40%; */
     color: #fff;
@@ -74,10 +76,12 @@
 }
 
 .post-image-content-mainfeed {
+    
     width: 100%;
 }
 
 .post-text-content-mainfeed {
+    
     margin-bottom: 10px;
     margin-left: 15px;
 }
@@ -275,3 +279,87 @@
     margin-right: 5px;
 }
 
+.edit-delete-menu {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    /* width: 36px; */
+    font-size: 30px;
+    color: #b0b3b8;
+    align-items: center;
+    /* height: 36px; */
+    padding-right: 10px;
+    width: 160px;
+}
+
+.post-first-last-name-mainfeed {
+    width: 70%;
+}
+
+.dot-dot-dot {
+    display: flex;
+    /* border: 1px solid white; */
+    justify-content: center;
+    align-items: center;
+    height: 5px;
+    padding-bottom: 25px;
+    padding-top: 6px;
+    width: 36px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.dot-dot-dot:hover {
+    background-color: #3a3a3b;
+}
+
+.edit-delete-dropdown-menu {
+    list-style-type: none;
+    border: 1px solid #2c2d2d;
+    position: absolute;
+    font-size: 15px;
+    /* right: 10; */
+    top: 0;
+    left: 0;
+    width: 100px;
+    /* left: 0; */
+    /* padding: 20px; */
+    border-radius:20px;
+    /* left: 0; */
+    background-color: #232425;
+    /* transform-style: preserve-3d; */
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+}
+
+.edit-button-dropdown {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #2c2d2d;
+    width: 100%;
+    padding-top: 12px;
+    padding-bottom: 15px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    cursor: pointer;
+}
+.edit-button-dropdown:hover {
+    background-color: #3a3a3b;
+}
+
+.delete-button-dropdown {
+    display: flex;
+    justify-content: center;
+    /* border-bottom: 1px solid #2c2d2d; */
+    width: 100%;
+    padding-top: 12px;
+    padding-bottom: 15px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
+
+}
+
+.delete-button-dropdown:hover {
+    background-color: #3a3a3b;
+}

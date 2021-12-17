@@ -94,5 +94,17 @@ body {
 }
 
 .profile-dropdown {
-    z-index: 3;
+    list-style-type: none;
+    border: 1px solid #2c2d2d;
+    position: absolute;
+    font-size: 15px;
+    width: 100px;
+    height: 100px;
+    /* left: 0; */
+    /* padding: 20px; */
+    border-radius:20px;
+    /* left: 0; */
+    background-color: #232425;
+    /* transform-style: preserve-3d; */
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
 }

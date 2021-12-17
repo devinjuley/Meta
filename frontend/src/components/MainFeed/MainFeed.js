@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { getMainFeed } from '../../store/friendsAndPosts';
 import { createPostThunk } from '../../store/friendsAndPosts';
+import ProfileButton from '../Navigation/ProfileButton';
+import EditDeleteButton from './EditDeleteButton';
 import './MainFeed.css'
 
 function MainFeed() {
@@ -92,7 +94,10 @@ function MainFeed() {
                         <div key={post?.id} className='friends-posts-parent-mainfeed'>
                             <div className='post-name-and-image-mainfeed'>
                                 <img src={post?.User?.profileImageUrl} className='post-profile-image-mainfeed' />
-                                <div>{`${post?.User?.firstName} ${post?.User?.lastName}`}</div>
+                                <div className='post-first-last-name-mainfeed'>{`${post?.User?.firstName} ${post?.User?.lastName}`}</div>
+                                <div className='edit-delete-menu'>
+                                    <EditDeleteButton post={post} />
+                                </div>
                             </div>
                             <div>
                                 <div className='post-text-content-mainfeed'>{post?.content}</div>
