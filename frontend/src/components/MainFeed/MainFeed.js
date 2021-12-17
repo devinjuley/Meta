@@ -52,9 +52,16 @@ function MainFeed() {
                         </form>
                     </div>
                     <div className='create-post-buttons-div'>
-                        <button className='post-button-mainfeed'>Post</button>
-                        <button className='photo-button-mainfeed'>Add Photo</button>
-                        <button className='feeling-button-mainfeed'>Feeling/activity</button>
+                        <button className='post-button-mainfeed'>
+                            <img src='https://media.discordapp.net/attachments/921246913167245363/921246938127560704/unknown.png' className='create-a-post-icons' />
+                            Post
+                        </button>
+                        <button className='photo-button-mainfeed'>
+                            <img src='https://media.discordapp.net/attachments/921246913167245363/921248928538693642/unknown.png' className='create-a-post-icons' />
+                            Add Photo</button>
+                        <button className='feeling-button-mainfeed'>
+                            <img src='https://media.discordapp.net/attachments/921246913167245363/921249406072803348/unknown.png' className='create-a-post-icons' />
+                            Feeling/activity</button>
                     </div>
                 </div>
                 {friendsPosts?.map(post => (
