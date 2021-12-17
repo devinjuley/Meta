@@ -15,12 +15,10 @@ function MainFeed() {
     const [isLoaded, setIsLoaded] = useState(false)
     const [errors, setErrors] = useState([]);
 
-    friendsPosts?.reverse()
-
-    useEffect(() => {
-        dispatch(getMainFeed(sessionUser?.id))
+    useEffect(async () => {
+        await dispatch(getMainFeed(sessionUser?.id))
         setIsLoaded(true)
-    }, [dispatch])
+    }, [dispatch, sessionUser.id])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -42,6 +40,10 @@ function MainFeed() {
     }
 
     const postPlaceholder = `What's on your mind, ${sessionUser.firstName}?`
+
+    const postArr = Object.assign([], friendsPosts)
+    const reversedPosts = postArr?.reverse()
+
 
     return (
         <>
@@ -86,11 +88,11 @@ function MainFeed() {
                                 Feeling/activity</button>
                         </div>
                     </div>
-                    {friendsPosts?.map(post => (
-                        <div key={post.id} className='friends-posts-parent-mainfeed'>
+                    {reversedPosts?.map(post => (
+                        <div key={post?.id} className='friends-posts-parent-mainfeed'>
                             <div className='post-name-and-image-mainfeed'>
                                 <img src={post?.User?.profileImageUrl} className='post-profile-image-mainfeed' />
-                                <div>{`${post?.User.firstName} ${post?.User.lastName}`}</div>
+                                <div>{`${post?.User?.firstName} ${post?.User?.lastName}`}</div>
                             </div>
                             <div>
                                 <div className='post-text-content-mainfeed'>{post?.content}</div>

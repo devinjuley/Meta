@@ -27,7 +27,7 @@ router.get('/:id(\\d+)/friends', asyncHandler(async (req, res) => {
    friends.forEach(friend => {
       friendIds.push(friend.User.id)
    })
-   console.log(friendIds)
+   // console.log(friendIds)
 
    const friendsPosts = []
    posts.forEach(post => {

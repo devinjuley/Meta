@@ -44,15 +44,17 @@ const friendsAndPostsReducer = (state = initialState, action) => {
     let newState = {}
     switch (action.type) {
         case GET_FRIENDS_AND_POSTS: {
-            newState = { ...state }
-            newState = action.payload
+            newState = {
+                ...state,
+                ...action.payload
+            }
             return newState
         }
         case CREATE_POST: {
             newState = {
                 ...state,
-                [action.payload.id]: action.payload
             }
+            newState?.friendsPosts?.push(action.payload.newPost)
             return newState
         }
         default:
