@@ -6,7 +6,9 @@ import { getMainFeed } from '../../store/friendsAndPosts';
 import { createPostThunk } from '../../store/friendsAndPosts';
 import ProfileButton from '../Navigation/ProfileButton';
 import EditDeleteButton from './EditDeleteButton';
+import CreatePostModal from '../CreatePost';
 import './MainFeed.css'
+import CreatePostPage from '../CreatePost/CreatePost';
 
 function MainFeed() {
     const dispatch = useDispatch()
@@ -82,9 +84,7 @@ function MainFeed() {
                                 <img src='https://media.discordapp.net/attachments/921246913167245363/921246938127560704/unknown.png' className='create-a-post-icons' />
                                 Post
                             </button>
-                            <button className='photo-button-mainfeed'>
-                                <img src='https://media.discordapp.net/attachments/921246913167245363/921248928538693642/unknown.png' className='create-a-post-icons' />
-                                Add Photo</button>
+                            <CreatePostModal />
                             <button className='feeling-button-mainfeed'>
                                 <img src='https://media.discordapp.net/attachments/921246913167245363/921249406072803348/unknown.png' className='create-a-post-icons' />
                                 Feeling/activity</button>
