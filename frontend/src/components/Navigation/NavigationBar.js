@@ -19,7 +19,7 @@ const NavigationBar = ({ isLoaded }) => {
             <div className='navbar-section-1'>
                <NavLink to='/' className={'navbar-logo'}>
                   <img src='https://media.discordapp.net/attachments/921246913167245363/921649451758682142/unknown.png' className='meta-image-logo' />
-                  Meta
+                  {/* Meta */}
                </NavLink>
                <div>
                   <input
@@ -33,13 +33,13 @@ const NavigationBar = ({ isLoaded }) => {
             </div>
             <div className='navbar-section-2'>
                <NavLink to='/' className={''}>
-                  <img src='https://media.discordapp.net/attachments/921246913167245363/921647415474397204/unknown.png' className='navbar-center-image-1' />
+                  <img src='https://media.discordapp.net/attachments/921246913167245363/921672323885592596/unknown.png' className='navbar-center-image-1' />
                </NavLink>
                <div>
-                  <img src='https://media.discordapp.net/attachments/921246913167245363/921645159278600302/unknown.png' className='navbar-center-image-2' />
+                  <img src='https://media.discordapp.net/attachments/921246913167245363/921671742634733618/unknown.png' className='navbar-center-image-2' />
                </div>
                <div>
-                  <img src='https://media.discordapp.net/attachments/921246913167245363/921646883003326494/unknown.png' className='navbar-center-image-3' />
+                  <img src='https://media.discordapp.net/attachments/921246913167245363/921671591136469052/unknown.png' className='navbar-center-image-3' />
                </div>
             </div>
             <div className='navbar-section-3'>
