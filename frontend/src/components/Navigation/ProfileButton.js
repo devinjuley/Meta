@@ -33,12 +33,12 @@ const ProfileButton = ({ user }) => {
 
    return (
       <div>
-         {/* <button > */}
-         <div onClick={openMenu} className='navbar-logo'>P</div>
-         {/* </button> */}
+
+         <img src='https://media.discordapp.net/attachments/921246913167245363/921639971071361074/unknown.png' className='logout-dropdown-menu' onClick={openMenu} />
+
          {showMenu && (
             <ul className='profile-dropdown'>
-               <li>{user.username}</li>
+               <li>{user.firstName}{user.lastName}</li>
                <li>{user.email}</li>
                <li>
                   <button onClick={signOut}>Log Out</button>

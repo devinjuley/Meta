@@ -59,7 +59,7 @@ function MainFeed() {
                             <div>{sessionUser?.firstName} {sessionUser?.lastName}</div>
                         </div>
                         <NavLink to='/friends' className='friends-parent-mainfeed'>
-                            <div className='friends-logo-mainfeed'>frnds</div>
+                            <img src='https://media.discordapp.net/attachments/921246913167245363/921662235435225138/unknown.png' className='friends-icon-mainfeed' />
                             <div>Friends</div>
                         </NavLink>
                     </div>
@@ -86,8 +86,8 @@ function MainFeed() {
                             </button>
                             <CreatePostModal />
                             <button className='feeling-button-mainfeed'>
-                                <img src='https://media.discordapp.net/attachments/921246913167245363/921249406072803348/unknown.png' className='create-a-post-icons' />
-                                Feeling/activity</button>
+                                <img src='https://media.discordapp.net/attachments/921246913167245363/921635080445780018/unknown.png' className='create-a-post-icons' />
+                                Feeling</button>
                         </div>
                     </div>
                     {reversedPosts?.map(post => (

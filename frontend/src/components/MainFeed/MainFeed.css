@@ -363,3 +363,10 @@
 .delete-button-dropdown:hover {
     background-color: #3a3a3b;
 }
+
+.friends-icon-mainfeed {
+    height: 36px;
+    width: 36px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
