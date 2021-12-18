@@ -1,0 +1,28 @@
+#modal-dark {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+ }
+ 
+ #modal-background-dark {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #0d0d0d85
+ }
+ 
+ #modal-content-dark {
+    position: absolute;
+    background-color:white;
+    border-radius: 12px;
+    /* width: 800px; */
+ }
+ 

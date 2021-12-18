@@ -23,5 +23,13 @@ router.post('/create', restoreUser, asyncHandler(async (req, res) => {
     return res.json({ newPost })
 }))
 
+router.delete('/:id(\\d+)/delete', asyncHandler(async (req, res) => {
+    const id = req.params.id
+    const post = await Post.findByPk(id)
+    console.log(post)
+    await post.destroy()
+    return res.json({ post })
+}))
+
 
 module.exports = router;

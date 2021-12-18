@@ -3,6 +3,7 @@ import { csrfFetch } from './csrf';
 //action type
 const GET_FRIENDS_AND_POSTS = 'user/GET_FRIENDS_AND_POSTS'
 const CREATE_POST = 'post/CREATE_POST'
+const DELETE_POST = '/post/DELETE_POST'
 
 //action creators
 const mainFeed = (payload) => ({
@@ -12,6 +13,11 @@ const mainFeed = (payload) => ({
 
 const createPost = (payload) => ({
     type: CREATE_POST,
+    payload
+})
+
+const deletePost = (payload) => ({
+    type: DELETE_POST,
     payload
 })
 
@@ -38,6 +44,17 @@ export const createPostThunk = (post) => async (dispatch) => {
     }
 }
 
+export const deletePostThunk = (postId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/post/${postId}/delete`, {
+        method: 'DELETE'
+    })
+    if (response.ok) {
+        const post = await response.json()
+        dispatch(deletePost(post))
+        return post
+    }
+}
+
 //reducer
 const initialState = {}
 const friendsAndPostsReducer = (state = initialState, action) => {
@@ -56,6 +73,17 @@ const friendsAndPostsReducer = (state = initialState, action) => {
             }
             newState?.friendsPosts?.push(action.payload.newPost)
             return newState
+        }
+        case DELETE_POST: {
+            newState = { ...state }
+            for (let i = 0; i < newState?.friendsPosts.length; i++) {
+                let post = newState?.friendsPosts[i]
+                if (post.id === action?.payload?.post?.id) {
+                    newState?.friendsPosts.splice(i, 1)
+                }
+            }
+            const copiedState = { ...newState, 'friendsPosts': [...newState?.friendsPosts] }
+            return copiedState;
         }
         default:
             return state;

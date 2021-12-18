@@ -4,7 +4,11 @@ import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { getMainFeed } from '../../store/friendsAndPosts';
 import { createPostThunk } from '../../store/friendsAndPosts';
+import ProfileButton from '../Navigation/ProfileButton';
+import EditDeleteButton from './EditDeleteButton';
+import CreatePostModal from '../CreatePost';
 import './MainFeed.css'
+import CreatePostPage from '../CreatePost/CreatePost';
 
 function MainFeed() {
     const dispatch = useDispatch()
@@ -55,7 +59,7 @@ function MainFeed() {
                             <div>{sessionUser?.firstName} {sessionUser?.lastName}</div>
                         </div>
                         <NavLink to='/friends' className='friends-parent-mainfeed'>
-                            <div className='friends-logo-mainfeed'>frnds</div>
+                            <img src='https://media.discordapp.net/attachments/921246913167245363/921662235435225138/unknown.png' className='friends-icon-mainfeed' />
                             <div>Friends</div>
                         </NavLink>
                     </div>
@@ -80,19 +84,20 @@ function MainFeed() {
                                 <img src='https://media.discordapp.net/attachments/921246913167245363/921246938127560704/unknown.png' className='create-a-post-icons' />
                                 Post
                             </button>
-                            <button className='photo-button-mainfeed'>
-                                <img src='https://media.discordapp.net/attachments/921246913167245363/921248928538693642/unknown.png' className='create-a-post-icons' />
-                                Add Photo</button>
+                            <CreatePostModal />
                             <button className='feeling-button-mainfeed'>
-                                <img src='https://media.discordapp.net/attachments/921246913167245363/921249406072803348/unknown.png' className='create-a-post-icons' />
-                                Feeling/activity</button>
+                                <img src='https://media.discordapp.net/attachments/921246913167245363/921635080445780018/unknown.png' className='create-a-post-icons' />
+                                Feeling</button>
                         </div>
                     </div>
                     {reversedPosts?.map(post => (
                         <div key={post?.id} className='friends-posts-parent-mainfeed'>
                             <div className='post-name-and-image-mainfeed'>
                                 <img src={post?.User?.profileImageUrl} className='post-profile-image-mainfeed' />
-                                <div>{`${post?.User?.firstName} ${post?.User?.lastName}`}</div>
+                                <div className='post-first-last-name-mainfeed'>{`${post?.User?.firstName} ${post?.User?.lastName}`}</div>
+                                <div className='edit-delete-menu'>
+                                    <EditDeleteButton post={post} />
+                                </div>
                             </div>
                             <div>
                                 <div className='post-text-content-mainfeed'>{post?.content}</div>
