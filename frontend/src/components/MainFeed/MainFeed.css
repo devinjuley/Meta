@@ -1,7 +1,9 @@
 .main-feed-parent-div {
     padding-top: 70px;
     display: flex;
+   margin: 0 auto;
     width: 100%;
+    max-width: 1550px;
 }
 
 .user-fullname-and-pic-mainfeed {
