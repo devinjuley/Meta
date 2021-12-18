@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
-const { User, Friend, Post } = require('../../db/models');
+const { User, Friend, Post, Comment } = require('../../db/models');
 
 const router = express.Router();
 
@@ -20,7 +20,9 @@ router.get('/:id(\\d+)/friends', asyncHandler(async (req, res) => {
    })
 
    const posts = await Post.findAll({
-      include: User
+      include: [User,
+         { model: Comment, include: [User] }
+      ]
    })
 
    const friendIds = [Number(id)]

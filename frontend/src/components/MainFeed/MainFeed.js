@@ -7,6 +7,7 @@ import { createPostThunk } from '../../store/friendsAndPosts';
 import ProfileButton from '../Navigation/ProfileButton';
 import EditDeleteButton from './EditDeleteButton';
 import CreatePostModal from '../CreatePost';
+import CommentComponent from '../Comments/CommentComponent';
 import './MainFeed.css'
 import CreatePostPage from '../CreatePost/CreatePost';
 
@@ -16,6 +17,7 @@ function MainFeed() {
     const friends = useSelector(state => state?.friends?.friends)
     const friendsPosts = useSelector(state => state?.friends?.friendsPosts)
     const [textContent, setTextContent] = useState('')
+
     const [isLoaded, setIsLoaded] = useState(false)
     const [errors, setErrors] = useState([]);
 
@@ -103,9 +105,7 @@ function MainFeed() {
                                 <div className='post-text-content-mainfeed'>{post?.content}</div>
                                 <img src={post?.imageUrl} className='post-image-content-mainfeed' />
                             </div>
-                            <div className='buttons-at-bottom-of-post-mainfeed'>
-                                <button className='post-comment-button-mainfeed'>Comment</button>
-                            </div>
+                            <CommentComponent post={post} />
                         </div>
                     ))}
                 </div>
