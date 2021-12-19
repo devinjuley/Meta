@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { createPostThunk } from '../../store/friendsAndPosts';
+
+
+import { getMainFeed } from '../../store/friendsAndPosts';
+
 
 // thunk import
 // import { signUp } from '../../store/session';
@@ -19,6 +22,8 @@ const CreatePostPage = ({ hideForm }) => {
 
     const postPlaceholder = `What's on your mind, ${sessionUser.firstName}?`
 
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -33,6 +38,7 @@ const CreatePostPage = ({ hideForm }) => {
                 if (data && data.errors) setErrors(data.errors);
             });
         if (newPost) {
+            await dispatch(getMainFeed(sessionUser?.id))
             hideForm()
         }
 
@@ -53,10 +59,10 @@ const CreatePostPage = ({ hideForm }) => {
                     <div>{`${sessionUser?.firstName} ${sessionUser?.lastName}`}</div>
                 </div>
                 {/* <ul>
-               {errors.map((error, i) => (
-                  <li key={i}>{error}</li>
-               ))}
-            </ul> */}
+                    {errors.map((error, i) => (
+                        <li key={i}>{error}</li>
+                    ))}
+                </ul> */}
                 <div className='textarea-div-post-modal'>
                     <textarea
                         value={textContent}

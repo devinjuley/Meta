@@ -1,0 +1,27 @@
+.comment-profile-image-mainfeed {
+    height: 32px;
+    width: 32px;
+    border-radius: 20px;
+    object-fit: cover;
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+.name-and-comment-parent-div-mainfeed {
+    display: flex;
+    /* align-items: center; */
+}
+
+.comment-chat-bubble {
+    background-color: #3a3b3c;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 15px;
+    border-radius: 15px;
+}
+
+.create-comment-outer-div {
+    display: flex;
+    justify-content: center;
+}
