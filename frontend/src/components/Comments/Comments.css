@@ -25,6 +25,7 @@
 .create-comment-outer-div {
     display: flex;
     justify-content: center;
+    /* align-items: center; */
     margin-bottom: 10px;
 }
 
@@ -42,6 +43,7 @@
 
 .inner-create-comment-div {
     display: flex;
+    align-items: center;
     /* justify-content: center; */
     width: 95%;
     border-top: 1px solid #3e3f42;
