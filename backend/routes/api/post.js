@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
-const { User, Friend, Post } = require('../../db/models');
+const { User, Friend, Post, Comment } = require('../../db/models');
 
 const router = express.Router();
 
@@ -31,9 +31,23 @@ router.delete('/:id(\\d+)/delete', asyncHandler(async (req, res) => {
     return res.json({ post })
 }))
 
-// router.put('/:id(\\d+)/edit', restoreUser, asyncHandler(async (req, res) => {
+router.put('/:id(\\d+)/edit', restoreUser, asyncHandler(async (req, res) => {
+    const { userId, content, imageUrl } = req.body
+    const post = await Post.findByPk(req.params.id, {
+        include: [User,
+            { model: Comment, include: [User] }
+        ]
+    })
+    post.update({
+        userId,
+        content,
+        imageUrl
+    })
 
-// }))
+    return res.json(post)
+}))
+
+
 
 
 module.exports = router;

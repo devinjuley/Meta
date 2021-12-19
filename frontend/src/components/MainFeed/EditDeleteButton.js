@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { deletePostThunk } from '../../store/friendsAndPosts';
+import { deletePostThunk, editPostThunk } from '../../store/friendsAndPosts';
+import './MainFeed.css'
 
 // import { logout } from '../../store/session';
 
-const EditDeleteButton = ({ post }) => {
+const EditDeleteButton = ({ post, setShowEditBox }) => {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
 
@@ -25,9 +26,14 @@ const EditDeleteButton = ({ post }) => {
     }, [showMenu]);
 
 
+    const handleEdit = () => {
+        // dis
+    }
+
     const handleDelete = () => {
         dispatch(deletePostThunk(post.id))
     };
+
 
 
     return (
@@ -37,7 +43,7 @@ const EditDeleteButton = ({ post }) => {
                 <div className='hidden-div-around-edit-delete-menu'>
                     <div className='edit-delete-dropdown-menu'>
                         <div className='border-between-edit-delete'>
-                            <div className='edit-button-dropdown'>
+                            <div className='edit-button-dropdown' onClick={() => setShowEditBox(true)}>
                                 <img src='https://media.discordapp.net/attachments/921246913167245363/922208971253751838/unknown.png' className='edit-pencil-icon' />
                                 Edit</div>
                         </div>

@@ -371,20 +371,17 @@
 
 .edit-button-dropdown {
     display: flex;
-    /* justify-content: center; */
-    /* border-bottom: 1px solid #2c2d2d; */
-    /* width: 100%; */
-    padding-top: 8px;
-    padding-bottom: 8px;
-    margin-top: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
-    border-radius: 5px;
-    padding-left: 10px;
-    cursor: pointer;
     align-items: center;
+     padding-top: 8px;
+     padding-bottom: 8px;
+     margin-top: 5px;
+     margin-right: 5px;
+     margin-left: 5px;
+     margin-right: 5px;
+     margin-bottom: 5px;
+     border-radius: 5px;
+     padding-left: 10px;
+     cursor: pointer;
 }
 .edit-button-dropdown:hover {
     background-color: #3a3a3b;
@@ -398,7 +395,6 @@
 .delete-button-dropdown {
     display: flex;
    align-items: center;
-    /* width: 100%; */
     padding-top: 8px;
     padding-bottom: 8px;
     margin-top: 5px;
