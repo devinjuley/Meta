@@ -16,7 +16,7 @@ const CreatePostPage = ({ hideForm }) => {
     const sessionUser = useSelector(state => state?.session?.user)
 
     const [textContent, setTextContent] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
+    const [imageUrl, setImageUrl] = useState(null);
 
     const [errors, setErrors] = useState([]);
 
@@ -27,25 +27,25 @@ const CreatePostPage = ({ hideForm }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+
         const post = {
             userId: sessionUser?.id,
             content: textContent,
             imageUrl
         }
+
+
+
+
         let newPost = await dispatch(createPostThunk(post))
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
             });
         if (newPost) {
-            await dispatch(getMainFeed(sessionUser?.id))
             hideForm()
         }
 
-        // .catch(async (res) => {
-        //    const data = await res.json();
-        //    if (data && data.errors) setErrors(data.errors);
-        // });
 
         //   return setErrors(['Confirm Password field must be the same as the Password field']);
     };

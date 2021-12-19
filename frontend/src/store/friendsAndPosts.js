@@ -63,26 +63,31 @@ const friendsAndPostsReducer = (state = initialState, action) => {
         case GET_FRIENDS_AND_POSTS: {
             newState = {
                 ...state,
-                ...action.payload
+                friends: {},
+                friendsPosts: {}
             }
+            action.payload.friends.forEach(friend => {
+                newState.friends[friend.friendId] = friend
+            })
+            newState.friendsPosts = action.payload.friendsPosts
+
+
             return newState
         }
         case CREATE_POST: {
             newState = {
                 ...state,
             }
-            newState?.friendsPosts?.push(action.payload.newPost)
-            return newState
+            newState['friendsPosts'][action?.payload?.newPost?.id] = action.payload.newPost
+            const copiedState = { ...newState, 'friendsPosts': { ...newState?.friendsPosts } }
+            return copiedState;
         }
         case DELETE_POST: {
             newState = { ...state }
-            for (let i = 0; i < newState?.friendsPosts.length; i++) {
-                let post = newState?.friendsPosts[i]
-                if (post.id === action?.payload?.post?.id) {
-                    newState?.friendsPosts.splice(i, 1)
-                }
-            }
-            const copiedState = { ...newState, 'friendsPosts': [...newState?.friendsPosts] }
+
+            delete newState['friendsPosts'][action?.payload?.post?.id]
+
+            const copiedState = { ...newState, 'friendsPosts': { ...newState?.friendsPosts } }
             return copiedState;
         }
         default:

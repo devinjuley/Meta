@@ -47,33 +47,39 @@ const CommentComponent = ({ post }) => {
     return (
         <>
             <div className='buttons-at-bottom-of-post-mainfeed'>
-                <button className='post-comment-button-mainfeed' onClick={(() => setShowComments(true))}>Comment</button>
+                <div className='centering-buttons-at-bottom-of-post'>
+                    <button className='post-comment-button-mainfeed' onClick={(() => setShowComments(true))}>
+                        <img src='https://media.discordapp.net/attachments/921246913167245363/921940858847244348/unknown.png' className='comment-button-icon' />
+                        Comment</button>
+                </div>
             </div>
 
             {showComments && (
                 <div>
                     <div className='create-comment-outer-div'>
-                        <div className='inner-create-post-div'>
-                            <img src={sessionUser?.profileImageUrl} className='create-post-image-mainfeed' />
+                        <div className='inner-create-comment-div'>
+                            <img src={sessionUser?.profileImageUrl} className='create-comment-image-mainfeed' />
                             <form onSubmit={handleSubmit} className='create-a-post-form-mainfeed' id='create-post-submit-mainfeed'>
                                 <input
                                     type='text'
                                     value={textContent}
                                     onChange={(e) => setTextContent(e.target.value)}
                                     placeholder='Write a comment...'
-                                    className='post-text-content-input'
+                                    className='comment-text-content-input'
                                     id='emojs-for-text-box'
                                 />
                             </form>
                         </div>
                     </div>
-                    {post?.Comments?.map(comment => (
-                        <div key={comment.id}>
-                            <div className='name-and-comment-parent-div-mainfeed'>
-                                <img src={comment?.User?.profileImageUrl} className='comment-profile-image-mainfeed' />
-                                <div className='comment-chat-bubble'><div>{`${comment?.User?.firstName} ${comment?.User?.lastName}`}</div><div>{comment?.content}</div></div>
-                            </div>
-                        </div>))}
+                    <div className='all-comments-parent-div'>
+                        {post?.Comments?.map(comment => (
+                            <div key={comment.id} className='single-comment-parent-div'>
+                                <div className='name-and-comment-parent-div-mainfeed'>
+                                    <img src={comment?.User?.profileImageUrl} className='comment-profile-image-mainfeed' />
+                                    <div className='comment-chat-bubble'><div>{`${comment?.User?.firstName} ${comment?.User?.lastName}`}</div><div>{comment?.content}</div></div>
+                                </div>
+                            </div>))}
+                    </div>
                 </div>
             )}
         </>
