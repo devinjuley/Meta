@@ -101,10 +101,11 @@ function MainFeed() {
                                     <EditDeleteButton post={post} />
                                 </div>
                             </div>
-                            <div>
+                            <div className='center-post-text-content-div'>
+                                {/* <div> */}
                                 <div className='post-text-content-mainfeed'>{post?.content}</div>
-                                <img src={post?.imageUrl} className='post-image-content-mainfeed' />
                             </div>
+                            <img src={post?.imageUrl} className='post-image-content-mainfeed' />
                             <CommentComponent post={post} />
                         </div>
                     ))}
