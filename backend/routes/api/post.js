@@ -31,5 +31,9 @@ router.delete('/:id(\\d+)/delete', asyncHandler(async (req, res) => {
     return res.json({ post })
 }))
 
+// router.put('/:id(\\d+)/edit', restoreUser, asyncHandler(async (req, res) => {
+
+// }))
+
 
 module.exports = router;
