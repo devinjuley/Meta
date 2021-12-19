@@ -31,10 +31,10 @@ router.get('/:id(\\d+)/friends', asyncHandler(async (req, res) => {
    })
    // console.log(friendIds)
 
-   const friendsPosts = []
+   const friendsPosts = {}
    posts.forEach(post => {
       if (friendIds.includes(post.userId)) {
-         friendsPosts.push(post)
+         friendsPosts[post.id] = post
       }
    })
 

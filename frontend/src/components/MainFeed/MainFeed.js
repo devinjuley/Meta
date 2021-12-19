@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { format } from "date-fns";
 import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { getMainFeed } from '../../store/friendsAndPosts';
@@ -46,10 +47,15 @@ function MainFeed() {
     }
 
     const postPlaceholder = `What's on your mind, ${sessionUser.firstName}?`
-
+    const friendsArr = Object.assign([], friends)
     const postArr = Object.assign([], friendsPosts)
-    const reversedPosts = postArr?.reverse()
-
+    const reversedPosts = postArr.reverse()
+    // console.log('before', postArr)
+    // postArr.sort((a, b) => {
+    //     return new Date(a.created_at) - new Date(b.created_at)
+    // });
+    // console.log("this this", reversedPosts)
+    // console.log('after', postArr)
 
     return (
         <>
@@ -94,18 +100,22 @@ function MainFeed() {
                     </div>
                     {reversedPosts?.map(post => (
                         <div key={post?.id} className='friends-posts-parent-mainfeed'>
-                            <div className='post-name-and-image-mainfeed'>
-                                <img src={post?.User?.profileImageUrl} className='post-profile-image-mainfeed' />
-                                <div className='post-first-last-name-mainfeed'>{`${post?.User?.firstName} ${post?.User?.lastName}`}</div>
-                                <div className='edit-delete-menu'>
-                                    <EditDeleteButton post={post} />
+                            <div className='center-name-image-editbutton'>
+                                <div className='post-name-and-image-mainfeed'>
+                                    <img src={post?.User?.profileImageUrl} className='post-profile-image-mainfeed' />
+                                    <div className='name-and-date-mainfeed'>
+                                        <div className='post-first-last-name-mainfeed'>{`${post?.User?.firstName} ${post?.User?.lastName}`}</div>
+                                        <div className='date-of-post'>{format(new Date(post?.createdAt), "MMM D, YYYY, hh:mm a")}</div>
+                                    </div>
+                                    <div className='edit-delete-menu'>
+                                        {sessionUser.id == post?.userId && (<EditDeleteButton post={post} />)}
+                                    </div>
                                 </div>
                             </div>
                             <div className='center-post-text-content-div'>
-                                {/* <div> */}
                                 <div className='post-text-content-mainfeed'>{post?.content}</div>
                             </div>
-                            <img src={post?.imageUrl} className='post-image-content-mainfeed' />
+                            {post?.imageUrl !== null && (<img src={post?.imageUrl} className='post-image-content-mainfeed' />)}
                             <CommentComponent post={post} />
                         </div>
                     ))}
@@ -119,7 +129,7 @@ function MainFeed() {
                             </a>
                         </div>
                         <div className='contacts-label-mainfeed'>Contacts</div>
-                        {friends?.map(friend => (
+                        {friendsArr?.map(friend => (
                             <div key={friend.id} className='contacts-name-profilepic'>
                                 <img src={friend?.User?.profileImageUrl} className='mainfeed-profile-image' />
                                 <div>{`${friend?.User?.firstName} ${friend?.User?.lastName}`}</div>
