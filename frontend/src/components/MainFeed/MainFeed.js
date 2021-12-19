@@ -105,7 +105,7 @@ function MainFeed() {
                                     <img src={post?.User?.profileImageUrl} className='post-profile-image-mainfeed' />
                                     <div className='name-and-date-mainfeed'>
                                         <div className='post-first-last-name-mainfeed'>{`${post?.User?.firstName} ${post?.User?.lastName}`}</div>
-                                        <div className='date-of-post'>{format(new Date(post?.createdAt), "MMM D, YYYY, hh:mm a")}</div>
+                                        <div className='date-of-post'>{format(new Date(post?.createdAt), "MMM D, YYYY, hh:mm A")}</div>
                                     </div>
                                     <div className='edit-delete-menu'>
                                         {sessionUser.id == post?.userId && (<EditDeleteButton post={post} />)}

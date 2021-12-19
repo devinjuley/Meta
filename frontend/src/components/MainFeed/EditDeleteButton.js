@@ -34,9 +34,17 @@ const EditDeleteButton = ({ post }) => {
         <div>
             <div onClick={openMenu} className='dot-dot-dot'>...</div>
             {showMenu && (
-                <div className='edit-delete-dropdown-menu'>
-                    <div className='edit-button-dropdown'>Edit post</div>
-                    <div className='delete-button-dropdown' onClick={handleDelete}>Delete post</div>
+                <div className='hidden-div-around-edit-delete-menu'>
+                    <div className='edit-delete-dropdown-menu'>
+                        <div className='border-between-edit-delete'>
+                            <div className='edit-button-dropdown'>
+                                <img src='https://media.discordapp.net/attachments/921246913167245363/922208971253751838/unknown.png' className='edit-pencil-icon' />
+                                Edit</div>
+                        </div>
+                        <div className='delete-button-dropdown' onClick={handleDelete}>
+                            <img src='https://media.discordapp.net/attachments/921246913167245363/922209557898465280/unknown.png' className='delete-trashcan-icon' />
+                            Delete</div>
+                    </div>
                 </div>
             )}
         </div>
