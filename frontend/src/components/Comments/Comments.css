@@ -20,3 +20,8 @@
     padding-right: 15px;
     border-radius: 15px;
 }
+
+.create-comment-outer-div {
+    display: flex;
+    justify-content: center;
+}
