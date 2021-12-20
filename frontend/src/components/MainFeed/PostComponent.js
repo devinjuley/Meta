@@ -28,6 +28,8 @@ const PostComponent = ({ post }) => {
         setShowEditBox(false)
     }
 
+
+
     return (
         <div key={post?.id} className='friends-posts-parent-mainfeed'>
             <div className='center-name-image-editbutton'>
@@ -38,20 +40,21 @@ const PostComponent = ({ post }) => {
                         <div className='date-of-post'>{format(new Date(post?.createdAt), "MMM D, YYYY, hh:mm A")}</div>
                     </div>
                     <div className='edit-delete-menu'>
-                        {sessionUser.id == post?.userId && (<EditDeleteButton post={post} setShowEditBox={setShowEditBox} />)}
+                        {sessionUser.id == post?.userId && (<EditDeleteButton post={post} showEditBox={showEditBox} setShowEditBox={setShowEditBox} />)}
                     </div>
                 </div>
             </div>
             <div className='center-post-text-content-div'>
                 {!showEditBox && (<div className='post-text-content-mainfeed'>{post?.content}</div>)}
                 {showEditBox && (
-                    <form onSubmit={handleEditSubmission} className=''>
-                        <textarea
+                    <form onSubmit={handleEditSubmission} className='edit-post-form'>
+                        <input
+                            type='text'
                             value={textContent}
                             onChange={(e) => setTextContent(e.target.value)}
-                            className=''
+                            className='edit-post-input-box'
                         />
-                        <button type="submit" className=''>Apply</button>
+                        {/* <button type="submit" className=''>Apply</button> */}
                     </form>
                 )}
             </div>

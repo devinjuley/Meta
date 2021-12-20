@@ -50,12 +50,7 @@ function MainFeed() {
     const friendsArr = Object.assign([], friends)
     const postArr = Object.assign([], friendsPosts)
     const reversedPosts = postArr.reverse()
-    // console.log('before', postArr)
-    // postArr.sort((a, b) => {
-    //     return new Date(a.created_at) - new Date(b.created_at)
-    // });
-    // console.log("this this", reversedPosts)
-    // console.log('after', postArr)
+
 
     return (
         <>

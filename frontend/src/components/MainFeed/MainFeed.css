@@ -440,3 +440,27 @@
 .delete-trashcan-icon {
     margin-right: 5px;
 }
+
+
+.edit-post-input-box {
+    width: 100%;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    background-color: #3a3a3b;
+    color: #fff;
+    height: 40px;
+    /* min-height: 20px; */
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+    /* line-height: 10px; */
+    
+}
+
+.edit-post-form {
+    width: 95%;
+    border-bottom: 1px solid #3a3b3c;
+}
