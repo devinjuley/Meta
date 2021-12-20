@@ -127,6 +127,9 @@
     top: 80px;
     width: 75%;
     margin-right: 25%;
+    max-height: 100vh;
+    overflow-y: auto;
+    scrollbar-color: #232425 #17181a;
 }
 
 .right-menu-mainfeed {
@@ -494,8 +497,8 @@
     color: #fff;
     height: 38px;
     border-radius: 5px;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 21px;
+    padding-left: 21px;
     margin-right: 10px;
 }
 
@@ -505,8 +508,8 @@
     color: #fff;
     height: 38px;
     border-radius: 5px;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 25px;
+    padding-left: 25px;
 }
 
 .friend-request-section {

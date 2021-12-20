@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createPostThunk } from '../../store/friendsAndPosts';
+// import { createPostThunk } from '../../store/mainFeed';
+import { createCommentThunk } from '../../store/mainFeed';
 
 
-import { getMainFeed } from '../../store/friendsAndPosts';
+// import { getMainFeed } from '../../store/mainFeed';
 
 
 // thunk import
@@ -31,11 +32,11 @@ const CommentComponent = ({ post }) => {
             postId: post.id,
             content: textContent
         }
-            // let newPost = await dispatch(createPostThunk(post))
-            .catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
-            });
+        await dispatch(createCommentThunk(comment))
+        // .catch(async (res) => {
+        //     const data = await res.json();
+        //     if (data && data.errors) setErrors(data.errors);
+        // });
         // if (newPost) {
         //     await dispatch(getMainFeed(sessionUser?.id))
 

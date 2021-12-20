@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { format } from "date-fns";
 import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-import { getMainFeed } from '../../store/friendsAndPosts';
-import { createPostThunk } from '../../store/friendsAndPosts';
+import { getMainFeed } from '../../store/mainFeed';
+import { createPostThunk } from '../../store/mainFeed';
+// import { getMainFeed } from '../../store/mainFeed';
+// import { createPostThunk } from '../../store/mainFeed';
 
 import CreatePostModal from '../CreatePost';
 import PostComponent from './PostComponent';
@@ -16,9 +18,9 @@ import './MainFeed.css'
 function MainFeed() {
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state?.session?.user)
-    const friends = useSelector(state => state?.friends?.friends)
-    const friendsPosts = useSelector(state => state?.friends?.friendsPosts)
-    const friendRequests = useSelector(state => state?.friends?.friendRequests)
+    const friends = useSelector(state => state?.mainFeed?.friends)
+    const friendsPosts = useSelector(state => state?.mainFeed?.friendsPosts)
+    const friendRequests = useSelector(state => state?.mainFeed?.friendRequests)
 
     const [textContent, setTextContent] = useState('')
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deletePostThunk, editPostThunk } from '../../store/friendsAndPosts';
+import { deletePostThunk, editPostThunk } from '../../store/mainFeed';
 import EditDeleteButton from './EditDeleteButton';
 import CommentComponent from '../Comments/CommentComponent';
 import { format } from "date-fns";
@@ -55,7 +55,7 @@ const PostComponent = ({ post }) => {
                 )}
             </div>
             {post?.imageUrl !== null && (<img src={post?.imageUrl} className='post-image-content-mainfeed' />)}
-            <CommentComponent post={post} />
+            <CommentComponent post={post} key={post.id} />
         </div>
     );
 };

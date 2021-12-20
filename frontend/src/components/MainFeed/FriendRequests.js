@@ -24,7 +24,9 @@ const FriendRequests = ({ request }) => {
         <div>
 
             <div className='div-around-friend-request'>
-                <img src={request?.User?.profileImageUrl} className='friend-request-user-pic' />
+                <div>
+                    <img src={request?.User?.profileImageUrl} className='friend-request-user-pic' />
+                </div>
                 <div>
                     <div className='friend-request-name-and-phrase'>
                         <div className='friend-request-first-last-name'>{`${request?.User?.firstName} ${request?.User?.lastName} `}<span className='friend-request-phrase'>sent you a friend request.</span></div>

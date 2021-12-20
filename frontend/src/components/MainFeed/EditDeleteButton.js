@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { deletePostThunk, editPostThunk } from '../../store/friendsAndPosts';
+import { deletePostThunk, editPostThunk } from '../../store/mainFeed';
 import './MainFeed.css'
 
 // import { logout } from '../../store/session';
