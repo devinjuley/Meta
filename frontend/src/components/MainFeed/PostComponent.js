@@ -6,9 +6,6 @@ import CommentComponent from '../Comments/CommentComponent';
 import { format } from "date-fns";
 import './MainFeed.css'
 
-
-// import { logout } from '../../store/session';
-
 const PostComponent = ({ post }) => {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
@@ -54,7 +51,6 @@ const PostComponent = ({ post }) => {
                             onChange={(e) => setTextContent(e.target.value)}
                             className='edit-post-input-box'
                         />
-                        {/* <button type="submit" className=''>Apply</button> */}
                     </form>
                 )}
             </div>

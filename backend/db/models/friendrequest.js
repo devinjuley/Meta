@@ -4,8 +4,10 @@ module.exports = (sequelize, DataTypes) => {
     sessionUserId: DataTypes.INTEGER,
     friendId: DataTypes.INTEGER
   }, {});
-  FriendRequest.associate = function(models) {
-    // associations can be defined here
+  FriendRequest.associate = function (models) {
+    FriendRequest.belongsTo(models.User, { foreignKey: 'sessionUserId' })
+    FriendRequest.belongsTo(models.User, { foreignKey: 'friendId' })
+
   };
   return FriendRequest;
 };
