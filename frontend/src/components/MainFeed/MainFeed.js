@@ -5,12 +5,12 @@ import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { getMainFeed } from '../../store/friendsAndPosts';
 import { createPostThunk } from '../../store/friendsAndPosts';
-import ProfileButton from '../Navigation/ProfileButton';
-import EditDeleteButton from './EditDeleteButton';
+
 import CreatePostModal from '../CreatePost';
-import CommentComponent from '../Comments/CommentComponent';
+import PostComponent from './PostComponent';
+
 import './MainFeed.css'
-import CreatePostPage from '../CreatePost/CreatePost';
+
 
 function MainFeed() {
     const dispatch = useDispatch()
@@ -50,12 +50,7 @@ function MainFeed() {
     const friendsArr = Object.assign([], friends)
     const postArr = Object.assign([], friendsPosts)
     const reversedPosts = postArr.reverse()
-    // console.log('before', postArr)
-    // postArr.sort((a, b) => {
-    //     return new Date(a.created_at) - new Date(b.created_at)
-    // });
-    // console.log("this this", reversedPosts)
-    // console.log('after', postArr)
+
 
     return (
         <>
@@ -99,25 +94,7 @@ function MainFeed() {
                         </div>
                     </div>
                     {reversedPosts?.map(post => (
-                        <div key={post?.id} className='friends-posts-parent-mainfeed'>
-                            <div className='center-name-image-editbutton'>
-                                <div className='post-name-and-image-mainfeed'>
-                                    <img src={post?.User?.profileImageUrl} className='post-profile-image-mainfeed' />
-                                    <div className='name-and-date-mainfeed'>
-                                        <div className='post-first-last-name-mainfeed'>{`${post?.User?.firstName} ${post?.User?.lastName}`}</div>
-                                        <div className='date-of-post'>{format(new Date(post?.createdAt), "MMM D, YYYY, hh:mm a")}</div>
-                                    </div>
-                                    <div className='edit-delete-menu'>
-                                        {sessionUser.id == post?.userId && (<EditDeleteButton post={post} />)}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='center-post-text-content-div'>
-                                <div className='post-text-content-mainfeed'>{post?.content}</div>
-                            </div>
-                            {post?.imageUrl !== null && (<img src={post?.imageUrl} className='post-image-content-mainfeed' />)}
-                            <CommentComponent post={post} />
-                        </div>
+                        <PostComponent post={post} key={post.id} />
                     ))}
                 </div>
                 <div className='right-menu-mainfeed'>

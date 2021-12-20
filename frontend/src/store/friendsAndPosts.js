@@ -4,6 +4,7 @@ import { csrfFetch } from './csrf';
 const GET_FRIENDS_AND_POSTS = 'user/GET_FRIENDS_AND_POSTS'
 const CREATE_POST = 'post/CREATE_POST'
 const DELETE_POST = '/post/DELETE_POST'
+const EDIT_POST = '/post/EDIT_POST'
 
 //action creators
 const mainFeed = (payload) => ({
@@ -19,6 +20,11 @@ const createPost = (payload) => ({
 const deletePost = (payload) => ({
     type: DELETE_POST,
     payload
+})
+
+const editPost = (post) => ({
+    type: EDIT_POST,
+    post
 })
 
 //thunks
@@ -55,6 +61,20 @@ export const deletePostThunk = (postId) => async (dispatch) => {
     }
 }
 
+export const editPostThunk = (post) => async (dispatch) => {
+    const response = await csrfFetch(`/api/post/${post.id}/edit`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(post)
+    })
+
+    if (response.ok) {
+        const post = await response.json()
+        dispatch(editPost(post))
+        return post;
+    }
+}
+
 //reducer
 const initialState = {}
 const friendsAndPostsReducer = (state = initialState, action) => {
@@ -84,11 +104,16 @@ const friendsAndPostsReducer = (state = initialState, action) => {
         }
         case DELETE_POST: {
             newState = { ...state }
-
             delete newState['friendsPosts'][action?.payload?.post?.id]
-
             const copiedState = { ...newState, 'friendsPosts': { ...newState?.friendsPosts } }
             return copiedState;
+        }
+        case EDIT_POST: {
+            console.log('==========', action.payload)
+            newState = { ...state }
+            newState['friendsPosts'][action?.post?.id] = action.post
+            const copiedState = { ...newState, 'friendsPosts': { ...newState?.friendsPosts } }
+            return copiedState
         }
         default:
             return state;
