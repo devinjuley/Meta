@@ -177,7 +177,7 @@ const mainFeedReducer = (state = initialState, action) => {
         case CREATE_COMMENT: {
             newState = { ...state }
             console.log('==============', action?.comment?.newComment)
-            newState['friendsPosts'][action?.comment?.newComment?.postId]['Comments'].push(action?.comment?.newComment)
+            newState['friendsPosts'][action?.comment?.newComment?.postId]['Comments'].unshift(action?.comment?.newComment)
             const copiedState = {
                 ...newState, 'friendsPosts': {
                     ...newState['friendsPosts'],
