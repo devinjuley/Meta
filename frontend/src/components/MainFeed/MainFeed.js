@@ -8,6 +8,7 @@ import { createPostThunk } from '../../store/friendsAndPosts';
 
 import CreatePostModal from '../CreatePost';
 import PostComponent from './PostComponent';
+import FriendRequests from './FriendRequests';
 
 import './MainFeed.css'
 
@@ -17,6 +18,8 @@ function MainFeed() {
     const sessionUser = useSelector(state => state?.session?.user)
     const friends = useSelector(state => state?.friends?.friends)
     const friendsPosts = useSelector(state => state?.friends?.friendsPosts)
+    const friendRequests = useSelector(state => state?.friends?.friendRequests)
+
     const [textContent, setTextContent] = useState('')
 
     const [isLoaded, setIsLoaded] = useState(false)
@@ -49,8 +52,10 @@ function MainFeed() {
     const postPlaceholder = `What's on your mind, ${sessionUser.firstName}?`
     const friendsArr = Object.assign([], friends)
     const postArr = Object.assign([], friendsPosts)
-    const reversedPosts = postArr.reverse()
+    const requestArr = Object.assign([], friendRequests)
+    console.log(friendRequests)
 
+    const reversedPosts = postArr.reverse()
 
     return (
         <>
@@ -65,6 +70,10 @@ function MainFeed() {
                             <img src='https://media.discordapp.net/attachments/921246913167245363/921662235435225138/unknown.png' className='friends-icon-mainfeed' />
                             <div>Friends</div>
                         </NavLink>
+                        <div className='friend-request-section'>Friend Requests</div>
+                        {requestArr?.map(request => (
+                            <FriendRequests request={request} key={request.id} />
+                        ))}
                     </div>
                 </div>
                 <div className='posts-megaparent-div-mainfeed'>

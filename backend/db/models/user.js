@@ -179,6 +179,9 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Comment, { foreignKey: 'userId' })
     User.hasMany(models.Friend, { foreignKey: 'sessionUserId' })
     User.hasMany(models.Friend, { foreignKey: 'friendId' })
+    User.hasMany(models.FriendRequest, { foreignKey: 'sessionUserId' })
+    User.hasMany(models.FriendRequest, { foreignKey: 'friendId' })
+
 
 
   };

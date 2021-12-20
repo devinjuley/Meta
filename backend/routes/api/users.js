@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
-const { User, Friend, Post, Comment } = require('../../db/models');
+const { User, Friend, Post, Comment, FriendRequest } = require('../../db/models');
 
 const router = express.Router();
 
@@ -25,6 +25,13 @@ router.get('/:id(\\d+)/friends', asyncHandler(async (req, res) => {
       ]
    })
 
+   const friendRequests = await FriendRequest.findAll({
+      where: {
+         sessionUserId: id
+      },
+      include: User
+   })
+
    const friendIds = [Number(id)]
    friends.forEach(friend => {
       friendIds.push(friend.User.id)
@@ -38,7 +45,7 @@ router.get('/:id(\\d+)/friends', asyncHandler(async (req, res) => {
       }
    })
 
-   return res.json({ friends, friendsPosts })
+   return res.json({ friends, friendsPosts, friendRequests })
 }))
 
 

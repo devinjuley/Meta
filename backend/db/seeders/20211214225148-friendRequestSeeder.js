@@ -5,11 +5,35 @@ module.exports = {
 
     return queryInterface.bulkInsert('FriendRequests', [
       {
-        sessionUserId: 9,
-        friendId: 1,
+        sessionUserId: 1,
+        friendId: 9,
         createdAt: new Date(),
         updatedAt: new Date()
-      }
+      },
+      {
+        sessionUserId: 1,
+        friendId: 4,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        sessionUserId: 1,
+        friendId: 5,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        sessionUserId: 1,
+        friendId: 6,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        sessionUserId: 1,
+        friendId: 7,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], {});
 
   },

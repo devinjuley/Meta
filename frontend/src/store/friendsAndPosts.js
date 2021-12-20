@@ -84,10 +84,14 @@ const friendsAndPostsReducer = (state = initialState, action) => {
             newState = {
                 ...state,
                 friends: {},
-                friendsPosts: {}
+                friendsPosts: {},
+                friendRequests: {}
             }
             action.payload.friends.forEach(friend => {
                 newState.friends[friend.friendId] = friend
+            })
+            action.payload.friendRequests.forEach(request => {
+                newState.friendRequests[request.id] = request
             })
             newState.friendsPosts = action.payload.friendsPosts
 
@@ -109,7 +113,6 @@ const friendsAndPostsReducer = (state = initialState, action) => {
             return copiedState;
         }
         case EDIT_POST: {
-            console.log('==========', action.payload)
             newState = { ...state }
             newState['friendsPosts'][action?.post?.id] = action.post
             const copiedState = { ...newState, 'friendsPosts': { ...newState?.friendsPosts } }

@@ -40,6 +40,7 @@
     color: #e4e5ea;
     width: fit-content;
     text-decoration: none;
+    margin-bottom: 20px;
 }
 
 .post-profile-image-mainfeed {
@@ -124,6 +125,8 @@
     position: sticky;
     position: -webkit-sticky;
     top: 80px;
+    width: 75%;
+    margin-right: 25%;
 }
 
 .right-menu-mainfeed {
@@ -137,8 +140,8 @@
     position: sticky;
     position: -webkit-sticky;
     top: 80px;
-    width: 70%;
-    margin-left: 30%;
+    width: 75%;
+    margin-left: 25%;
     
     /* align-items: center; */
 }
@@ -463,4 +466,75 @@
 .edit-post-form {
     width: 95%;
     border-bottom: 1px solid #3a3b3c;
+}
+
+.friend-request-user-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    object-fit: cover;
+    margin-right: 10px;
+    margin-left: 2px;
+}
+
+.div-around-friend-request {
+    display: flex;
+    color: #fff;
+    background-color: #232425;
+    /* width: 75%; */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.friend-request-accept-button {
+    border: none;
+    background-color: #4074e0;
+    color: #fff;
+    height: 38px;
+    border-radius: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: 10px;
+}
+
+.friend-request-deny-button {
+    border: none;
+    background-color: #3a3a3b;
+    color: #fff;
+    height: 38px;
+    border-radius: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.friend-request-section {
+    display: flex;
+    justify-content: flex-end;
+    color: #b0b3b8;
+    font-weight: 600;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    margin-bottom: 20px;
+    border-top: 2px solid #3e3f42;
+    padding-top: 20px;
+}
+
+.friend-request-first-last-name {
+    color: #b0b3b8;
+}
+
+.friend-request-name-and-phrase {
+    margin-bottom: 10px;
+}
+
+.friend-request-phrase {
+    color: #fff;
+}
+
+.confirm-delete-buttons-friend-request {
+    display: flex;
+    /* justify-content: center; */
+    width: 90%;
 }
