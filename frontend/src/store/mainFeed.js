@@ -35,9 +35,10 @@ const createComment = (comment) => ({
     comment
 })
 
-const editComment = (comment) => ({
+const editComment = (comment, index) => ({
     type: EDIT_COMMENT,
-    comment
+    comment,
+    index
 })
 
 const deleteComment = (comment) => ({
@@ -106,7 +107,7 @@ export const createCommentThunk = (comment) => async (dispatch) => {
     }
 }
 
-export const editCommentThunk = (comment) => async (dispatch) => {
+export const editCommentThunk = (comment, index) => async (dispatch) => {
     const response = await csrfFetch(`/api/comment/${comment.id}/edit`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -115,7 +116,7 @@ export const editCommentThunk = (comment) => async (dispatch) => {
 
     if (response.ok) {
         const comment = await response.json()
-        dispatch(editComment(comment))
+        dispatch(editComment(comment, index))
         return comment;
     }
 }
@@ -141,7 +142,8 @@ const mainFeedReducer = (state = initialState, action) => {
                 ...state,
                 friends: {},
                 friendsPosts: {},
-                friendRequests: {}
+                friendRequests: {},
+                friendsComments: {}
             }
             action.payload.friends.forEach(friend => {
                 newState.friends[friend.friendId] = friend
@@ -150,7 +152,7 @@ const mainFeedReducer = (state = initialState, action) => {
                 newState.friendRequests[request.id] = request
             })
             newState.friendsPosts = action.payload.friendsPosts
-
+            newState.friendsComments = action.payload.friendsComments
 
             return newState
         }
@@ -176,21 +178,27 @@ const mainFeedReducer = (state = initialState, action) => {
         }
         case CREATE_COMMENT: {
             newState = { ...state }
-            console.log('==============', action?.comment?.newComment)
-            newState['friendsPosts'][action?.comment?.newComment?.postId]['Comments'].unshift(action?.comment?.newComment)
+            newState['friendsComments'][action?.comment?.newComment?.id] = action?.comment?.newComment
             const copiedState = {
-                ...newState, 'friendsPosts': {
-                    ...newState['friendsPosts'],
-                    [action?.comment?.newComment?.postId]: {
-                        ...newState['friendsPosts'][action?.comment?.newComment?.postId],
-                        'Comments': [...newState['friendsPosts'][action?.comment?.newComment?.postId]['Comments']]
-                    }
-                }
+                ...newState, 'friendsComments': { ...newState['friendsComments'] }
             }
             return copiedState;
         }
         case EDIT_COMMENT: {
 
+            newState = { ...state }
+            newState['friendsComments'][action?.comment?.id] = action?.comment
+            // newState['friendsPosts'][action?.comment?.postId]['Comments'].forEach(comment => {
+            //     if (comment.id === action?.comment?.id) {
+            //         comment = action?.comment
+            //     }
+            // })
+            const copiedState = {
+                ...newState, 'friendsComments': { ...newState['friendsComments'] }
+            }
+            copiedState['friendsComments'][action?.comment?.id] = { ...action?.comment }
+
+            return copiedState;
         }
         case DELETE_COMMENT: {
 

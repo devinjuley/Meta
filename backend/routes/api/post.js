@@ -8,6 +8,8 @@ const { User, Friend, Post, Comment } = require('../../db/models');
 
 const router = express.Router();
 
+
+
 router.post('/create', restoreUser, asyncHandler(async (req, res) => {
     const { userId, content, imageUrl } = req.body
     const post = await Post.create({
@@ -17,7 +19,9 @@ router.post('/create', restoreUser, asyncHandler(async (req, res) => {
     })
 
     const newPost = await Post.findByPk(post.id, {
-        include: User
+        include: [User,
+            { model: Comment, include: [User] }
+        ]
     })
 
     return res.json({ newPost })
@@ -26,7 +30,6 @@ router.post('/create', restoreUser, asyncHandler(async (req, res) => {
 router.delete('/:id(\\d+)/delete', asyncHandler(async (req, res) => {
     const id = req.params.id
     const post = await Post.findByPk(id)
-    console.log(post)
     await post.destroy()
     return res.json({ post })
 }))

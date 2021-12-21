@@ -12,6 +12,12 @@ const PostComponent = ({ post }) => {
     const sessionUser = useSelector(state => state?.session?.user)
     const [showEditBox, setShowEditBox] = useState(false)
     const [textContent, setTextContent] = useState(post?.content)
+    const friendsComments = useSelector(state => state?.mainFeed?.friendsComments)
+
+    const friendsCommentsArr = Object.assign([], friendsComments)
+    const filteredComments = friendsCommentsArr.filter(comment => comment['postId'] === post.id)
+    // console.log('ID of post', post.id)
+    // console.log('===========', filteredComments)
 
     const handleEditSubmission = (e) => {
         e.preventDefault()
@@ -55,7 +61,7 @@ const PostComponent = ({ post }) => {
                 )}
             </div>
             {post?.imageUrl !== null && (<img src={post?.imageUrl} className='post-image-content-mainfeed' />)}
-            <CommentComponent post={post} key={post.id} />
+            <CommentComponent comments={filteredComments} post={post} key={post.id} />
         </div>
     );
 };

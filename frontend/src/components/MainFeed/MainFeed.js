@@ -55,7 +55,6 @@ function MainFeed() {
     const friendsArr = Object.assign([], friends)
     const postArr = Object.assign([], friendsPosts)
     const requestArr = Object.assign([], friendRequests)
-    console.log(friendRequests)
 
     const reversedPosts = postArr.reverse()
 
