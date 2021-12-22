@@ -69,18 +69,19 @@ const SingleComment = ({ comment }) => {
                             <div className='firstname-lastname-comment'>
                                 {`${comment?.User?.firstName} ${comment?.User?.lastName}`}
                             </div>
-                            {!showEditBox && (<div className='comment-edit-button' onClick={(() => setShowEditBox(true))}>
+                            {sessionUser.id == comment.userId && !showEditBox && (<div className='comment-edit-button' onClick={(() => setShowEditBox(true))}>
                                 <img src='https://media.discordapp.net/attachments/921246913167245363/922208971253751838/unknown.png' className='comment-edit-button-icon' />
                                 Edit
                             </div>)}
-                            {showEditBox && (<div className='comment-edit-button' onClick={(() => setShowEditBox(false))}>
+                            {sessionUser.id == comment.userId && showEditBox && (<div className='comment-edit-button' onClick={(() => setShowEditBox(false))}>
                                 <img src='https://media.discordapp.net/attachments/921246913167245363/922283242713935882/unknown.png' className='comment-edit-button-icon' />
                                 Cancel
                             </div>)}
-                            <div className='comment-delete-button' onClick={handleDelete}>
+                            {sessionUser.id == comment.userId && (<div className='comment-delete-button' onClick={handleDelete}>
                                 <img src='https://media.discordapp.net/attachments/921246913167245363/922209557898465280/unknown.png' className='comment-delete-button-icon' />
                                 Delete
-                            </div>
+                            </div>)}
+
                         </div>
                         {!showEditBox && (<div className='comment-content-dj'>{comment?.content}</div>)}
                         {showEditBox && (
