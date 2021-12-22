@@ -497,9 +497,11 @@
     color: #fff;
     height: 38px;
     border-radius: 5px;
-    padding-right: 21px;
-    padding-left: 21px;
+    /* padding-right: 21px;
+    padding-left: 21px; */
     margin-right: 10px;
+    width: 40%;
+    cursor: pointer;
 }
 
 .friend-request-deny-button {
@@ -508,8 +510,15 @@
     color: #fff;
     height: 38px;
     border-radius: 5px;
-    padding-right: 25px;
-    padding-left: 25px;
+    /* padding-right: 25px;
+    padding-left: 25px; */
+    cursor: pointer;
+    width: 40%;
+
+}
+
+.div-around-name-and-buttons-friend-request {
+    width: 100%;
 }
 
 .friend-request-section {
