@@ -1,21 +1,23 @@
 .profile-page-parent-div {
     padding-top: 49px;
+    /* position: absolute; */
 }
 
 .top-half-of-profile-page {
     /* display: flex;
     justify-content: center;
     flex-direction: column; */
+    position: absolute;
+    right: 0;
+    left: 0;
 }
 
 .div-around-background-image-profile {
-    /* padding-top: 49px; */
     width: 100%;
-    
     display: flex;
     justify-content: center;
     background: rgb(35,36,37);
-background: linear-gradient(0deg, rgba(35,36,37,1) 0%, rgba(165,165,165,1) 100%);
+    background: linear-gradient(0deg, rgba(35,36,37,1) 0%, rgba(165,165,165,1) 100%);
 }
 
 .background-profile-image {
@@ -47,7 +49,7 @@ background: linear-gradient(0deg, rgba(35,36,37,1) 0%, rgba(165,165,165,1) 100%)
     border-radius: 120px;
     object-fit: cover;
     border: 5px solid #232425;
-    /* position: absolute; */
+    z-index: 2;
 }
 
 .div-around-profile-image {
@@ -97,19 +99,128 @@ background: linear-gradient(0deg, rgba(35,36,37,1) 0%, rgba(165,165,165,1) 100%)
 
 .left-side-of-profile-page {
     width: 40%;
-    border: 1px solid white;
+    margin-right: 10px;
+    color: #e4e6eb;
+    /* border: 1px solid white; */
     /* max-width: 454px; */
 }
 
 .inner-centering-div-for-profile-page {
     display: flex;
     justify-content: center;
-    width: 70%;
-    
+    width: 55%;
+    max-width: 875px;
+    min-width: 875px;
 }
 
 .bottom-half-of-profile-page {
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-top: 550px;
+    /* position: absolute; */
+}
+
+.posts-megaparent-div-profile-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+}
+
+.section-inbetween-top-and-bottom {
+    height: 80px;
+    width: 100%;
+    background-color: #232425;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    /* margin-top: 455px; */
+    /* position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1; */
+
+}
+
+.profile-photo-image-url {
+    height: 106px;
+    width: 33%;
+    object-fit: cover;
+    padding: 3px;
+    box-sizing: border-box;
+}
+
+.profile-photos-list {
+    background-color: #232425;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    margin-bottom: 10px;
+    padding: 10px;
+
+}
+
+.profile-intro {
+    background-color: #232425;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.profile-friends-list {
+    background-color: #232425;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    padding: 10px;
+}
+
+.profile-page-friend-image {
+    width: 100%;
+    height: 101px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.all-friends-links {
+    display: flex;
+}
+
+.single-friend-link-profile-page {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2px;
+}
+
+.friends-firstname-lastname-profile {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-titles-of-sections {
+    color: #e4e6eb;
+    font-size: 20px;
+}
+
+.profile-menu-bar {
+    margin-left: 20px;
+    margin-top: 50px;
+    display: flex;
+    width: 875px;
+    color: #e4e6eb;
+    font-size: 15px;
+}
+
+.timeline-link-menu {
+    margin-right: 30px;
+}
+
+.friends-link-menu {
+    margin-right: 30px;
+
+}
+
+.photos-link-menu {
+
 }

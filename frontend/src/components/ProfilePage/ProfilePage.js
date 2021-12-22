@@ -49,14 +49,16 @@ function ProfilePage() {
 
     const postPlaceholder = `What's on your mind, ${sessionUser.firstName}?`
     const postArr = []
+    const images = []
     for (let key in posts) {
         if (posts[key].userId == sessionUser.id) {
             postArr.push(posts[key])
+            if (posts[key].imageUrl != null) {
+                images.push(posts[key].imageUrl)
+            }
         }
     }
     const reversedPosts = postArr.reverse()
-
-
 
 
 
@@ -83,13 +85,47 @@ function ProfilePage() {
                             </div>
                         </div>
                     </div>
+                    <div className='section-inbetween-top-and-bottom'>
+                        <div className='profile-menu-bar'>
+                            <div className='timeline-link-menu'>Timeline</div>
+                            <div className='friends-link-menu'>Friends</div>
+                            <div className='photos-link-menu'>Photos</div>
+                        </div>
+                    </div>
                 </div>
                 <div className='bottom-half-of-profile-page'>
                     <div className='inner-centering-div-for-profile-page'>
                         <div className='left-side-of-profile-page'>
-                            test test test
+                            <div className='profile-intro'>
+                                <div className='profile-titles-of-sections'>Intro</div>
+                                <div>{`Works at ${sessionUser.workplace}`}</div>
+                                <div>{`Lives in ${sessionUser.city}, ${sessionUser.state}`}</div>
+                                <div>{`From ${sessionUser.birthCity}, ${sessionUser.birthState}`}</div>
+                            </div>
+                            <div className='profile-photos-list'>
+                                <div className='profile-titles-of-sections'>Photos</div>
+                                <div>
+                                    {images?.map(imageUrl => (
+                                        <img src={imageUrl} className='profile-photo-image-url' />
+                                    ))}
+                                </div>
+                            </div>
+                            <div className='profile-friends-list'>
+                                <div className='profile-titles-of-sections'>Friends</div>
+                                <div className='profile-number-of-friends'>{`${friendsCount} friends`}</div>
+                                <div className='all-friends-links'>
+                                    {friendsArr?.map(friend => (
+                                        <div className='single-friend-link-profile-page'>
+                                            <img src={friend?.User?.profileImageUrl} className='profile-page-friend-image' />
+                                            <div className='friends-firstname-lastname-profile'>
+                                                {`${friend?.User?.firstName} ${friend?.User?.lastName}`}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
-                        <div className='posts-megaparent-div-mainfeed'>
+                        <div className='posts-megaparent-div-profile-page'>
                             <div className='create-a-post-div'>
                                 <div className='inner-create-post-div'>
                                     <img src={sessionUser?.profileImageUrl} className='create-post-image-mainfeed' />
