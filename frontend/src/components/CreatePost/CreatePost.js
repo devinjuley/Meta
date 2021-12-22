@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createPostThunk } from '../../store/friendsAndPosts';
+import { createPostThunk } from '../../store/mainFeed';
 
-
-import { getMainFeed } from '../../store/friendsAndPosts';
+// import { getMainFeed } from '../../store/mainFeed';
+// import { getMainFeed } from '../../store/mainFeed';
 
 
 // thunk import

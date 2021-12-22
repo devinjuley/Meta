@@ -8,46 +8,40 @@ const { User, Friend, Post, Comment } = require('../../db/models');
 
 const router = express.Router();
 
-
-
 router.post('/create', restoreUser, asyncHandler(async (req, res) => {
-    const { userId, content, imageUrl } = req.body
-    const post = await Post.create({
+    const { userId, postId, content } = req.body
+    const comment = await Comment.create({
         userId,
+        postId,
         content,
-        imageUrl,
     })
 
-    const newPost = await Post.findByPk(post.id, {
-        include: [User,
-            { model: Comment, include: [User] }
-        ]
+    const newComment = await Comment.findByPk(comment.id, {
+        include: User
     })
 
-    return res.json({ newPost })
+    return res.json({ newComment })
 }))
 
 router.delete('/:id(\\d+)/delete', asyncHandler(async (req, res) => {
     const id = req.params.id
-    const post = await Post.findByPk(id)
-    await post.destroy()
-    return res.json({ post })
+    const comment = await Comment.findByPk(id)
+    await comment.destroy()
+    return res.json(comment)
 }))
 
 router.put('/:id(\\d+)/edit', restoreUser, asyncHandler(async (req, res) => {
-    const { userId, content, imageUrl } = req.body
-    const post = await Post.findByPk(req.params.id, {
-        include: [User,
-            { model: Comment, include: [User] }
-        ]
+    const { userId, postId, content } = req.body
+    const comment = await Comment.findByPk(req.params.id, {
+        include: User
     })
-    post.update({
+    comment.update({
         userId,
-        content,
-        imageUrl
+        postId,
+        content
     })
 
-    return res.json(post)
+    return res.json(comment)
 }))
 
 

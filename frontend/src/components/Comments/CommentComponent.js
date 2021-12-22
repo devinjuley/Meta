@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createPostThunk } from '../../store/friendsAndPosts';
+// import { createPostThunk } from '../../store/mainFeed';
+import { createCommentThunk } from '../../store/mainFeed';
+import SingleComment from './SingleComment';
+import { format } from "date-fns";
 
-
-import { getMainFeed } from '../../store/friendsAndPosts';
+import { getMainFeed } from '../../store/mainFeed';
 
 
 // thunk import
@@ -11,7 +13,7 @@ import { getMainFeed } from '../../store/friendsAndPosts';
 import './Comments.css'
 // import './SignUpForm.css';
 
-const CommentComponent = ({ post }) => {
+const CommentComponent = ({ comments, post }) => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state?.session?.user)
     const [showComments, setShowComments] = useState(false)
@@ -19,9 +21,8 @@ const CommentComponent = ({ post }) => {
 
     const [errors, setErrors] = useState([]);
 
-
-
-
+    const reversedArr = comments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    console.log('reversed array', reversedArr)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,15 +32,15 @@ const CommentComponent = ({ post }) => {
             postId: post.id,
             content: textContent
         }
-            // let newPost = await dispatch(createPostThunk(post))
+        let newComment = await dispatch(createCommentThunk(comment))
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
             });
-        // if (newPost) {
-        //     await dispatch(getMainFeed(sessionUser?.id))
-
-        // }
+        if (newComment) {
+            // dispatch(getMainFeed(sessionUser.id))
+            setTextContent('')
+        }
 
 
     };
@@ -72,13 +73,9 @@ const CommentComponent = ({ post }) => {
                         </div>
                     </div>
                     <div className='all-comments-parent-div'>
-                        {post?.Comments?.map(comment => (
-                            <div key={comment.id} className='single-comment-parent-div'>
-                                <div className='name-and-comment-parent-div-mainfeed'>
-                                    <img src={comment?.User?.profileImageUrl} className='comment-profile-image-mainfeed' />
-                                    <div className='comment-chat-bubble'><div>{`${comment?.User?.firstName} ${comment?.User?.lastName}`}</div><div>{comment?.content}</div></div>
-                                </div>
-                            </div>))}
+                        {reversedArr?.map((comment) => (
+                            <SingleComment comment={comment} key={comment.id} />
+                        ))}
                     </div>
                 </div>
             )}
