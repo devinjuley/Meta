@@ -1,0 +1,115 @@
+.profile-page-parent-div {
+    padding-top: 49px;
+}
+
+.top-half-of-profile-page {
+    /* display: flex;
+    justify-content: center;
+    flex-direction: column; */
+}
+
+.div-around-background-image-profile {
+    /* padding-top: 49px; */
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+    background: rgb(35,36,37);
+background: linear-gradient(0deg, rgba(35,36,37,1) 0%, rgba(165,165,165,1) 100%);
+}
+
+.background-profile-image {
+    width: 60%;
+    height: 348px;
+    object-fit: cover;
+    min-width: 900px;
+    max-width: 940px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    /* z-index: 1; */
+}
+
+.section-under-background-image-profile {
+    width: 55%;
+    background-color: #232425;
+    display: flex;
+    align-items: center;
+    /* position: absolute; */
+    max-width: 900px;
+    min-width: 860px;
+    position: relative;
+    height: 110px;
+}
+
+.profile-image-on-profile-page {
+    height: 168px;
+    width: 168px;
+    border-radius: 120px;
+    object-fit: cover;
+    border: 5px solid #232425;
+    /* position: absolute; */
+}
+
+.div-around-profile-image {
+    height: 180px;
+    width: 180px;
+    position: absolute;
+    /* z-index: 2; */
+    /* top: 0; */
+}
+
+.profile-page-first-last-name {
+    font-size: 32px;
+    color: #e3e5ea;
+    font-weight: 500;
+}
+
+.profile-number-of-friends {
+    font-size: 17px;
+    color: #b0b3b8;
+
+}
+
+.centering-div-around-name-friends {
+    width: 100%;
+    margin-left: 185px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.profile-name-and-number-of-friends {
+    /* margin-left: 20px; */
+    /* position: absolute; */
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: flex-start; */
+}
+
+.div-to-center-section-under-background {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #232425;
+
+}
+
+.left-side-of-profile-page {
+    width: 40%;
+    border: 1px solid white;
+    /* max-width: 454px; */
+}
+
+.inner-centering-div-for-profile-page {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    
+}
+
+.bottom-half-of-profile-page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
