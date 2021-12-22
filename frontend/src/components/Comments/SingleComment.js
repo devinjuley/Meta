@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { createPostThunk } from '../../store/mainFeed';
-import { createCommentThunk, editCommentThunk } from '../../store/mainFeed';
+import { createCommentThunk, editCommentThunk, deleteCommentThunk } from '../../store/mainFeed';
 import { format } from "date-fns";
 
 // import { getMainFeed } from '../../store/mainFeed';
@@ -32,6 +32,10 @@ const SingleComment = ({ comment }) => {
 
         dispatch(editCommentThunk(editedComment))
         setShowEditBox(false)
+    }
+
+    const handleDelete = () => {
+        dispatch(deleteCommentThunk(comment.id))
     }
 
     // const handleSubmit = async (e) => {
@@ -69,7 +73,7 @@ const SingleComment = ({ comment }) => {
                                 <img src='https://media.discordapp.net/attachments/921246913167245363/922208971253751838/unknown.png' className='comment-edit-button-icon' />
                                 Edit
                             </div>
-                            <div className='comment-delete-button'>
+                            <div className='comment-delete-button' onClick={handleDelete}>
                                 <img src='https://media.discordapp.net/attachments/921246913167245363/922209557898465280/unknown.png' className='comment-delete-button-icon' />
                                 Delete
                             </div>

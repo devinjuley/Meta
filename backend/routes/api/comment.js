@@ -27,7 +27,7 @@ router.delete('/:id(\\d+)/delete', asyncHandler(async (req, res) => {
     const id = req.params.id
     const comment = await Comment.findByPk(id)
     await comment.destroy()
-    return res.json({ comment })
+    return res.json(comment)
 }))
 
 router.put('/:id(\\d+)/edit', restoreUser, asyncHandler(async (req, res) => {

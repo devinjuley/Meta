@@ -188,11 +188,7 @@ const mainFeedReducer = (state = initialState, action) => {
 
             newState = { ...state }
             newState['friendsComments'][action?.comment?.id] = action?.comment
-            // newState['friendsPosts'][action?.comment?.postId]['Comments'].forEach(comment => {
-            //     if (comment.id === action?.comment?.id) {
-            //         comment = action?.comment
-            //     }
-            // })
+
             const copiedState = {
                 ...newState, 'friendsComments': { ...newState['friendsComments'] }
             }
@@ -201,7 +197,14 @@ const mainFeedReducer = (state = initialState, action) => {
             return copiedState;
         }
         case DELETE_COMMENT: {
-
+            newState = {
+                ...state
+            }
+            delete newState['friendsComments'][action?.comment?.id]
+            const copiedState = {
+                ...newState, 'friendsComments': { ...newState['friendsComments'] }
+            }
+            return copiedState
         }
         default:
             return state;
