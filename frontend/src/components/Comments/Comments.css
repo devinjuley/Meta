@@ -9,22 +9,31 @@
 
 .name-and-comment-parent-div-mainfeed {
     display: flex;
-    width: 100%;
+    /* width: 100%; */
+    /* justify-content: center; */
     /* align-items: center; */
 }
 
 .comment-chat-bubble {
     background-color: #3a3b3c;
-    padding-left: 15px;
+    /* padding-left: 15px; */
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-right: 10px;
-    border-radius: 15px;
-    /* width: 100%; */
+    padding-right: 15px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding-left: 15px;
+    /* padding: 1px 2px 1px 15px; */
+    /* width: 96%; */
     /* margin-bottom: 10px; */
 }
 .comment-text-edit-delete-buttons {
     display: flex;
+    /* width: 100%; */
+}
+
+.inner-comment-div-to-expand {
+    /* width: 100%; */
 }
 
 .create-comment-outer-div {
@@ -118,6 +127,8 @@
     color: #b0b2b8;
     padding: 1px;
     margin-right: 5px;
+    cursor: pointer;
+
 }
 .comment-delete-button {
     font-size: 11px;
@@ -126,11 +137,13 @@
     color: #b0b2b8;
     background-color: #3a3a3b;
     padding: 1px;
+    padding-right: 5px;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 .comment-date {
-    font-size: 11px;
+    font-size: 10px;
     color: #b0b2b8;
     margin-left: 10px;
     padding-top: 1px;
@@ -163,12 +176,24 @@
 
 .comment-content-dj {
     width: fit-content;
+    /* padding-right: 10px; */
 }
 
 
 .edit-comment-form {
     width: 100%;
+    margin-right: 100px;
 }
 .edit-comment-input-box {
-    width: 100%;
+    width: 95%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #b0b3b8;
+    background-color: #232425;
+    color: #fff;
+    outline: none;
+    padding-left: 5px;
+    padding-right: 5px;
+    /* margin-right: 10px; */
+    margin-top: 5px;
 }
