@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { getMainFeed, createPostThunk } from '../../store/mainFeed';
+import { getMainFeed, createPostThunk, friendRequestThunk } from '../../store/mainFeed';
 import CreatePostModal from '../CreatePost';
 import PostComponent from '../MainFeed/PostComponent';
 import { sessionFriendsThunk } from '../../store/friends';
@@ -14,11 +14,11 @@ function ProfilePage() {
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state?.session?.user)
     const sessionUserFriends = useSelector(state => state?.sessionUserFriends)
+    const friendRequests = useSelector(state => state?.mainFeed?.friendRequests)
     const friends = useSelector(state => state?.mainFeed?.friends)
     const posts = useSelector(state => state?.mainFeed?.friendsPosts)
     const user = useSelector(state => state?.mainFeed?.user)
     const [isLoaded, setIsLoaded] = useState(false)
-    // const [showAddFriend, setShowAddFriend] = useState(false)
     const [textContent, setTextContent] = useState('')
     const [errors, setErrors] = useState([]);
 
@@ -32,7 +32,10 @@ function ProfilePage() {
         await dispatch(getMainFeed(id))
         await dispatch(sessionFriendsThunk(sessionUser.id))
         if (!isLoaded) setIsLoaded(true);
-    }, [dispatch])
+    }, [dispatch, id, sessionUser.id])
+
+    console.log('**************', friendRequests)
+
 
     const sessionUserFriendsIds = []
     sessionUserFriendsArr.forEach(friend => {
@@ -74,31 +77,39 @@ function ProfilePage() {
 
     const handleAddFriend = () => {
         const request = {
-            sessionUserId: sessionUser.id,
-            friendId: id
+            sessionUserId: id,
+            friendId: sessionUser.id
         }
-
+        dispatch(friendRequestThunk(request))
     }
 
 
 
 
     let button = null;
-    if (sessionUser.id === Number(id)) {
-        button = null
-    } else if (Number(id) in sessionUserFriends) {
-        button = (
-            <div className='div-around-add-friend-button'>
-                <button className='friends-button-profile'>Friends</button>
-            </div>
-        )
-    } else if (!(Number(id) in sessionUserFriends)) {
-        button = (
-            <div className='div-around-add-friend-button'>
-                <button className='add-friend-button' onClick={handleAddFriend}>Add Friend</button>
-            </div>
-        )
-    };
+    if (friendRequests) {
+        if (sessionUser.id === Number(id)) {
+            button = null
+        } else if (Number(id) in sessionUserFriends) {
+            button = (
+                <div className='div-around-add-friend-button'>
+                    <button className='friends-button-profile'>Friends</button>
+                </div>
+            )
+        } else if (!(Number(id) in sessionUserFriends) && !(sessionUser.id in friendRequests)) {
+            button = (
+                <div className='div-around-add-friend-button'>
+                    <button className='add-friend-button' onClick={handleAddFriend}>Add Friend</button>
+                </div>
+            )
+        } else if (sessionUser.id in friendRequests) {
+            button = (
+                <div className='div-around-add-friend-button'>
+                    <button className='add-friend-button'>Request Pending</button>
+                </div>
+            )
+        }
+    }
 
     return (
         <>

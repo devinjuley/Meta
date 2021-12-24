@@ -8,6 +8,7 @@ const EDIT_POST = 'post/EDIT_POST'
 const CREATE_COMMENT = 'comment/CREATE_COMMENT'
 const EDIT_COMMENT = 'comment/EDIT_COMMENT'
 const DELETE_COMMENT = 'comment/DELETE_COMMENT'
+const FRIEND_REQUEST = 'friends/FRIEND_REQUEST'
 
 //action creators
 const mainFeed = (payload) => ({
@@ -44,6 +45,11 @@ const editComment = (comment, index) => ({
 const deleteComment = (comment) => ({
     type: DELETE_COMMENT,
     comment
+})
+
+const friendRequest = (request) => ({
+    type: FRIEND_REQUEST,
+    request
 })
 
 //thunks
@@ -132,6 +138,19 @@ export const deleteCommentThunk = (commentId) => async (dispatch) => {
     }
 }
 
+export const friendRequestThunk = (request) => async (dispatch) => {
+    const response = await csrfFetch('/api/users/friendrequest', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(request)
+    })
+    if (response.ok) {
+        const request = await response.json()
+        dispatch(friendRequest(request))
+        return request
+    }
+}
+
 //reducer
 const initialState = {}
 const mainFeedReducer = (state = initialState, action) => {
@@ -151,7 +170,7 @@ const mainFeedReducer = (state = initialState, action) => {
                 newState.friends[friend.friendId] = friend
             })
             action.payload.friendRequests.forEach(request => {
-                newState.friendRequests[request.id] = request
+                newState.friendRequests[request.friendId] = request
             })
             newState.friendsPosts = action.payload.friendsPosts
             newState.friendsComments = action.payload.friendsComments
@@ -206,6 +225,14 @@ const mainFeedReducer = (state = initialState, action) => {
             const copiedState = {
                 ...newState, 'friendsComments': { ...newState['friendsComments'] }
             }
+            return copiedState
+        }
+        case FRIEND_REQUEST: {
+            newState = {
+                ...state
+            }
+            newState['friendRequests'][action?.request?.friendId] = action?.request
+            const copiedState = { ...newState, 'friendRequests': { ...newState['friendRequests'] } }
             return copiedState
         }
         default:

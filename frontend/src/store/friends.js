@@ -5,6 +5,7 @@ const SESSION_USER_FRIENDS = 'friends/SESSION_USER_FRIENDS'
 const ALL_USERS = 'friends/ALL_USERS'
 
 
+
 //action creators
 const sessionFriends = (friends) => ({
     type: SESSION_USER_FRIENDS,
@@ -18,6 +19,8 @@ const sessionFriends = (friends) => ({
 
 
 
+
+
 //thunks
 export const sessionFriendsThunk = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/users/${id}/sessionfriends`)
@@ -27,6 +30,8 @@ export const sessionFriendsThunk = (id) => async (dispatch) => {
         return friends;
     }
 }
+
+
 
 //reducer
 const initialState = {}
@@ -42,6 +47,7 @@ const sessionFriendsReducer = (state = initialState, action) => {
             ))
             return newState
         }
+
         default:
             return state;
     }

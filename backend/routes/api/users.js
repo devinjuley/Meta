@@ -72,6 +72,20 @@ router.get('/:id(\\d+)/sessionfriends', asyncHandler(async (req, res) => {
    return res.json(friends)
 }))
 
+router.post('/friendrequest', asyncHandler(async (req, res) => {
+   const { sessionUserId, friendId } = req.body
+   const request = await FriendRequest.create({
+      sessionUserId,
+      friendId
+   })
+
+   return res.json(request)
+}))
+
+// router.delete('/denyrequest', asyncHandler(async (req, res) => {
+//    const { sessionUserId, friendId } = req.body
+// }))
+
 
 
 
