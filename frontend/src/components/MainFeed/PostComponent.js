@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deletePostThunk, editPostThunk } from '../../store/mainFeed';
 import EditDeleteButton from './EditDeleteButton';
+import { NavLink } from 'react-router-dom';
 import CommentComponent from '../Comments/CommentComponent';
 import { format } from "date-fns";
 import './MainFeed.css'
@@ -37,9 +38,11 @@ const PostComponent = ({ post }) => {
         <div key={post?.id} className='friends-posts-parent-mainfeed'>
             <div className='center-name-image-editbutton'>
                 <div className='post-name-and-image-mainfeed'>
-                    <img src={post?.User?.profileImageUrl} className='post-profile-image-mainfeed' />
+                    <NavLink to={`/profile/${post?.User?.id}`} className={'navlink-around-post-profile-image'}>
+                        <img src={post?.User?.profileImageUrl} className='post-profile-image-mainfeed' />
+                    </NavLink>
                     <div className='name-and-date-mainfeed'>
-                        <div className='post-first-last-name-mainfeed'>{`${post?.User?.firstName} ${post?.User?.lastName}`}</div>
+                        <NavLink to={`/profile/${post?.User?.id}`} className='post-first-last-name-mainfeed'>{`${post?.User?.firstName} ${post?.User?.lastName}`}</NavLink>
                         <div className='date-of-post'>{format(new Date(post?.createdAt), "MMM D, YYYY, hh:mm A")}</div>
                     </div>
                     <div className='edit-delete-menu'>

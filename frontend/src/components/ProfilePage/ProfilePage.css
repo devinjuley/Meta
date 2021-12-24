@@ -129,11 +129,12 @@
 }
 
 .section-inbetween-top-and-bottom {
-    height: 80px;
+    height: 45px;
     width: 100%;
     background-color: #232425;
     margin-bottom: 10px;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     /* margin-top: 455px; */
     /* position: absolute;
@@ -204,12 +205,15 @@
 }
 
 .profile-menu-bar {
-    margin-left: 20px;
-    margin-top: 50px;
+    padding-left: 20px;
+    margin-top: 5px;
+    padding-top: 15px;
     display: flex;
-    width: 875px;
+    min-width: 900px;
+    max-width: 940px;
     color: #e4e6eb;
     font-size: 15px;
+    border-top: 1px solid lightgray;
 }
 
 .timeline-link-menu {
@@ -222,5 +226,30 @@
 }
 
 .photos-link-menu {
+
+}
+
+.div-around-add-friend-button {
+    max-width: 940px;
+    min-width: 900px;
+    display: flex;
+    /* justify-content: center; */
+    justify-content: flex-end;
+    background-color: #232425;
+
+}
+
+.add-friend-button {
+    height: 36px;
+    width: 123px;
+    border: none;
+    color: #fff;
+    background-color: #4074e0;
+    border-radius: 5px;
+}
+.centering-div-around-friend-button {
+    background-color: #232425;
+    display: flex;
+    justify-content: center;
 
 }

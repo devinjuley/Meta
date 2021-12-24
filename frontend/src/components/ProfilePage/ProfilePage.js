@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { getMainFeed, createPostThunk } from '../../store/mainFeed';
 import CreatePostModal from '../CreatePost';
 import PostComponent from '../MainFeed/PostComponent';
+import { sessionFriendsThunk } from '../../store/friends';
 
 import './ProfilePage.css'
 
@@ -12,21 +13,40 @@ function ProfilePage() {
     const { id } = useParams();
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state?.session?.user)
+    const sessionUserFriends = useSelector(state => state?.sessionUserFriends)
     const friends = useSelector(state => state?.mainFeed?.friends)
     const posts = useSelector(state => state?.mainFeed?.friendsPosts)
+    const user = useSelector(state => state?.mainFeed?.user)
     const [isLoaded, setIsLoaded] = useState(false)
-
-    const friendsArr = Object.assign([], friends)
-    let friendsCount = 0
-    friendsArr.forEach(friend => friendsCount += 1)
-
+    const [showAddFriend, setShowAddFriend] = useState(false)
     const [textContent, setTextContent] = useState('')
     const [errors, setErrors] = useState([]);
 
+    const friendsArr = Object.assign([], friends)
+    const sessionUserFriendsArr = Object.assign([], sessionUserFriends)
+
+    let friendsCount = 0
+    friendsArr.forEach(friend => friendsCount += 1)
+
     useEffect(() => {
         dispatch(getMainFeed(id))
+        dispatch(sessionFriendsThunk(sessionUser.id))
         setIsLoaded(true)
     }, [dispatch])
+    // console.log('============', sessionUserFriends)
+    sessionUserFriendsArr.forEach(friend => {
+        if (friend?.id != id && showAddFriend != true) {
+            setShowAddFriend(true)
+        }
+    })
+
+
+
+
+
+
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -70,19 +90,26 @@ function ProfilePage() {
             {isLoaded && (<div className='profile-page-parent-div'>
                 <div className='top-half-of-profile-page'>
                     <div className='div-around-background-image-profile'>
-                        <img src={sessionUser.backgroundImageUrl} className='background-profile-image' />
+                        <img src={user?.backgroundImageUrl} className='background-profile-image' alt='' />
                     </div>
                     <div className='div-to-center-section-under-background'>
                         <div className='section-under-background-image-profile'>
                             <div className='div-around-profile-image'>
-                                <img src={sessionUser.profileImageUrl} className='profile-image-on-profile-page' />
+                                <img src={user?.profileImageUrl} className='profile-image-on-profile-page' alt='' />
                             </div>
                             <div className='centering-div-around-name-friends'>
                                 <div className='profile-name-and-number-of-friends'>
-                                    <div className='profile-page-first-last-name'>{`${sessionUser.firstName} ${sessionUser.lastName}`}</div>
+                                    <div className='profile-page-first-last-name'>{`${user?.firstName} ${user?.lastName}`}</div>
                                     <div className='profile-number-of-friends'>{`${friendsCount} friends`}</div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div className='centering-div-around-friend-button'>
+                        <div className='div-around-add-friend-button'>
+
+                            {(sessionUser.id != id && showAddFriend) && (<button className='add-friend-button'>Add Friend</button>)}
+                            {(sessionUser.id != id && !showAddFriend) && (<button>Friends</button>)}
                         </div>
                     </div>
                     <div className='section-inbetween-top-and-bottom'>
@@ -98,15 +125,15 @@ function ProfilePage() {
                         <div className='left-side-of-profile-page'>
                             <div className='profile-intro'>
                                 <div className='profile-titles-of-sections'>Intro</div>
-                                <div>{`Works at ${sessionUser.workplace}`}</div>
-                                <div>{`Lives in ${sessionUser.city}, ${sessionUser.state}`}</div>
-                                <div>{`From ${sessionUser.birthCity}, ${sessionUser.birthState}`}</div>
+                                <div>{`Works at ${user?.workplace}`}</div>
+                                <div>{`Lives in ${user?.city}, ${user?.state}`}</div>
+                                <div>{`From ${user?.birthCity}, ${user?.birthState}`}</div>
                             </div>
                             <div className='profile-photos-list'>
                                 <div className='profile-titles-of-sections'>Photos</div>
                                 <div>
                                     {images?.map(imageUrl => (
-                                        <img src={imageUrl} className='profile-photo-image-url' />
+                                        <img src={imageUrl} className='profile-photo-image-url' alt='' />
                                     ))}
                                 </div>
                             </div>
@@ -115,8 +142,8 @@ function ProfilePage() {
                                 <div className='profile-number-of-friends'>{`${friendsCount} friends`}</div>
                                 <div className='all-friends-links'>
                                     {friendsArr?.map(friend => (
-                                        <div className='single-friend-link-profile-page'>
-                                            <img src={friend?.User?.profileImageUrl} className='profile-page-friend-image' />
+                                        <div className='single-friend-link-profile-page' key={friend.id}>
+                                            <img src={friend?.User?.profileImageUrl} className='profile-page-friend-image' alt='' />
                                             <div className='friends-firstname-lastname-profile'>
                                                 {`${friend?.User?.firstName} ${friend?.User?.lastName}`}
                                             </div>
@@ -128,7 +155,7 @@ function ProfilePage() {
                         <div className='posts-megaparent-div-profile-page'>
                             <div className='create-a-post-div'>
                                 <div className='inner-create-post-div'>
-                                    <img src={sessionUser?.profileImageUrl} className='create-post-image-mainfeed' />
+                                    <img src={sessionUser?.profileImageUrl} className='create-post-image-mainfeed' alt='' />
                                     <form onSubmit={handleSubmit} className='create-a-post-form-mainfeed' id='create-post-submit-mainfeed'>
                                         <input
                                             type='text'
@@ -142,12 +169,12 @@ function ProfilePage() {
                                 </div>
                                 <div className='create-post-buttons-div'>
                                     <button className='post-button-mainfeed' form='create-post-submit-mainfeed' type='submit'>
-                                        <img src='https://media.discordapp.net/attachments/921246913167245363/921246938127560704/unknown.png' className='create-a-post-icons' />
+                                        <img src='https://media.discordapp.net/attachments/921246913167245363/921246938127560704/unknown.png' className='create-a-post-icons' alt='' />
                                         Post
                                     </button>
                                     <CreatePostModal />
                                     <button className='feeling-button-mainfeed'>
-                                        <img src='https://media.discordapp.net/attachments/921246913167245363/921635080445780018/unknown.png' className='create-a-post-icons' />
+                                        <img src='https://media.discordapp.net/attachments/921246913167245363/921635080445780018/unknown.png' className='create-a-post-icons' alt='' />
                                         Feeling</button>
                                 </div>
                             </div>

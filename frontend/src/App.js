@@ -47,7 +47,7 @@ function App() {
       </>
     );
   } else {
-    history.push('/')
+    // history.push('/')
     return (
       <>
         {isLoaded && (

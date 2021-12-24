@@ -172,6 +172,11 @@
 
 .firstname-lastname-comment {
     margin-right: 5px;
+    color: #fff;
+    text-decoration: none;
+}
+.firstname-lastname-comment:hover {
+    text-decoration: underline;
 }
 
 .comment-content-dj {

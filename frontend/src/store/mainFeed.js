@@ -140,11 +140,13 @@ const mainFeedReducer = (state = initialState, action) => {
         case GET_FRIENDS_AND_POSTS: {
             newState = {
                 ...state,
+                user: {},
                 friends: {},
                 friendsPosts: {},
                 friendRequests: {},
                 friendsComments: {}
             }
+            newState.user = action.payload.user
             action.payload.friends.forEach(friend => {
                 newState.friends[friend.friendId] = friend
             })

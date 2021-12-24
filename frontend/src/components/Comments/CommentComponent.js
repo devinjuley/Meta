@@ -1,17 +1,11 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { createPostThunk } from '../../store/mainFeed';
 import { createCommentThunk } from '../../store/mainFeed';
 import SingleComment from './SingleComment';
-import { format } from "date-fns";
+import { NavLink } from 'react-router-dom';
 
-import { getMainFeed } from '../../store/mainFeed';
-
-
-// thunk import
-// import { signUp } from '../../store/session';
 import './Comments.css'
-// import './SignUpForm.css';
+
 
 const CommentComponent = ({ comments, post }) => {
     const dispatch = useDispatch();
@@ -59,7 +53,9 @@ const CommentComponent = ({ comments, post }) => {
                 <div>
                     <div className='create-comment-outer-div'>
                         <div className='inner-create-comment-div'>
-                            <img src={sessionUser?.profileImageUrl} className='create-comment-image-mainfeed' />
+                            <NavLink to={`/profile/${sessionUser.id}`}>
+                                <img src={sessionUser?.profileImageUrl} className='create-comment-image-mainfeed' />
+                            </NavLink>
                             <form onSubmit={handleSubmit} className='create-a-post-form-mainfeed' id='create-post-submit-mainfeed'>
                                 <input
                                     type='text'

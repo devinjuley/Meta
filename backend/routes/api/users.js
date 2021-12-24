@@ -12,6 +12,8 @@ const router = express.Router();
 
 router.get('/:id(\\d+)/friends', asyncHandler(async (req, res) => {
    const { id } = req.params
+   const user = await User.findByPk(id)
+
    const friends = await Friend.findAll({
       where: {
          sessionUserId: id
@@ -54,11 +56,11 @@ router.get('/:id(\\d+)/friends', asyncHandler(async (req, res) => {
    })
 
 
-   return res.json({ friends, friendsPosts, friendRequests, friendsComments })
+   return res.json({ user, friends, friendsPosts, friendRequests, friendsComments })
 }))
 
 
-router.get('/:id(\\d+)/friendsposts', asyncHandler(async (req, res) => {
+router.get('/:id(\\d+)/sessionfriends', asyncHandler(async (req, res) => {
    const { id } = req.params
    const friends = await Friend.findAll({
       where: {
@@ -67,46 +69,10 @@ router.get('/:id(\\d+)/friendsposts', asyncHandler(async (req, res) => {
       include: User
    })
 
-   const posts = await Post.findAll({
-      include: [User,
-         { model: Comment, include: [User] }
-      ]
-   })
-
-   const friendIds = [Number(id)]
-   friends.forEach(friend => {
-      friendIds.push(friend.User.id)
-   })
-
-   const friendsPosts = {}
-   posts.forEach(post => {
-      if (friendIds.includes(post.userId)) {
-         friendsPosts[post.id] = post
-      }
-   })
-
-   const comments = await Comment.findAll()
-   const friendsComments = {}
-   comments.forEach(comment => {
-      if (friendIds.includes(comment.userId)) {
-         friendsComments[comment.id] = comment
-      }
-   })
-
-   // console.log(friendsPosts)
-   // for (let post in friendsPosts) {
-   //    friendsPosts[post].Commentz = {}
-   //    console.log(friendsPosts[post].Comments)
-   //    friendsPosts[post].Comments.forEach(comment => {
-   //       friendsPosts[post].Commentz[comment.id] = comment
-   //    })
-
-   // }
-
-   return res.json(friendsComments)
+   return res.json(friends)
 }))
 
-// console.log('==========================')
+
 
 
 // SIGN UP
