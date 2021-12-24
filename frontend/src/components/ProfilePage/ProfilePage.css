@@ -247,6 +247,16 @@
     background-color: #4074e0;
     border-radius: 5px;
 }
+
+.friends-button-profile {
+    height: 36px;
+    width: 123px;
+    background-color: #3a3a3b;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+}
+
 .centering-div-around-friend-button {
     background-color: #232425;
     display: flex;

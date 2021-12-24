@@ -34,7 +34,6 @@ const sessionFriendsReducer = (state = initialState, action) => {
     let newState = {}
     switch (action.type) {
         case SESSION_USER_FRIENDS: {
-            console.log('action.friends =========', action.friends)
             newState = {
                 ...state
             }

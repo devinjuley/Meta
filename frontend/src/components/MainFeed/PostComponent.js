@@ -17,8 +17,7 @@ const PostComponent = ({ post }) => {
 
     const friendsCommentsArr = Object.assign([], friendsComments)
     const filteredComments = friendsCommentsArr.filter(comment => comment['postId'] === post.id)
-    // console.log('ID of post', post.id)
-    // console.log('===========', filteredComments)
+
 
     const handleEditSubmission = (e) => {
         e.preventDefault()

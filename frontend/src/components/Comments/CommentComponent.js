@@ -16,7 +16,7 @@ const CommentComponent = ({ comments, post }) => {
     const [errors, setErrors] = useState([]);
 
     const reversedArr = comments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-    console.log('reversed array', reversedArr)
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();

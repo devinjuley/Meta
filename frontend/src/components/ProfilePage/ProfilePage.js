@@ -18,7 +18,7 @@ function ProfilePage() {
     const posts = useSelector(state => state?.mainFeed?.friendsPosts)
     const user = useSelector(state => state?.mainFeed?.user)
     const [isLoaded, setIsLoaded] = useState(false)
-    const [showAddFriend, setShowAddFriend] = useState(false)
+    // const [showAddFriend, setShowAddFriend] = useState(false)
     const [textContent, setTextContent] = useState('')
     const [errors, setErrors] = useState([]);
 
@@ -28,24 +28,16 @@ function ProfilePage() {
     let friendsCount = 0
     friendsArr.forEach(friend => friendsCount += 1)
 
-    useEffect(() => {
-        dispatch(getMainFeed(id))
-        dispatch(sessionFriendsThunk(sessionUser.id))
-        setIsLoaded(true)
+    useEffect(async () => {
+        await dispatch(getMainFeed(id))
+        await dispatch(sessionFriendsThunk(sessionUser.id))
+        if (!isLoaded) setIsLoaded(true);
     }, [dispatch])
-    // console.log('============', sessionUserFriends)
+
+    const sessionUserFriendsIds = []
     sessionUserFriendsArr.forEach(friend => {
-        if (friend?.id != id && showAddFriend != true) {
-            setShowAddFriend(true)
-        }
+        sessionUserFriendsIds.push(friend?.friendId)
     })
-
-
-
-
-
-
-
 
 
     const handleSubmit = async (e) => {
@@ -71,7 +63,7 @@ function ProfilePage() {
     const postArr = []
     const images = []
     for (let key in posts) {
-        if (posts[key].userId == sessionUser.id) {
+        if (posts[key].userId === sessionUser.id) {
             postArr.push(posts[key])
             if (posts[key].imageUrl != null) {
                 images.push(posts[key].imageUrl)
@@ -80,10 +72,33 @@ function ProfilePage() {
     }
     const reversedPosts = postArr.reverse()
 
+    const handleAddFriend = () => {
+        const request = {
+            sessionUserId: sessionUser.id,
+            friendId: id
+        }
+
+    }
 
 
 
 
+    let button = null;
+    if (sessionUser.id === Number(id)) {
+        button = null
+    } else if (Number(id) in sessionUserFriends) {
+        button = (
+            <div className='div-around-add-friend-button'>
+                <button className='friends-button-profile'>Friends</button>
+            </div>
+        )
+    } else if (!(Number(id) in sessionUserFriends)) {
+        button = (
+            <div className='div-around-add-friend-button'>
+                <button className='add-friend-button' onClick={handleAddFriend}>Add Friend</button>
+            </div>
+        )
+    };
 
     return (
         <>
@@ -106,11 +121,7 @@ function ProfilePage() {
                         </div>
                     </div>
                     <div className='centering-div-around-friend-button'>
-                        <div className='div-around-add-friend-button'>
-
-                            {(sessionUser.id != id && showAddFriend) && (<button className='add-friend-button'>Add Friend</button>)}
-                            {(sessionUser.id != id && !showAddFriend) && (<button>Friends</button>)}
-                        </div>
+                        {button}
                     </div>
                     <div className='section-inbetween-top-and-bottom'>
                         <div className='profile-menu-bar'>
@@ -133,7 +144,7 @@ function ProfilePage() {
                                 <div className='profile-titles-of-sections'>Photos</div>
                                 <div>
                                     {images?.map(imageUrl => (
-                                        <img src={imageUrl} className='profile-photo-image-url' alt='' />
+                                        <img src={imageUrl} className='profile-photo-image-url' alt='' key={imageUrl} />
                                     ))}
                                 </div>
                             </div>
