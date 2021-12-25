@@ -92,7 +92,7 @@ router.post('/acceptrequest', asyncHandler(async (req, res) => {
       sessionUserId: friendId,
       friendId: sessionUserId
    })
-   const friend = await Friend.findAll({
+   const friend = await Friend.findOne({
       where: {
          sessionUserId,
          friendId
@@ -102,9 +102,12 @@ router.post('/acceptrequest', asyncHandler(async (req, res) => {
    return res.json(friend)
 }))
 
-// router.delete('/denyrequest', asyncHandler(async (req, res) => {
-//    const { sessionUserId, friendId } = req.body
-// }))
+router.delete('/deleterequest/:id(\\d+)', asyncHandler(async (req, res) => {
+   const { id } = req.params
+   const request = await FriendRequest.findByPk(id)
+   await request.destroy()
+   return res.json(request)
+}))
 
 
 

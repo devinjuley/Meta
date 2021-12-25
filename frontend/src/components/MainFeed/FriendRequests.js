@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { acceptRequestThunk } from '../../store/mainFeed';
+import { acceptRequestThunk, removeFriendRequestThunk } from '../../store/mainFeed';
 import './MainFeed.css'
 
 
@@ -15,6 +15,7 @@ const FriendRequests = ({ request }) => {
             friendId: request?.friendId
         }
         dispatch(acceptRequestThunk(friend))
+        dispatch(removeFriendRequestThunk(request.id))
     }
     const handleDeny = (e) => {
         e.preventDefault()

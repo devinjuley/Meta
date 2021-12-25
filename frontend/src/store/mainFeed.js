@@ -125,7 +125,7 @@ export const createCommentThunk = (comment) => async (dispatch) => {
     }
 }
 
-export const editCommentThunk = (comment, index) => async (dispatch) => {
+export const editCommentThunk = (comment) => async (dispatch) => {
     const response = await csrfFetch(`/api/comment/${comment.id}/edit`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -134,7 +134,7 @@ export const editCommentThunk = (comment, index) => async (dispatch) => {
 
     if (response.ok) {
         const comment = await response.json()
-        dispatch(editComment(comment, index))
+        dispatch(editComment(comment))
         return comment;
     }
 }
@@ -172,6 +172,16 @@ export const acceptRequestThunk = (request) => async (dispatch) => {
     if (response.ok) {
         const request = await response.json()
         dispatch(acceptRequest(request))
+    }
+}
+
+export const removeFriendRequestThunk = (requestId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/users/deleterequest/${requestId}`, {
+        method: "DELETE"
+    })
+    if (response.ok) {
+        const request = await response.json()
+        dispatch(removeFriendRequest(request))
     }
 }
 
@@ -265,6 +275,14 @@ const mainFeedReducer = (state = initialState, action) => {
             }
             newState['friends'][action?.request?.friendId] = action?.request
             const copiedState = { ...newState, 'friends': { ...newState['friends'] } }
+            return copiedState
+        }
+        case REMOVE_FRIEND_REQUEST: {
+            newState = {
+                ...state
+            }
+            delete newState['friendRequests'][action?.request?.friendId]
+            const copiedState = { ...newState, 'friendRequests': { ...newState['friendRequests'] } }
             return copiedState
         }
         default:
