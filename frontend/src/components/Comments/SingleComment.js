@@ -1,16 +1,12 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { createPostThunk } from '../../store/mainFeed';
 import { createCommentThunk, editCommentThunk, deleteCommentThunk } from '../../store/mainFeed';
 import { format } from "date-fns";
+import { NavLink } from 'react-router-dom';
 
-// import { getMainFeed } from '../../store/mainFeed';
 
-
-// thunk import
-// import { signUp } from '../../store/session';
 import './Comments.css'
-// import './SignUpForm.css';
+
 
 const SingleComment = ({ comment }) => {
     const dispatch = useDispatch();
@@ -62,13 +58,15 @@ const SingleComment = ({ comment }) => {
     return (
         <div className='single-comment-parent-div'>
             <div className='name-and-comment-parent-div-mainfeed'>
-                <img src={comment?.User?.profileImageUrl} className='comment-profile-image-mainfeed' />
+                <NavLink to={`/profile/${comment?.User?.id}`}>
+                    <img src={comment?.User?.profileImageUrl} className='comment-profile-image-mainfeed' />
+                </NavLink>
                 <div className='inner-comment-div-to-expand'>
                     <div className='comment-chat-bubble'>
                         <div className='comment-text-edit-delete-buttons'>
-                            <div className='firstname-lastname-comment'>
+                            <NavLink to={`/profile/${comment?.User?.id}`} className='firstname-lastname-comment'>
                                 {`${comment?.User?.firstName} ${comment?.User?.lastName}`}
-                            </div>
+                            </NavLink>
                             {sessionUser.id == comment.userId && !showEditBox && (<div className='comment-edit-button' onClick={(() => setShowEditBox(true))}>
                                 <img src='https://media.discordapp.net/attachments/921246913167245363/922208971253751838/unknown.png' className='comment-edit-button-icon' />
                                 Edit

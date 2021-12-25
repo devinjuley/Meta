@@ -8,6 +8,10 @@ const EDIT_POST = 'post/EDIT_POST'
 const CREATE_COMMENT = 'comment/CREATE_COMMENT'
 const EDIT_COMMENT = 'comment/EDIT_COMMENT'
 const DELETE_COMMENT = 'comment/DELETE_COMMENT'
+const FRIEND_REQUEST = 'friends/FRIEND_REQUEST'
+const ACCEPT_REQUEST = 'friends/ACCEPT_REQUEST'
+const REMOVE_FRIEND_REQUEST = 'friends/REMOVE_FRIEND_REQUEST'
+const REMOVE_FRIEND = 'friends/REMOVE_FRIEND'
 
 //action creators
 const mainFeed = (payload) => ({
@@ -44,6 +48,26 @@ const editComment = (comment, index) => ({
 const deleteComment = (comment) => ({
     type: DELETE_COMMENT,
     comment
+})
+
+const friendRequest = (request) => ({
+    type: FRIEND_REQUEST,
+    request
+})
+
+const removeFriendRequest = (request) => ({
+    type: REMOVE_FRIEND_REQUEST,
+    request
+})
+
+const acceptRequest = (request) => ({
+    type: ACCEPT_REQUEST,
+    request
+})
+
+const removeFriend = (friend) => ({
+    type: REMOVE_FRIEND,
+    friend
 })
 
 //thunks
@@ -107,7 +131,7 @@ export const createCommentThunk = (comment) => async (dispatch) => {
     }
 }
 
-export const editCommentThunk = (comment, index) => async (dispatch) => {
+export const editCommentThunk = (comment) => async (dispatch) => {
     const response = await csrfFetch(`/api/comment/${comment.id}/edit`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -116,7 +140,7 @@ export const editCommentThunk = (comment, index) => async (dispatch) => {
 
     if (response.ok) {
         const comment = await response.json()
-        dispatch(editComment(comment, index))
+        dispatch(editComment(comment))
         return comment;
     }
 }
@@ -132,6 +156,54 @@ export const deleteCommentThunk = (commentId) => async (dispatch) => {
     }
 }
 
+export const friendRequestThunk = (request) => async (dispatch) => {
+    const response = await csrfFetch('/api/users/friendrequest', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(request)
+    })
+    if (response.ok) {
+        const request = await response.json()
+        dispatch(friendRequest(request))
+        return request
+    }
+}
+
+export const acceptRequestThunk = (request) => async (dispatch) => {
+    const response = await csrfFetch('/api/users/acceptrequest', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(request)
+    })
+    if (response.ok) {
+        const request = await response.json()
+        dispatch(acceptRequest(request))
+        return request
+    }
+}
+
+export const removeFriendRequestThunk = (requestId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/users/deleterequest/${requestId}`, {
+        method: "DELETE"
+    })
+    if (response.ok) {
+        const request = await response.json()
+        dispatch(removeFriendRequest(request))
+        return request
+    }
+}
+
+export const removeFriendThunk = (sessionUserId, friendId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/users/${sessionUserId}/removefriend/${friendId}`, {
+        method: "DELETE"
+    })
+    if (response.ok) {
+        const friend = await response.json()
+        dispatch(removeFriend(friend))
+        return friend
+    }
+}
+
 //reducer
 const initialState = {}
 const mainFeedReducer = (state = initialState, action) => {
@@ -140,16 +212,18 @@ const mainFeedReducer = (state = initialState, action) => {
         case GET_FRIENDS_AND_POSTS: {
             newState = {
                 ...state,
+                user: {},
                 friends: {},
                 friendsPosts: {},
                 friendRequests: {},
                 friendsComments: {}
             }
+            newState.user = action.payload.user
             action.payload.friends.forEach(friend => {
                 newState.friends[friend.friendId] = friend
             })
             action.payload.friendRequests.forEach(request => {
-                newState.friendRequests[request.id] = request
+                newState.friendRequests[request.friendId] = request
             })
             newState.friendsPosts = action.payload.friendsPosts
             newState.friendsComments = action.payload.friendsComments
@@ -204,6 +278,38 @@ const mainFeedReducer = (state = initialState, action) => {
             const copiedState = {
                 ...newState, 'friendsComments': { ...newState['friendsComments'] }
             }
+            return copiedState
+        }
+        case FRIEND_REQUEST: {
+            newState = {
+                ...state
+            }
+            newState['friendRequests'][action?.request?.friendId] = action?.request
+            const copiedState = { ...newState, 'friendRequests': { ...newState['friendRequests'] } }
+            return copiedState
+        }
+        case ACCEPT_REQUEST: {
+            newState = {
+                ...state
+            }
+            newState['friends'][action?.request?.friendId] = action?.request
+            const copiedState = { ...newState, 'friends': { ...newState['friends'] } }
+            return copiedState
+        }
+        case REMOVE_FRIEND_REQUEST: {
+            newState = {
+                ...state
+            }
+            delete newState['friendRequests'][action?.request?.friendId]
+            const copiedState = { ...newState, 'friendRequests': { ...newState['friendRequests'] } }
+            return copiedState
+        }
+        case REMOVE_FRIEND: {
+            newState = {
+                ...state
+            }
+            delete newState['friends'][action?.friend?.sessionUserId]
+            const copiedState = { ...newState, 'friends': { ...newState['friends'] } }
             return copiedState
         }
         default:

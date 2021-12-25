@@ -10,8 +10,14 @@
     display: flex;
     align-items: center;
     color: #e4e5ea;
-    margin-bottom: 10px;
-    margin-left: 10px;
+    border-radius: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 10px;
+    text-decoration: none;
+}
+.user-fullname-and-pic-mainfeed:hover {
+    background-color: #3a3a3b;
 }
 
 .friends-logo-mainfeed {
@@ -38,9 +44,16 @@
     display: flex;
     align-items: center;
     color: #e4e5ea;
-    width: fit-content;
+    /* width: fit-content; */
     text-decoration: none;
-    margin-bottom: 20px;
+    border-radius: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    /* padding-left: 10px; */
+    margin-bottom: 15px;
+}
+.friends-parent-mainfeed:hover {
+    background-color: #3a3a3b;
 }
 
 .post-profile-image-mainfeed {
@@ -50,6 +63,7 @@
     border-radius: 20px;
     object-fit: cover;
     margin-right: 5px;
+    /* box-sizing: border-box; */
 }
 .posts-megaparent-div-mainfeed {
     display: flex;
@@ -153,9 +167,18 @@
     display: flex;
     align-items: center;
     color: #e4e5ea;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
+    text-decoration: none;
+    border-radius: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 10px;
+    margin-left: -10px;
     /* width: 33%; */
     /* justify-content: center; */
+}
+.contacts-name-profilepic:hover {
+    background-color: #3a3a3b;
 }
 
 .contacts-label-mainfeed {
@@ -165,6 +188,7 @@
     font-size: 17px;
     -webkit-font-smoothing: antialiased;
     margin-bottom: 20px;
+    /* padding-left: 10px; */
     padding-top: 20px;
 }
 
@@ -317,10 +341,21 @@
 
 .name-and-date-mainfeed {
     width:80%;
+    margin-bottom: 2px;
 }
 
 .post-first-last-name-mainfeed {
     width: 70%;
+    text-decoration: none;
+    color: #fff;
+}
+.post-first-last-name-mainfeed:hover {
+    text-decoration: underline;
+}
+
+.navlink-around-post-profile-image {
+    padding: 0px;
+    margin: 0px;
 }
 
 .dot-dot-dot {
