@@ -17,8 +17,8 @@ const FriendRequests = ({ request }) => {
         dispatch(acceptRequestThunk(friend))
         dispatch(removeFriendRequestThunk(request.id))
     }
-    const handleDeny = (e) => {
-        e.preventDefault()
+    const handleDenyFriend = () => {
+        dispatch(removeFriendRequestThunk(request.id))
     }
 
 
@@ -37,7 +37,7 @@ const FriendRequests = ({ request }) => {
                     </div>
                     <div className='confirm-delete-buttons-friend-request'>
                         <button className='friend-request-accept-button' onClick={handleConfirmFriend}>Confirm</button>
-                        <button className='friend-request-deny-button'>Delete</button>
+                        <button className='friend-request-deny-button' onClick={handleDenyFriend}>Delete</button>
                     </div>
                 </div>
             </div>
