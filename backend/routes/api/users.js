@@ -109,6 +109,25 @@ router.delete('/deleterequest/:id(\\d+)', asyncHandler(async (req, res) => {
    return res.json(request)
 }))
 
+router.delete('/:sessionUserId(\\d+)/removefriend/:friendId(\\d+)', asyncHandler(async (req, res) => {
+   const { sessionUserId, friendId } = req.params
+   const entry1 = await Friend.findOne({
+      where: {
+         sessionUserId: friendId,
+         friendId: sessionUserId
+      }
+   })
+   const entry2 = await Friend.findOne({
+      where: {
+         sessionUserId,
+         friendId
+      }
+   })
+   await entry1.destroy()
+   await entry2.destroy()
+   return res.json(entry2)
+}))
+
 
 
 

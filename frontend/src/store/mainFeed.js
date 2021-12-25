@@ -11,6 +11,7 @@ const DELETE_COMMENT = 'comment/DELETE_COMMENT'
 const FRIEND_REQUEST = 'friends/FRIEND_REQUEST'
 const ACCEPT_REQUEST = 'friends/ACCEPT_REQUEST'
 const REMOVE_FRIEND_REQUEST = 'friends/REMOVE_FRIEND_REQUEST'
+const REMOVE_FRIEND = 'friends/REMOVE_FRIEND'
 
 //action creators
 const mainFeed = (payload) => ({
@@ -62,6 +63,11 @@ const removeFriendRequest = (request) => ({
 const acceptRequest = (request) => ({
     type: ACCEPT_REQUEST,
     request
+})
+
+const removeFriend = (friend) => ({
+    type: REMOVE_FRIEND,
+    friend
 })
 
 //thunks
@@ -172,6 +178,7 @@ export const acceptRequestThunk = (request) => async (dispatch) => {
     if (response.ok) {
         const request = await response.json()
         dispatch(acceptRequest(request))
+        return request
     }
 }
 
@@ -182,6 +189,18 @@ export const removeFriendRequestThunk = (requestId) => async (dispatch) => {
     if (response.ok) {
         const request = await response.json()
         dispatch(removeFriendRequest(request))
+        return request
+    }
+}
+
+export const removeFriendThunk = (sessionUserId, friendId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/users/${sessionUserId}/removefriend/${friendId}`, {
+        method: "DELETE"
+    })
+    if (response.ok) {
+        const friend = await response.json()
+        dispatch(removeFriend(friend))
+        return friend
     }
 }
 
@@ -283,6 +302,14 @@ const mainFeedReducer = (state = initialState, action) => {
             }
             delete newState['friendRequests'][action?.request?.friendId]
             const copiedState = { ...newState, 'friendRequests': { ...newState['friendRequests'] } }
+            return copiedState
+        }
+        case REMOVE_FRIEND: {
+            newState = {
+                ...state
+            }
+            delete newState['friends'][action?.friend?.sessionUserId]
+            const copiedState = { ...newState, 'friends': { ...newState['friends'] } }
             return copiedState
         }
         default:

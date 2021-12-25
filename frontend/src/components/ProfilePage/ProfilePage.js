@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { getMainFeed, createPostThunk, friendRequestThunk } from '../../store/mainFeed';
+import { getMainFeed, createPostThunk, friendRequestThunk, removeFriendRequestThunk, removeFriendThunk } from '../../store/mainFeed';
 import CreatePostModal from '../CreatePost';
 import PostComponent from '../MainFeed/PostComponent';
 import { sessionFriendsThunk } from '../../store/friends';
@@ -82,20 +82,27 @@ function ProfilePage() {
         dispatch(friendRequestThunk(request))
     }
 
+    const handleCancelRequest = () => {
+        const requestId = friendRequests[sessionUser.id].id
+        dispatch(removeFriendRequestThunk(requestId))
+    }
 
+    const handleRemoveFriend = () => {
+        dispatch(removeFriendThunk(sessionUser.id, id))
+    }
 
 
     let button = null;
     if (friendRequests) {
         if (sessionUser.id === Number(id)) {
             button = null
-        } else if (Number(id) in sessionUserFriends) {
+        } else if (sessionUser.id in friends) {
             button = (
                 <div className='div-around-add-friend-button'>
-                    <button className='friends-button-profile'>Friends</button>
+                    <button className='friends-button-profile' onClick={handleRemoveFriend}>Friends</button>
                 </div>
             )
-        } else if (!(Number(id) in sessionUserFriends) && !(sessionUser.id in friendRequests)) {
+        } else if (!(sessionUser.id in friends) && !(sessionUser.id in friendRequests)) {
             button = (
                 <div className='div-around-add-friend-button'>
                     <button className='add-friend-button' onClick={handleAddFriend}>Add Friend</button>
@@ -104,7 +111,7 @@ function ProfilePage() {
         } else if (sessionUser.id in friendRequests) {
             button = (
                 <div className='div-around-add-friend-button'>
-                    <button className='add-friend-button'>Request Pending</button>
+                    <button className='add-friend-button' onClick={handleCancelRequest}>Request Pending</button>
                 </div>
             )
         }
