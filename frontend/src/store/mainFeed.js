@@ -9,6 +9,8 @@ const CREATE_COMMENT = 'comment/CREATE_COMMENT'
 const EDIT_COMMENT = 'comment/EDIT_COMMENT'
 const DELETE_COMMENT = 'comment/DELETE_COMMENT'
 const FRIEND_REQUEST = 'friends/FRIEND_REQUEST'
+const ACCEPT_REQUEST = 'friends/ACCEPT_REQUEST'
+const REMOVE_FRIEND_REQUEST = 'friends/REMOVE_FRIEND_REQUEST'
 
 //action creators
 const mainFeed = (payload) => ({
@@ -49,6 +51,16 @@ const deleteComment = (comment) => ({
 
 const friendRequest = (request) => ({
     type: FRIEND_REQUEST,
+    request
+})
+
+const removeFriendRequest = (request) => ({
+    type: REMOVE_FRIEND_REQUEST,
+    request
+})
+
+const acceptRequest = (request) => ({
+    type: ACCEPT_REQUEST,
     request
 })
 
@@ -151,6 +163,18 @@ export const friendRequestThunk = (request) => async (dispatch) => {
     }
 }
 
+export const acceptRequestThunk = (request) => async (dispatch) => {
+    const response = await csrfFetch('/api/users/acceptrequest', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(request)
+    })
+    if (response.ok) {
+        const request = await response.json()
+        dispatch(acceptRequest(request))
+    }
+}
+
 //reducer
 const initialState = {}
 const mainFeedReducer = (state = initialState, action) => {
@@ -233,6 +257,14 @@ const mainFeedReducer = (state = initialState, action) => {
             }
             newState['friendRequests'][action?.request?.friendId] = action?.request
             const copiedState = { ...newState, 'friendRequests': { ...newState['friendRequests'] } }
+            return copiedState
+        }
+        case ACCEPT_REQUEST: {
+            newState = {
+                ...state
+            }
+            newState['friends'][action?.request?.friendId] = action?.request
+            const copiedState = { ...newState, 'friends': { ...newState['friends'] } }
             return copiedState
         }
         default:

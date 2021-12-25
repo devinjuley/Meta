@@ -34,7 +34,6 @@ function ProfilePage() {
         if (!isLoaded) setIsLoaded(true);
     }, [dispatch, id, sessionUser.id])
 
-    console.log('**************', friendRequests)
 
 
     const sessionUserFriendsIds = []

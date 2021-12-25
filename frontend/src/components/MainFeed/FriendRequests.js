@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { acceptRequestThunk } from '../../store/mainFeed';
 import './MainFeed.css'
 
 
@@ -8,11 +9,12 @@ const FriendRequests = ({ request }) => {
     const sessionUser = useSelector(state => state?.session?.user)
 
 
-    const handleAccept = (e) => {
-        e.preventDefault()
-
-
-
+    const handleConfirmFriend = () => {
+        const friend = {
+            sessionUserId: request?.sessionUserId,
+            friendId: request?.friendId
+        }
+        dispatch(acceptRequestThunk(friend))
     }
     const handleDeny = (e) => {
         e.preventDefault()
@@ -33,7 +35,7 @@ const FriendRequests = ({ request }) => {
 
                     </div>
                     <div className='confirm-delete-buttons-friend-request'>
-                        <button className='friend-request-accept-button'>Confirm</button>
+                        <button className='friend-request-accept-button' onClick={handleConfirmFriend}>Confirm</button>
                         <button className='friend-request-deny-button'>Delete</button>
                     </div>
                 </div>

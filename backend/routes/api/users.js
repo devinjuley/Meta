@@ -82,6 +82,26 @@ router.post('/friendrequest', asyncHandler(async (req, res) => {
    return res.json(request)
 }))
 
+router.post('/acceptrequest', asyncHandler(async (req, res) => {
+   const { sessionUserId, friendId } = req.body
+   await Friend.create({
+      sessionUserId: sessionUserId,
+      friendId: friendId
+   })
+   await Friend.create({
+      sessionUserId: friendId,
+      friendId: sessionUserId
+   })
+   const friend = await Friend.findAll({
+      where: {
+         sessionUserId,
+         friendId
+      },
+      include: User
+   })
+   return res.json(friend)
+}))
+
 // router.delete('/denyrequest', asyncHandler(async (req, res) => {
 //    const { sessionUserId, friendId } = req.body
 // }))
