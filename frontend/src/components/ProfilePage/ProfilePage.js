@@ -153,9 +153,15 @@ function ProfilePage() {
                         <div className='left-side-of-profile-page'>
                             <div className='profile-intro'>
                                 <div className='profile-titles-of-sections'>Intro</div>
-                                <div>{`Works at ${user?.workplace}`}</div>
-                                <div>{`Lives in ${user?.city}, ${user?.state}`}</div>
-                                <div>{`From ${user?.birthCity}, ${user?.birthState}`}</div>
+                                <div className='intro-inner-divs'>
+                                    <img src='https://media.discordapp.net/attachments/921246913167245363/924462045120843786/unknown.png' className='intro-icons' />
+                                    Works at <span className='intro-spans'>{user?.workplace}</span></div>
+                                <div className='intro-inner-divs'>
+                                    <img src='https://media.discordapp.net/attachments/921246913167245363/924466076576804894/unknown.png' className='intro-icons' />
+                                    Lives in <span className='intro-spans'>{user?.city}, {user?.state}</span></div>
+                                <div className='intro-inner-divs'>
+                                    <img src='https://media.discordapp.net/attachments/921246913167245363/924463955525632081/unknown.png' className='intro-icons' />
+                                    From <span className='intro-spans'>{user?.birthCity}, {user?.birthState}</span></div>
                             </div>
                             <div className='profile-photos-list'>
                                 <div className='profile-titles-of-sections'>Photos</div>

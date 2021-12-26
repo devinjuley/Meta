@@ -24,6 +24,10 @@ function App() {
       .then(() => setIsLoaded(true));
   }, [dispatch])
 
+  if (!isLoaded) {
+    return null;
+  }
+
   if (sessionUser?.id) {
     return (
       <>
@@ -47,7 +51,7 @@ function App() {
       </>
     );
   } else {
-    // history.push('/')
+    history.push('/')
     return (
       <>
         {isLoaded && (
