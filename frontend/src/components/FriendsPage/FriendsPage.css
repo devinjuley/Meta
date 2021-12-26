@@ -1,0 +1,18 @@
+.friends-page-parent-div {
+    margin-top: 70px;
+    display: flex;
+    height: 100vh;
+}
+
+.left-side-of-friends-page {
+   border: 1px solid white;
+   width: 30%;
+   height: 100%;
+   background-color: #232425;
+}
+
+.right-side-of-friends-page {
+    border: 1px solid white;
+    width: 70%;
+    height: 100%;
+}
