@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { searchResultsThunk } from '../../store/search';
 
 // import other components
 import ProfileButton from './ProfileButton';
@@ -9,8 +10,17 @@ import ProfileButton from './ProfileButton';
 import './NavBar.css';
 
 const NavigationBar = ({ isLoaded }) => {
+   const dispatch = useDispatch()
    const session = useSelector(state => state.session);
    const [searchString, setSearchString] = useState('');
+   const [divStyle, setDivStyle] = useState({ visibility: 'hidden' })
+   const searchResults = useSelector(state => state?.searchResults)
+   const searchResultsArr = Object.assign([], searchResults)
+   useEffect(() => {
+      if (searchString !== '') {
+         dispatch(searchResultsThunk(searchString))
+      }
+   }, [dispatch, searchString])
 
    let sessionLinks;
    if (session.user) {
@@ -21,14 +31,29 @@ const NavigationBar = ({ isLoaded }) => {
                   <img src='https://media.discordapp.net/attachments/921246913167245363/921649451758682142/unknown.png' className='meta-image-logo' />
                   {/* Meta */}
                </NavLink>
-               <div>
-                  <input
-                     placeholder='Search Meta'
-                     type='search'
-                     value={searchString}
-                     onChange={(e) => setSearchString(e.target.value)}
-                     className='navbar-search-input-field'
-                  />
+               <div className='search-bar-div'>
+                  <div>
+                     <input
+                        placeholder='Search Meta'
+                        type='search'
+                        value={searchString}
+                        onChange={(e) => setSearchString(e.target.value)}
+                        className='navbar-search-input-field'
+                        onClick={(e) => setDivStyle({ visibility: 'visible' })}
+                     />
+                     <div style={divStyle} className='search-results-parent-div' >
+                        {console.log(searchResults)}
+                        {(searchString !== '') && (searchResultsArr?.map(user => (
+                           <a key={user?.id} href={`/profile/${user.id}`} className='a-link-single-result'>
+                              <img src={user?.profileImageUrl} className='user-image-in-results' alt='' />
+                              <div>
+                                 <div className='name-in-results'>{`${user?.firstName} ${user?.lastName}`}</div>
+                                 {/* <div className=''>{user?.first_name + ' ' + user?.last_name}</div> */}
+                              </div>
+                           </a>
+                        )))}
+                     </div>
+                  </div>
                </div>
             </div>
             <div className='navbar-section-2'>

@@ -1,13 +1,23 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
-
+const { Op } = require('sequelize');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
 const { User, Friend, Post, Comment, FriendRequest } = require('../../db/models');
 
 const router = express.Router();
 
+
+router.get('/search/:searchTerm', asyncHandler(async (req, res) => {
+   const { searchTerm } = req.params
+   const users = await User.findAll({
+      where: {
+         [Op.or]: [{ firstName: { [Op.iLike]: `%${searchTerm}%` } }, { lastName: { [Op.iLike]: `%${searchTerm}%` } }]
+      }
+   })
+   return res.json(users)
+}))
 
 
 router.get('/:id(\\d+)/friends', asyncHandler(async (req, res) => {

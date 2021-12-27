@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createCommentThunk, editCommentThunk, deleteCommentThunk } from '../../store/mainFeed';
+import { editCommentThunk, deleteCommentThunk } from '../../store/mainFeed';
 import { format } from "date-fns";
 import { NavLink } from 'react-router-dom';
 
@@ -34,26 +34,6 @@ const SingleComment = ({ comment }) => {
         dispatch(deleteCommentThunk(comment.id))
     }
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-
-    //     const comment = {
-    //         userId: sessionUser?.id,
-    //         postId: post.id,
-    //         content: textContent
-    //     }
-    //     let newComment = await dispatch(createCommentThunk(comment))
-    //         .catch(async (res) => {
-    //             const data = await res.json();
-    //             if (data && data.errors) setErrors(data.errors);
-    //         });
-    //     if (newComment) {
-    //         setTextContent('')
-
-    //     }
-
-
-    // };
 
     return (
         <div className='single-comment-parent-div'>
