@@ -22,6 +22,11 @@ const NavigationBar = ({ isLoaded }) => {
       }
    }, [dispatch, searchString])
 
+   // let hasFocus = ('.navbar-search-input-field').is(':focus');
+   // if (hasFocus) {
+   //    //logic here
+   // }
+
    let sessionLinks;
    if (session.user) {
       sessionLinks = (
@@ -39,7 +44,7 @@ const NavigationBar = ({ isLoaded }) => {
                         value={searchString}
                         onChange={(e) => setSearchString(e.target.value)}
                         className='navbar-search-input-field'
-                        onClick={(e) => setDivStyle({ visibility: 'visible' })}
+                        onFocus={(e) => setDivStyle({ visibility: 'visible' })}
                      />
                      <div style={divStyle} className='search-results-parent-div' >
                         {console.log(searchResults)}
@@ -48,7 +53,6 @@ const NavigationBar = ({ isLoaded }) => {
                               <img src={user?.profileImageUrl} className='user-image-in-results' alt='' />
                               <div>
                                  <div className='name-in-results'>{`${user?.firstName} ${user?.lastName}`}</div>
-                                 {/* <div className=''>{user?.first_name + ' ' + user?.last_name}</div> */}
                               </div>
                            </a>
                         )))}
@@ -90,11 +94,7 @@ const NavigationBar = ({ isLoaded }) => {
 
    return (
       <div className='navbar-parent-div'>
-         {/* <ul className='navbar-ul'> */}
-         {/* <li className='navbar-li-1'> */}
          <div>{isLoaded && sessionLinks}</div>
-         {/* </li> */}
-         {/* </ul> */}
       </div>
    );
 };

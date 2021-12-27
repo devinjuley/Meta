@@ -2,14 +2,9 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPostThunk } from '../../store/mainFeed';
 
-// import { getMainFeed } from '../../store/mainFeed';
-// import { getMainFeed } from '../../store/mainFeed';
 
-
-// thunk import
-// import { signUp } from '../../store/session';
 import './CreatePost.css'
-// import './SignUpForm.css';
+
 
 const CreatePostPage = ({ hideForm }) => {
     const dispatch = useDispatch();
