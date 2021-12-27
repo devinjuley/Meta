@@ -35,16 +35,22 @@ const ProfileButton = ({ user }) => {
       <div>
 
          <img src='https://media.discordapp.net/attachments/921246913167245363/921639971071361074/unknown.png' className='logout-dropdown-menu' onClick={openMenu} />
-
-         {showMenu && (
-            <ul className='profile-dropdown'>
-               <li>{user.firstName}{user.lastName}</li>
-               <li>{user.email}</li>
-               <li>
-                  <button onClick={signOut}>Log Out</button>
-               </li>
-            </ul>
-         )}
+         <div className='div-around-profile-dropdown'>
+            {showMenu && (
+               <div className='profile-dropdown'>
+                  <a href={`/profile/${user.id}`} className='link-to-profile-dropdown'>
+                     <img src={user.profileImageUrl} className='img-inside-profile-dropdown' />
+                     <div>
+                        <div className='name-inside-dropdown-menu'>{`${user.firstName} ${user.lastName}`}</div>
+                        <div className='see-your-profile'>See your profile</div>
+                     </div>
+                  </a>
+                  <div className='other-options-dropdown'>
+                     <button onClick={signOut} className='logout-button-dropdown'>Log Out</button>
+                  </div>
+               </div>
+            )}
+         </div>
       </div>
    );
 };

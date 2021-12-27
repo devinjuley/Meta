@@ -65,7 +65,7 @@ function ProfilePage() {
     const postArr = []
     const images = []
     for (let key in posts) {
-        if (posts[key].userId === sessionUser.id) {
+        if (posts[key].userId === Number(id)) {
             postArr.push(posts[key])
             if (posts[key].imageUrl != null) {
                 images.push(posts[key].imageUrl)
