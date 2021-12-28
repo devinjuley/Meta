@@ -6,6 +6,7 @@ import session from './session'
 import mainFeed from './mainFeed'
 import sessionUserFriends from './friends'
 import searchResults from './search';
+import allUsers from './allusers'
 
 
 //REDUCER COMBINER
@@ -13,7 +14,8 @@ const appReducer = combineReducers({
    session,
    mainFeed,
    sessionUserFriends,
-   searchResults
+   searchResults,
+   allUsers
 });
 
 const rootReducer = (state, action) => {

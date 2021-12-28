@@ -124,16 +124,27 @@
 }
 
 .friends-page-icon-1 {
-    margin-right: 5px;
+    margin-right: 10px;
     padding-left: 10px;
 }
 
 .friends-page-icon-2 {
-    margin-right: 5px;
+    margin-right: 10px;
     padding-left: 10px;
 }
 
 .friends-page-icon-3 {
-    margin-right: 5px;
+    margin-right: 10px;
     padding-left: 10px;
+}
+
+.add-friend-button-friendspage {
+    width: 90%;
+    border: none;
+    border-radius: 5px;
+    background-color: #4074e0;
+    height: 36px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #e3e5ea;
 }
