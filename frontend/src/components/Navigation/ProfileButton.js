@@ -32,7 +32,7 @@ const ProfileButton = ({ user }) => {
 
 
    return (
-      <div>
+      <div className='div-around-profilebutton-navbar'>
 
          <img src='https://media.discordapp.net/attachments/921246913167245363/921639971071361074/unknown.png' className='logout-dropdown-menu' onClick={openMenu} />
          <div className='div-around-profile-dropdown'>

@@ -77,7 +77,7 @@ const NavigationBar = ({ isLoaded }) => {
                   <img src={session.user.profileImageUrl} className='navbar-profile-image' />
                   <span className='navbar-user-firstname'>{session?.user?.firstName}</span>
                </NavLink>
-               <div>
+               <div className='div-around-postmodal-navbar'>
                   <CreatePostModalNavBar />
                </div>
                <ProfileButton user={session.user} />

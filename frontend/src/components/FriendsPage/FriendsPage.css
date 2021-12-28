@@ -12,6 +12,10 @@
    width: 20%;
    height: 100%;
    background-color: #232425;
+   border-right: 1px solid #3a3b3c;
+   /* min-width: 368px; */
+   color: #fff;
+   font-size: 17px;
 }
 
 .right-side-of-friends-page {
@@ -70,8 +74,66 @@
 
 .friends-title-friends-page {
     margin-top: 70px;
-    margin-left: 20px;
+    margin-left: 15px;
     color: #fff;
     font-size: 24px;
     font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.your-friends-div {
+    display: flex;
+    align-items: center;
+   height: 52px;
+    margin-left: 5px;
+    margin-right: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.your-friends-div:hover {
+    background-color: #3a3b3c;
+}
+
+.people-you-may-know-div {
+    display: flex;
+    align-items: center;
+   height: 52px;
+    margin-left: 5px;
+    margin-right: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.people-you-may-know-div:hover {
+    background-color: #3a3b3c;
+}
+
+.friend-requests-div-friendspage {
+    display: flex;
+    align-items: center;
+   height: 52px;
+    margin-left: 5px;
+    margin-right: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.friend-requests-div-friendspage:hover {
+    background-color: #3a3b3c;
+}
+
+.friends-page-icon-1 {
+    margin-right: 5px;
+    padding-left: 10px;
+}
+
+.friends-page-icon-2 {
+    margin-right: 5px;
+    padding-left: 10px;
+}
+
+.friends-page-icon-3 {
+    margin-right: 5px;
+    padding-left: 10px;
 }
