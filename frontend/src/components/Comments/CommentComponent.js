@@ -32,7 +32,6 @@ const CommentComponent = ({ comments, post }) => {
                 if (data && data.errors) setErrors(data.errors);
             });
         if (newComment) {
-            // dispatch(getMainFeed(sessionUser.id))
             setTextContent('')
         }
 

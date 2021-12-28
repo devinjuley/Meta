@@ -65,7 +65,7 @@ function ProfilePage() {
     const postArr = []
     const images = []
     for (let key in posts) {
-        if (posts[key].userId === sessionUser.id) {
+        if (posts[key].userId === Number(id)) {
             postArr.push(posts[key])
             if (posts[key].imageUrl != null) {
                 images.push(posts[key].imageUrl)
@@ -165,9 +165,11 @@ function ProfilePage() {
                             </div>
                             <div className='profile-photos-list'>
                                 <div className='profile-titles-of-sections'>Photos</div>
-                                <div>
+                                <div className='all-pictures-profile-page'>
                                     {images?.map(imageUrl => (
-                                        <img src={imageUrl} className='profile-photo-image-url' alt='' key={imageUrl} />
+                                        <div className='div-around-image-on-profile-page' key={imageUrl}>
+                                            <img src={imageUrl} className='profile-photo-image-url' alt='' />
+                                        </div>
                                     ))}
                                 </div>
                             </div>
@@ -176,12 +178,12 @@ function ProfilePage() {
                                 <div className='profile-number-of-friends'>{`${friendsCount} friends`}</div>
                                 <div className='all-friends-links'>
                                     {friendsArr?.map(friend => (
-                                        <div className='single-friend-link-profile-page' key={friend.id}>
+                                        <a href={`/profile/${friend?.friendId}`} className='single-friend-link-profile-page' key={friend.id}>
                                             <img src={friend?.User?.profileImageUrl} className='profile-page-friend-image' alt='' />
                                             <div className='friends-firstname-lastname-profile'>
                                                 {`${friend?.User?.firstName} ${friend?.User?.lastName}`}
                                             </div>
-                                        </div>
+                                        </a>
                                     ))}
                                 </div>
                             </div>

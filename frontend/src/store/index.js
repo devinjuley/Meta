@@ -5,13 +5,15 @@ import thunk from 'redux-thunk';
 import session from './session'
 import mainFeed from './mainFeed'
 import sessionUserFriends from './friends'
+import searchResults from './search';
 
 
 //REDUCER COMBINER
 const rootReducer = combineReducers({
    session,
    mainFeed,
-   sessionUserFriends
+   sessionUserFriends,
+   searchResults
 });
 
 let enhancer;

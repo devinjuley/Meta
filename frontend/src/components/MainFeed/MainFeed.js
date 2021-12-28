@@ -6,8 +6,6 @@ import { NavLink } from 'react-router-dom';
 import { getMainFeed } from '../../store/mainFeed';
 import { sessionFriendsThunk } from '../../store/friends';
 import { createPostThunk } from '../../store/mainFeed';
-// import { getMainFeed } from '../../store/mainFeed';
-// import { createPostThunk } from '../../store/mainFeed';
 
 import CreatePostModal from '../CreatePost';
 import PostComponent from './PostComponent';
