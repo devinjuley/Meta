@@ -146,7 +146,7 @@
 
 .profile-photo-image-url {
     height: 106px;
-    width: 33%;
+    width: 100%;
     object-fit: cover;
     padding: 3px;
     box-sizing: border-box;
@@ -189,14 +189,26 @@
 }
 .all-friends-links {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .single-friend-link-profile-page {
-    width: 33%;
+    text-decoration: none;
+    width: 32%;
+    color: #fff;
+    font-size: 13px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 2px;
+}
+.div-around-image-on-profile-page {
+    width: 32%;
+    padding: 2px;
+}
+.all-pictures-profile-page {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .friends-firstname-lastname-profile {
@@ -214,9 +226,10 @@
 }
 
 .profile-menu-bar {
-    padding-left: 20px;
+    padding-left: 30px;
     margin-top: 5px;
-    padding-top: 15px;
+    padding-top: 10px;
+    box-sizing: border-box;
     display: flex;
     min-width: 900px;
     max-width: 940px;
