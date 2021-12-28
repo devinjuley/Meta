@@ -9,12 +9,19 @@ import searchResults from './search';
 
 
 //REDUCER COMBINER
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
    session,
    mainFeed,
    sessionUserFriends,
    searchResults
 });
+
+const rootReducer = (state, action) => {
+   if (action.type === 'REMOVE_USER') {
+      return appReducer(undefined, action)
+   }
+   return appReducer(state, action)
+}
 
 let enhancer;
 if (process.env.NODE_ENV === 'production') {
