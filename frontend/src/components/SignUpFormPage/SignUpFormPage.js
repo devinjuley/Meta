@@ -31,6 +31,13 @@ const SignUpFormPage = () => {
       );
    };
 
+   const newErrors = []
+   errors.forEach(error => {
+      if (error !== 'Invalid value') {
+         newErrors.push(error)
+      }
+   })
+
    const handleSubmit = (e) => {
       e.preventDefault();
       if (password === confirmPass) {
@@ -41,7 +48,7 @@ const SignUpFormPage = () => {
                if (data && data.errors) setErrors(data.errors);
             });
       }
-      return setErrors(['Confirm Password field must be the same as the Password field']);
+      return setErrors(['Password and Confirm Password do not match']);
    };
 
    return (
@@ -49,11 +56,11 @@ const SignUpFormPage = () => {
          <form onSubmit={handleSubmit} className='sign-up-form'>
             <div className='signup-modal-title'>Sign Up</div>
             <div className='signup-title-slogan'>It's quick and easy.</div>
-            <ul>
-               {errors.map((error, i) => (
-                  <li key={i}>{error}</li>
+            <div className='ul-around-signup-errors'>
+               {newErrors.map((error, i) => (
+                  <div key={i} className='sign-up-errors'>{error}</div>
                ))}
-            </ul>
+            </div>
             <div>
                <input
                   type='text'

@@ -28,10 +28,6 @@ const CreatePostPage = ({ hideForm }) => {
             content: textContent,
             imageUrl
         }
-
-
-
-
         let newPost = await dispatch(createPostThunk(post))
             .catch(async (res) => {
                 const data = await res.json();
@@ -40,10 +36,15 @@ const CreatePostPage = ({ hideForm }) => {
         if (newPost) {
             hideForm()
         }
-
-
         //   return setErrors(['Confirm Password field must be the same as the Password field']);
     };
+    let buttonSwitch;
+    if (textContent === '' && (imageUrl === null || imageUrl === '')) {
+        buttonSwitch = true
+    } else {
+        buttonSwitch = false
+    }
+
 
     return (
         <div className='create-post-parent-modal'>
@@ -76,7 +77,7 @@ const CreatePostPage = ({ hideForm }) => {
                     />
                 </div>
                 <div className='post-button-div-post-modal'>
-                    <button type='submit' className='post-button-post-modal'>Post</button>
+                    <button type='submit' className='post-button-post-modal' disabled={buttonSwitch}>Post</button>
                 </div>
             </form>
         </div>
