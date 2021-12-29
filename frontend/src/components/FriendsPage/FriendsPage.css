@@ -66,6 +66,10 @@
     margin-top: 5px;
     margin-bottom: 10px;
     color: #e3e5ea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
 
 .name-friend-page {
@@ -147,4 +151,8 @@
     margin-top: 5px;
     margin-bottom: 10px;
     color: #e3e5ea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }

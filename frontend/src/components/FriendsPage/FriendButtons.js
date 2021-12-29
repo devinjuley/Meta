@@ -25,7 +25,7 @@ const FriendButtons = ({ friend }) => {
 
 
     return (
-        <button className='add-friend-button-friendspage' onClick={handleAddFriend}>Add Friend</button>
+        <a href={`/profile/${friend.id}`} className='add-friend-button-friendspage'>View Profile</a>
     );
 };
 

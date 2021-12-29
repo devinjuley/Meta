@@ -70,7 +70,7 @@ function FriendsPage() {
                 <div className='single-friend-parent-div' key={friend.friendId}>
                     <img src={friend?.User?.profileImageUrl} className='friend-image-on-friends-page' />
                     <div className='name-friend-page'>{`${friend?.User?.firstName} ${friend?.User?.lastName}`}</div>
-                    <button className='remove-friend-button'>Remove Friend</button>
+                    <a href={`/profile/${friend.friendId}`} className='remove-friend-button'>View Profile</a>
                 </div>
             ))
         )
@@ -88,9 +88,11 @@ function FriendsPage() {
         )
     } else if (showRequests === true) {
         content = (
-            requestArr?.map(request => (
-                <FriendRequests request={request} key={request.id} />
-            ))
+            <div>
+                {requestArr?.map(request => (
+                    <FriendRequests request={request} key={request.id} />
+                ))}
+            </div>
         )
     }
 

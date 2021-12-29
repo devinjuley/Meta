@@ -264,13 +264,22 @@
 
 .add-friend-button {
     height: 36px;
-    width: 123px;
+    width: 125px;
     border: none;
     color: #fff;
     background-color: #4074e0;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+}
+
+.add-friend-icon {
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
 }
 
 .friends-button-profile {
