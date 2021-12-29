@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getMainFeed, createPostThunk, friendRequestThunk, removeFriendRequestThunk, removeFriendThunk } from '../../store/mainFeed';
 import CreatePostModal from '../CreatePost';
 import PostComponent from '../MainFeed/PostComponent';
@@ -13,7 +13,7 @@ function ProfilePage() {
     const { id } = useParams();
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state?.session?.user)
-    const sessionUserFriends = useSelector(state => state?.sessionUserFriends)
+    // const sessionUserFriends = useSelector(state => state?.sessionUserFriends)
     const friendRequests = useSelector(state => state?.mainFeed?.friendRequests)
     const friends = useSelector(state => state?.mainFeed?.friends)
     const posts = useSelector(state => state?.mainFeed?.friendsPosts)
@@ -23,7 +23,7 @@ function ProfilePage() {
     const [errors, setErrors] = useState([]);
 
     const friendsArr = Object.assign([], friends)
-    const sessionUserFriendsArr = Object.assign([], sessionUserFriends)
+    // const sessionUserFriendsArr = Object.assign([], sessionUserFriends)
 
     let friendsCount = 0
     friendsArr.forEach(friend => friendsCount += 1)
@@ -36,10 +36,10 @@ function ProfilePage() {
 
 
 
-    const sessionUserFriendsIds = []
-    sessionUserFriendsArr.forEach(friend => {
-        sessionUserFriendsIds.push(friend?.friendId)
-    })
+    // const sessionUserFriendsIds = []
+    // sessionUserFriendsArr.forEach(friend => {
+    //     sessionUserFriendsIds.push(friend?.friendId)
+    // })
 
 
     const handleSubmit = async (e) => {
@@ -99,19 +99,25 @@ function ProfilePage() {
         } else if (sessionUser.id in friends) {
             button = (
                 <div className='div-around-add-friend-button'>
-                    <button className='friends-button-profile' onClick={handleRemoveFriend}>Friends</button>
+                    <button className='friends-button-profile' onClick={handleRemoveFriend}>
+                        <img src='https://media.discordapp.net/attachments/921246913167245363/925615457417973770/unknown.png' className='friends-icon-profilepage' alt='' />
+                        Friends</button>
                 </div>
             )
         } else if (!(sessionUser.id in friends) && !(sessionUser.id in friendRequests)) {
             button = (
                 <div className='div-around-add-friend-button'>
-                    <button className='add-friend-button' onClick={handleAddFriend}>Add Friend</button>
+                    <button className='add-friend-button' onClick={handleAddFriend}>
+                        <img src='https://media.discordapp.net/attachments/921246913167245363/925608635650953286/unknown.png' className='add-friend-icon' alt='' />
+                        Add Friend</button>
                 </div>
             )
         } else if (sessionUser.id in friendRequests) {
             button = (
                 <div className='div-around-add-friend-button'>
-                    <button className='add-friend-button' onClick={handleCancelRequest}>Request Pending</button>
+                    <button className='add-friend-button' onClick={handleCancelRequest}>
+                        <img src='https://media.discordapp.net/attachments/921246913167245363/925609578375290960/unknown.png' className='cancel-request-icon' alt='' />
+                        Cancel Request</button>
                 </div>
             )
         }
@@ -154,13 +160,13 @@ function ProfilePage() {
                             <div className='profile-intro'>
                                 <div className='profile-titles-of-sections'>Intro</div>
                                 <div className='intro-inner-divs'>
-                                    <img src='https://media.discordapp.net/attachments/921246913167245363/924462045120843786/unknown.png' className='intro-icons' />
+                                    <img src='https://media.discordapp.net/attachments/921246913167245363/924462045120843786/unknown.png' className='intro-icons' alt='' />
                                     Works at <span className='intro-spans'>{user?.workplace}</span></div>
                                 <div className='intro-inner-divs'>
-                                    <img src='https://media.discordapp.net/attachments/921246913167245363/924466076576804894/unknown.png' className='intro-icons' />
+                                    <img src='https://media.discordapp.net/attachments/921246913167245363/924466076576804894/unknown.png' className='intro-icons' alt='' />
                                     Lives in <span className='intro-spans'>{user?.city}, {user?.state}</span></div>
                                 <div className='intro-inner-divs'>
-                                    <img src='https://media.discordapp.net/attachments/921246913167245363/924463955525632081/unknown.png' className='intro-icons' />
+                                    <img src='https://media.discordapp.net/attachments/921246913167245363/924463955525632081/unknown.png' className='intro-icons' alt='' />
                                     From <span className='intro-spans'>{user?.birthCity}, {user?.birthState}</span></div>
                             </div>
                             <div className='profile-photos-list'>

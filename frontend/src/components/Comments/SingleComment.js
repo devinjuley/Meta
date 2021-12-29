@@ -39,7 +39,7 @@ const SingleComment = ({ comment }) => {
         <div className='single-comment-parent-div'>
             <div className='name-and-comment-parent-div-mainfeed'>
                 <NavLink to={`/profile/${comment?.User?.id}`}>
-                    <img src={comment?.User?.profileImageUrl} className='comment-profile-image-mainfeed' />
+                    <img src={comment?.User?.profileImageUrl} className='comment-profile-image-mainfeed' alt='' />
                 </NavLink>
                 <div className='inner-comment-div-to-expand'>
                     <div className='comment-chat-bubble'>
@@ -48,15 +48,15 @@ const SingleComment = ({ comment }) => {
                                 {`${comment?.User?.firstName} ${comment?.User?.lastName}`}
                             </NavLink>
                             {sessionUser.id == comment.userId && !showEditBox && (<div className='comment-edit-button' onClick={(() => setShowEditBox(true))}>
-                                <img src='https://media.discordapp.net/attachments/921246913167245363/922208971253751838/unknown.png' className='comment-edit-button-icon' />
+                                <img src='https://media.discordapp.net/attachments/921246913167245363/922208971253751838/unknown.png' className='comment-edit-button-icon' alt='' />
                                 Edit
                             </div>)}
                             {sessionUser.id == comment.userId && showEditBox && (<div className='comment-edit-button' onClick={(() => setShowEditBox(false))}>
-                                <img src='https://media.discordapp.net/attachments/921246913167245363/922283242713935882/unknown.png' className='comment-edit-button-icon' />
+                                <img src='https://media.discordapp.net/attachments/921246913167245363/922283242713935882/unknown.png' className='comment-edit-button-icon' alt='' />
                                 Cancel
                             </div>)}
                             {sessionUser.id == comment.userId && (<div className='comment-delete-button' onClick={handleDelete}>
-                                <img src='https://media.discordapp.net/attachments/921246913167245363/922209557898465280/unknown.png' className='comment-delete-button-icon' />
+                                <img src='https://media.discordapp.net/attachments/921246913167245363/922209557898465280/unknown.png' className='comment-delete-button-icon' alt='' />
                                 Delete
                             </div>)}
 

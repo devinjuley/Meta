@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { format } from "date-fns";
-import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { getMainFeed } from '../../store/mainFeed';
 import { sessionFriendsThunk } from '../../store/friends';
@@ -69,7 +67,7 @@ function MainFeed() {
                             <div>{sessionUser?.firstName} {sessionUser?.lastName}</div>
                         </NavLink>
                         <NavLink to='/friends' className='friends-parent-mainfeed'>
-                            <img src='https://media.discordapp.net/attachments/921246913167245363/921662235435225138/unknown.png' className='friends-icon-mainfeed' />
+                            <img src='https://media.discordapp.net/attachments/921246913167245363/921662235435225138/unknown.png' className='friends-icon-mainfeed' alt='' />
                             <div>Friends</div>
                         </NavLink>
                         <div className='friend-request-section'>Friend Requests</div>

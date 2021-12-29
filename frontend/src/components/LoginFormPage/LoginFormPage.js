@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import SignUpFormModal from '../SignUpFormPage';
 
 import { login } from '../../store/session'
-// import Sign
+
 
 import './LoginForm.css';
 
@@ -49,11 +49,11 @@ const LoginFormPage = () => {
          </div>
          <div className='div-for-login-form-splash'>
             <form onSubmit={handleSubmit} className='login-form-splash'>
-               <ul>
+               <div className='div-around-login-errors'>
                   {errors.map((error, i) => (
-                     <li key={i}>{error}</li>
+                     <div key={i} className='errors-for-login'>{error}</div>
                   ))}
-               </ul>
+               </div>
                <input
                   type='text'
                   value={email}

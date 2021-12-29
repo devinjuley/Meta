@@ -8,7 +8,7 @@ function CreatePostModalNavBar() {
     const hideForm = () => setShowModal(false)
     return (
         <>
-            <img src='https://media.discordapp.net/attachments/921246913167245363/921651170504757268/unknown.png' onClick={() => setShowModal(true)} className='add-post-plus-sign' />
+            <img src='https://media.discordapp.net/attachments/921246913167245363/921651170504757268/unknown.png' alt='' onClick={() => setShowModal(true)} className='add-post-plus-sign' />
             {showModal && (
                 <DarkModal onClose={() => setShowModal(false)}>
                     <CreatePostPage hideForm={hideForm} />

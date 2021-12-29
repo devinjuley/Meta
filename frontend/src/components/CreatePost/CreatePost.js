@@ -50,7 +50,7 @@ const CreatePostPage = ({ hideForm }) => {
             <form onSubmit={handleSubmit} className=''>
                 <div className='create-post-title-modal'>Create Post</div>
                 <div className='post-modal-name-and-profile-image'>
-                    <img src={sessionUser?.profileImageUrl} className='profile-image-create-post-modal' />
+                    <img src={sessionUser?.profileImageUrl} className='profile-image-create-post-modal' alt='' />
                     <div>{`${sessionUser?.firstName} ${sessionUser?.lastName}`}</div>
                 </div>
                 {/* <ul>

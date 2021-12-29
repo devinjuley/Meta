@@ -4,17 +4,26 @@ import thunk from 'redux-thunk';
 // importing reducers
 import session from './session'
 import mainFeed from './mainFeed'
-import sessionUserFriends from './friends'
+// import sessionUserFriends from './friends'
 import searchResults from './search';
+import allUsers from './allusers'
 
 
 //REDUCER COMBINER
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
    session,
    mainFeed,
-   sessionUserFriends,
-   searchResults
+   // sessionUserFriends,
+   searchResults,
+   allUsers
 });
+
+const rootReducer = (state, action) => {
+   if (action.type === 'REMOVE_USER') {
+      return appReducer(undefined, action)
+   }
+   return appReducer(state, action)
+}
 
 let enhancer;
 if (process.env.NODE_ENV === 'production') {

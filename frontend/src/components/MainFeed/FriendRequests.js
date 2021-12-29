@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { acceptRequestThunk, removeFriendRequestThunk } from '../../store/mainFeed';
 import './MainFeed.css'
@@ -28,7 +28,7 @@ const FriendRequests = ({ request }) => {
 
             <div className='div-around-friend-request'>
                 <div>
-                    <img src={request?.User?.profileImageUrl} className='friend-request-user-pic' />
+                    <img src={request?.User?.profileImageUrl} className='friend-request-user-pic' alt='' />
                 </div>
                 <div className='div-around-name-and-buttons-friend-request'>
                     <div className='friend-request-name-and-phrase'>

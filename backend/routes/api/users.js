@@ -9,6 +9,13 @@ const { User, Friend, Post, Comment, FriendRequest } = require('../../db/models'
 const router = express.Router();
 
 
+router.get('/all', asyncHandler(async (req, res) => {
+   const users = await User.findAll({
+      include: FriendRequest
+   })
+   return res.json(users)
+}))
+
 router.get('/search/:searchTerm', asyncHandler(async (req, res) => {
    const { searchTerm } = req.params
    const users = await User.findAll({
