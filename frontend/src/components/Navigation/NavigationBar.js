@@ -9,7 +9,7 @@ import ProfileButton from './ProfileButton';
 
 //css
 import './NavBar.css';
-import CreatePostModal from '../CreatePost';
+
 
 const NavigationBar = ({ isLoaded }) => {
    const dispatch = useDispatch()
@@ -35,7 +35,7 @@ const NavigationBar = ({ isLoaded }) => {
          <div className='logged-in-links'>
             <div className='navbar-section-1'>
                <NavLink to='/' className={'navbar-logo'}>
-                  <img src='https://media.discordapp.net/attachments/921246913167245363/921649451758682142/unknown.png' className='meta-image-logo' />
+                  <img src='https://media.discordapp.net/attachments/921246913167245363/921649451758682142/unknown.png' className='meta-image-logo' alt='' />
                </NavLink>
                <div className='search-bar-div'>
                   <div>
@@ -47,8 +47,7 @@ const NavigationBar = ({ isLoaded }) => {
                         className='navbar-search-input-field'
                         onFocus={(e) => setDivStyle({ visibility: 'visible' })}
                      />
-                     <div style={divStyle} className='search-results-parent-div' >
-                        {console.log(searchResults)}
+                     <div style={divStyle} className='search-results-parent-div'>
                         {(searchString !== '') && (searchResultsArr?.map(user => (
                            <a key={user?.id} href={`/profile/${user.id}`} className='a-link-single-result'>
                               <img src={user?.profileImageUrl} className='user-image-in-results' alt='' />
@@ -63,18 +62,18 @@ const NavigationBar = ({ isLoaded }) => {
             </div>
             <div className='navbar-section-2'>
                <NavLink to='/' className={''}>
-                  <img src='https://media.discordapp.net/attachments/921246913167245363/921672323885592596/unknown.png' className='navbar-center-image-1' />
+                  <img src='https://media.discordapp.net/attachments/921246913167245363/921672323885592596/unknown.png' className='navbar-center-image-1' alt='' />
                </NavLink>
                <a href='https://github.com/devinjuley/Meta' className={''}>
-                  <img src='https://media.discordapp.net/attachments/921246913167245363/921671742634733618/unknown.png' className='navbar-center-image-2' />
+                  <img src='https://media.discordapp.net/attachments/921246913167245363/921671742634733618/unknown.png' className='navbar-center-image-2' alt='' />
                </a>
                <a href='https://www.linkedin.com/in/devin-juley-6b4847149/' className={''}>
-                  <img src='https://media.discordapp.net/attachments/921246913167245363/921671591136469052/unknown.png' className='navbar-center-image-3' />
+                  <img src='https://media.discordapp.net/attachments/921246913167245363/921671591136469052/unknown.png' className='navbar-center-image-3' alt='' />
                </a>
             </div>
             <div className='navbar-section-3'>
                <NavLink to={`/profile/${session?.user?.id}`} className={'navbar-link-to-profile'}>
-                  <img src={session.user.profileImageUrl} className='navbar-profile-image' />
+                  <img src={session.user.profileImageUrl} className='navbar-profile-image' alt='' />
                   <span className='navbar-user-firstname'>{session?.user?.firstName}</span>
                </NavLink>
                <div className='div-around-postmodal-navbar'>

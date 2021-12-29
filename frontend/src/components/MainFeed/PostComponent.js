@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deletePostThunk, editPostThunk } from '../../store/mainFeed';
+import { editPostThunk } from '../../store/mainFeed';
 import EditDeleteButton from './EditDeleteButton';
 import { NavLink } from 'react-router-dom';
 import CommentComponent from '../Comments/CommentComponent';
@@ -9,7 +9,6 @@ import './MainFeed.css'
 
 const PostComponent = ({ post }) => {
     const dispatch = useDispatch();
-    const [showMenu, setShowMenu] = useState(false);
     const sessionUser = useSelector(state => state?.session?.user)
     const [showEditBox, setShowEditBox] = useState(false)
     const [textContent, setTextContent] = useState(post?.content)
@@ -38,7 +37,7 @@ const PostComponent = ({ post }) => {
             <div className='center-name-image-editbutton'>
                 <div className='post-name-and-image-mainfeed'>
                     <NavLink to={`/profile/${post?.User?.id}`} className={'navlink-around-post-profile-image'}>
-                        <img src={post?.User?.profileImageUrl} className='post-profile-image-mainfeed' />
+                        <img src={post?.User?.profileImageUrl} className='post-profile-image-mainfeed' alt='' />
                     </NavLink>
                     <div className='name-and-date-mainfeed'>
                         <NavLink to={`/profile/${post?.User?.id}`} className='post-first-last-name-mainfeed'>{`${post?.User?.firstName} ${post?.User?.lastName}`}</NavLink>
@@ -62,7 +61,7 @@ const PostComponent = ({ post }) => {
                     </form>
                 )}
             </div>
-            {post?.imageUrl !== null && (<img src={post?.imageUrl} className='post-image-content-mainfeed' />)}
+            {post?.imageUrl !== null && (<img src={post?.imageUrl} className='post-image-content-mainfeed' alt='' />)}
             <CommentComponent comments={filteredComments} post={post} key={post.id} />
         </div>
     );

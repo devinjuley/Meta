@@ -37,7 +37,7 @@ function FriendsPage() {
             nonFriendUsers.push(user)
         }
     })
-    console.log('===========>>>>', friendIds, allUsers, nonFriendUsers)
+
 
 
     useEffect(async () => {
@@ -68,7 +68,7 @@ function FriendsPage() {
         content = (
             friendsArr?.map(friend => (
                 <div className='single-friend-parent-div' key={friend.friendId}>
-                    <img src={friend?.User?.profileImageUrl} className='friend-image-on-friends-page' />
+                    <img src={friend?.User?.profileImageUrl} className='friend-image-on-friends-page' alt='' />
                     <div className='name-friend-page'>{`${friend?.User?.firstName} ${friend?.User?.lastName}`}</div>
                     <a href={`/profile/${friend.friendId}`} className='remove-friend-button'>View Profile</a>
                 </div>
@@ -78,7 +78,7 @@ function FriendsPage() {
         content = (
             nonFriendUsers?.map(friend => (
                 <div className='single-friend-parent-div' key={friend.id}>
-                    <img src={friend?.profileImageUrl} className='friend-image-on-friends-page' />
+                    <img src={friend?.profileImageUrl} className='friend-image-on-friends-page' alt='' />
                     <div className='name-friend-page'>{`${friend?.firstName} ${friend?.lastName}`}</div>
                     <FriendButtons friend={friend} />
                 </div>
@@ -101,13 +101,13 @@ function FriendsPage() {
                 <div className='left-side-of-friends-page'>
                     <div className='friends-title-friends-page'>Friends</div>
                     <div className='your-friends-div' onClick={handleFriends}>
-                        <img src='https://media.discordapp.net/attachments/921246913167245363/925499360744185866/unknown.png' className='friends-page-icon-1' />
+                        <img src='https://media.discordapp.net/attachments/921246913167245363/925499360744185866/unknown.png' className='friends-page-icon-1' alt='' />
                         Your Friends</div>
                     <div className='people-you-may-know-div' onClick={handlePYMK}>
-                        <img src='https://media.discordapp.net/attachments/921246913167245363/925499157043617822/unknown.png' className='friends-page-icon-2' />
+                        <img src='https://media.discordapp.net/attachments/921246913167245363/925499157043617822/unknown.png' className='friends-page-icon-2' alt='' />
                         People You May Know</div>
                     <div className='friend-requests-div-friendspage' onClick={handleRequests}>
-                        <img src='https://media.discordapp.net/attachments/921246913167245363/925498740641501234/unknown.png' className='friends-page-icon-3' />
+                        <img src='https://media.discordapp.net/attachments/921246913167245363/925498740641501234/unknown.png' className='friends-page-icon-3' alt='' />
                         Friend Requests</div>
 
                 </div>

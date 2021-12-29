@@ -10,7 +10,7 @@ function CreatePostModal() {
     return (
         <>
             <button className='photo-button-mainfeed' onClick={() => setShowModal(true)}>
-                <img src='https://media.discordapp.net/attachments/921246913167245363/921248928538693642/unknown.png' className='create-a-post-icons' />
+                <img src='https://media.discordapp.net/attachments/921246913167245363/921248928538693642/unknown.png' className='create-a-post-icons' alt='' />
                 Add Photo</button>
             {showModal && (
                 <DarkModal onClose={() => setShowModal(false)}>

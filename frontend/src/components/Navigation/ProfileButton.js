@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-
+import { clearAllDataThunk } from '../../store/mainFeed';
 import { logout } from '../../store/session';
 
 const ProfileButton = ({ user }) => {
@@ -27,6 +27,7 @@ const ProfileButton = ({ user }) => {
    const signOut = (e) => {
       e.preventDefault();
       dispatch(logout());
+      dispatch(clearAllDataThunk())
    }
 
 
@@ -34,12 +35,12 @@ const ProfileButton = ({ user }) => {
    return (
       <div className='div-around-profilebutton-navbar'>
 
-         <img src='https://media.discordapp.net/attachments/921246913167245363/921639971071361074/unknown.png' className='logout-dropdown-menu' onClick={openMenu} />
+         <img src='https://media.discordapp.net/attachments/921246913167245363/921639971071361074/unknown.png' className='logout-dropdown-menu' onClick={openMenu} alt='' />
          <div className='div-around-profile-dropdown'>
             {showMenu && (
                <div className='profile-dropdown'>
                   <a href={`/profile/${user.id}`} className='link-to-profile-dropdown'>
-                     <img src={user.profileImageUrl} className='img-inside-profile-dropdown' />
+                     <img src={user.profileImageUrl} className='img-inside-profile-dropdown' alt='' />
                      <div>
                         <div className='name-inside-dropdown-menu'>{`${user.firstName} ${user.lastName}`}</div>
                         <div className='see-your-profile'>See your profile</div>

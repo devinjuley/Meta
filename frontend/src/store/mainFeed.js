@@ -12,6 +12,7 @@ const FRIEND_REQUEST = 'friends/FRIEND_REQUEST'
 const ACCEPT_REQUEST = 'friends/ACCEPT_REQUEST'
 const REMOVE_FRIEND_REQUEST = 'friends/REMOVE_FRIEND_REQUEST'
 const REMOVE_FRIEND = 'friends/REMOVE_FRIEND'
+const CLEAR_DATA = 'data/CLEAR_DATA'
 
 //action creators
 const mainFeed = (payload) => ({
@@ -68,6 +69,10 @@ const acceptRequest = (request) => ({
 const removeFriend = (friend) => ({
     type: REMOVE_FRIEND,
     friend
+})
+
+const clearAllData = () => ({
+    type: CLEAR_DATA
 })
 
 //thunks
@@ -204,6 +209,10 @@ export const removeFriendThunk = (sessionUserId, friendId) => async (dispatch) =
     }
 }
 
+export const clearAllDataThunk = () => (dispatch) => {
+    dispatch(clearAllData())
+}
+
 //reducer
 const initialState = {}
 const mainFeedReducer = (state = initialState, action) => {
@@ -311,6 +320,9 @@ const mainFeedReducer = (state = initialState, action) => {
             delete newState['friends'][action?.friend?.sessionUserId]
             const copiedState = { ...newState, 'friends': { ...newState['friends'] } }
             return copiedState
+        }
+        case CLEAR_DATA: {
+            return {}
         }
         default:
             return state;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getMainFeed, createPostThunk, friendRequestThunk, removeFriendRequestThunk, removeFriendThunk } from '../../store/mainFeed';
 import CreatePostModal from '../CreatePost';
 import PostComponent from '../MainFeed/PostComponent';
@@ -100,7 +100,7 @@ function ProfilePage() {
             button = (
                 <div className='div-around-add-friend-button'>
                     <button className='friends-button-profile' onClick={handleRemoveFriend}>
-                        <img src='https://media.discordapp.net/attachments/921246913167245363/925615457417973770/unknown.png' className='friends-icon-profilepage' />
+                        <img src='https://media.discordapp.net/attachments/921246913167245363/925615457417973770/unknown.png' className='friends-icon-profilepage' alt='' />
                         Friends</button>
                 </div>
             )
@@ -108,7 +108,7 @@ function ProfilePage() {
             button = (
                 <div className='div-around-add-friend-button'>
                     <button className='add-friend-button' onClick={handleAddFriend}>
-                        <img src='https://media.discordapp.net/attachments/921246913167245363/925608635650953286/unknown.png' className='add-friend-icon' />
+                        <img src='https://media.discordapp.net/attachments/921246913167245363/925608635650953286/unknown.png' className='add-friend-icon' alt='' />
                         Add Friend</button>
                 </div>
             )
@@ -116,7 +116,7 @@ function ProfilePage() {
             button = (
                 <div className='div-around-add-friend-button'>
                     <button className='add-friend-button' onClick={handleCancelRequest}>
-                        <img src='https://media.discordapp.net/attachments/921246913167245363/925609578375290960/unknown.png' className='cancel-request-icon' />
+                        <img src='https://media.discordapp.net/attachments/921246913167245363/925609578375290960/unknown.png' className='cancel-request-icon' alt='' />
                         Cancel Request</button>
                 </div>
             )
@@ -160,13 +160,13 @@ function ProfilePage() {
                             <div className='profile-intro'>
                                 <div className='profile-titles-of-sections'>Intro</div>
                                 <div className='intro-inner-divs'>
-                                    <img src='https://media.discordapp.net/attachments/921246913167245363/924462045120843786/unknown.png' className='intro-icons' />
+                                    <img src='https://media.discordapp.net/attachments/921246913167245363/924462045120843786/unknown.png' className='intro-icons' alt='' />
                                     Works at <span className='intro-spans'>{user?.workplace}</span></div>
                                 <div className='intro-inner-divs'>
-                                    <img src='https://media.discordapp.net/attachments/921246913167245363/924466076576804894/unknown.png' className='intro-icons' />
+                                    <img src='https://media.discordapp.net/attachments/921246913167245363/924466076576804894/unknown.png' className='intro-icons' alt='' />
                                     Lives in <span className='intro-spans'>{user?.city}, {user?.state}</span></div>
                                 <div className='intro-inner-divs'>
-                                    <img src='https://media.discordapp.net/attachments/921246913167245363/924463955525632081/unknown.png' className='intro-icons' />
+                                    <img src='https://media.discordapp.net/attachments/921246913167245363/924463955525632081/unknown.png' className='intro-icons' alt='' />
                                     From <span className='intro-spans'>{user?.birthCity}, {user?.birthState}</span></div>
                             </div>
                             <div className='profile-photos-list'>

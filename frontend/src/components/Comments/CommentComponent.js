@@ -43,7 +43,7 @@ const CommentComponent = ({ comments, post }) => {
             <div className='buttons-at-bottom-of-post-mainfeed'>
                 <div className='centering-buttons-at-bottom-of-post'>
                     <button className='post-comment-button-mainfeed' onClick={(() => setShowComments(true))}>
-                        <img src='https://media.discordapp.net/attachments/921246913167245363/921940858847244348/unknown.png' className='comment-button-icon' />
+                        <img src='https://media.discordapp.net/attachments/921246913167245363/921940858847244348/unknown.png' className='comment-button-icon' alt='' />
                         Comment</button>
                 </div>
             </div>
@@ -53,7 +53,7 @@ const CommentComponent = ({ comments, post }) => {
                     <div className='create-comment-outer-div'>
                         <div className='inner-create-comment-div'>
                             <NavLink to={`/profile/${sessionUser.id}`}>
-                                <img src={sessionUser?.profileImageUrl} className='create-comment-image-mainfeed' />
+                                <img src={sessionUser?.profileImageUrl} className='create-comment-image-mainfeed' alt='' />
                             </NavLink>
                             <form onSubmit={handleSubmit} className='create-a-post-form-mainfeed' id='create-post-submit-mainfeed'>
                                 <input

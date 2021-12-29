@@ -21,7 +21,6 @@ const usersReducer = (state = initialState, action) => {
     let newState = {}
     switch (action.type) {
         case GET_ALL_USERS: {
-            console.log(action.users)
             newState = {
                 ...state,
             }
