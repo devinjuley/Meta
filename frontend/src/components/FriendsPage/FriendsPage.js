@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getMainFeed } from '../../store/mainFeed';
-import FriendRequests from '../MainFeed/FriendRequests';
+import FriendRequestsSecondary from './FriendRequestsSecondary';
 import { getAllUsersThunk } from '../../store/allusers';
 
 import FriendButtons from './FriendButtons';
@@ -88,11 +88,9 @@ function FriendsPage() {
         )
     } else if (showRequests === true) {
         content = (
-            <div>
-                {requestArr?.map(request => (
-                    <FriendRequests request={request} key={request.id} />
-                ))}
-            </div>
+            requestArr?.map(request => (
+                <FriendRequestsSecondary request={request} key={request.id} />
+            ))
         )
     }
 
