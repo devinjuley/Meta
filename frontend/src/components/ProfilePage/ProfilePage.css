@@ -264,7 +264,7 @@
 
 .add-friend-button {
     height: 36px;
-    width: 125px;
+    width: 127px;
     border: none;
     color: #fff;
     background-color: #4074e0;
@@ -277,9 +277,17 @@
 }
 
 .add-friend-icon {
-    height: 20px;
-    width: 20px;
-    margin-right: 5px;
+    height: 18px;
+    width: 18px;
+    margin-right: 2px;
+    padding-bottom: 1px;
+}
+
+.cancel-request-icon {
+    height: 18px;
+    width: 18px;
+    margin-right: 2px;
+    padding-bottom: 1px;
 }
 
 .friends-button-profile {
@@ -290,6 +298,16 @@
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.friends-icon-profilepage {
+    height: 18px;
+    width: 18px;
+    margin-right: 2px;
+    padding-bottom: 2px;
 }
 
 .centering-div-around-friend-button {

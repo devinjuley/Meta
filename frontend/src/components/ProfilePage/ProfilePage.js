@@ -99,7 +99,9 @@ function ProfilePage() {
         } else if (sessionUser.id in friends) {
             button = (
                 <div className='div-around-add-friend-button'>
-                    <button className='friends-button-profile' onClick={handleRemoveFriend}>Friends</button>
+                    <button className='friends-button-profile' onClick={handleRemoveFriend}>
+                        <img src='https://media.discordapp.net/attachments/921246913167245363/925615457417973770/unknown.png' className='friends-icon-profilepage' />
+                        Friends</button>
                 </div>
             )
         } else if (!(sessionUser.id in friends) && !(sessionUser.id in friendRequests)) {
@@ -113,7 +115,9 @@ function ProfilePage() {
         } else if (sessionUser.id in friendRequests) {
             button = (
                 <div className='div-around-add-friend-button'>
-                    <button className='add-friend-button' onClick={handleCancelRequest}>Cancel Request</button>
+                    <button className='add-friend-button' onClick={handleCancelRequest}>
+                        <img src='https://media.discordapp.net/attachments/921246913167245363/925609578375290960/unknown.png' className='cancel-request-icon' />
+                        Cancel Request</button>
                 </div>
             )
         }
