@@ -63,6 +63,7 @@ const CommentComponent = ({ comments, post }) => {
                                     placeholder='Write a comment...'
                                     className='comment-text-content-input'
                                     id='emojs-for-text-box'
+                                    required
                                 />
                             </form>
                         </div>
