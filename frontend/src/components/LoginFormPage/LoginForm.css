@@ -69,7 +69,8 @@
     padding: 20px 0 28px;
     background-color: #fff;
     box-sizing: border-box;
-    /* width: 396px; */
+    max-width: 384px;
+    height: 365px;
 }
 
 .login-email-field-splash {
@@ -116,4 +117,9 @@
     width: 30%;
     margin-bottom: 90px;
     
+}
+
+.div-around-login-errors {
+    height: 30px;
+    color: #be4b48
 }

@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 // importing reducers
 import session from './session'
 import mainFeed from './mainFeed'
-import sessionUserFriends from './friends'
+// import sessionUserFriends from './friends'
 import searchResults from './search';
 import allUsers from './allusers'
 
@@ -13,7 +13,7 @@ import allUsers from './allusers'
 const appReducer = combineReducers({
    session,
    mainFeed,
-   sessionUserFriends,
+   // sessionUserFriends,
    searchResults,
    allUsers
 });

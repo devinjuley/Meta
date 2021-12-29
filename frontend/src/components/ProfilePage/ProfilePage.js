@@ -13,7 +13,7 @@ function ProfilePage() {
     const { id } = useParams();
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state?.session?.user)
-    const sessionUserFriends = useSelector(state => state?.sessionUserFriends)
+    // const sessionUserFriends = useSelector(state => state?.sessionUserFriends)
     const friendRequests = useSelector(state => state?.mainFeed?.friendRequests)
     const friends = useSelector(state => state?.mainFeed?.friends)
     const posts = useSelector(state => state?.mainFeed?.friendsPosts)
@@ -23,7 +23,7 @@ function ProfilePage() {
     const [errors, setErrors] = useState([]);
 
     const friendsArr = Object.assign([], friends)
-    const sessionUserFriendsArr = Object.assign([], sessionUserFriends)
+    // const sessionUserFriendsArr = Object.assign([], sessionUserFriends)
 
     let friendsCount = 0
     friendsArr.forEach(friend => friendsCount += 1)
@@ -36,10 +36,10 @@ function ProfilePage() {
 
 
 
-    const sessionUserFriendsIds = []
-    sessionUserFriendsArr.forEach(friend => {
-        sessionUserFriendsIds.push(friend?.friendId)
-    })
+    // const sessionUserFriendsIds = []
+    // sessionUserFriendsArr.forEach(friend => {
+    //     sessionUserFriendsIds.push(friend?.friendId)
+    // })
 
 
     const handleSubmit = async (e) => {
