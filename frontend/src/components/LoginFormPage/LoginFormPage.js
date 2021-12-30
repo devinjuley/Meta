@@ -51,7 +51,10 @@ const LoginFormPage = () => {
             <form onSubmit={handleSubmit} className='login-form-splash'>
                <div className='div-around-login-errors'>
                   {errors.map((error, i) => (
-                     <div key={i} className='errors-for-login'>{error}</div>
+                     <div className='div-around-single-error-login'>
+                        <img src='https://media.discordapp.net/attachments/921246913167245363/926208511799615538/unknown.png' className='error-icon' />
+                        <div key={i} className='errors-for-login'>{error}</div>
+                     </div>
                   ))}
                </div>
                <input

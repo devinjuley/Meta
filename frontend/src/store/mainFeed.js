@@ -302,7 +302,7 @@ const mainFeedReducer = (state = initialState, action) => {
                 ...state
             }
             newState['friends'][action?.request?.friendId] = action?.request
-            const copiedState = { ...newState, 'friends': { ...newState['friends'] } }
+            const copiedState = { ...newState, 'friends': { ...newState['friends'] }, 'friendsPosts': { ...newState['friendsPosts'] } }
             return copiedState
         }
         case REMOVE_FRIEND_REQUEST: {
