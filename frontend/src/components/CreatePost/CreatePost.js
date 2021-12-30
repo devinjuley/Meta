@@ -54,11 +54,6 @@ const CreatePostPage = ({ hideForm }) => {
                     <img src={sessionUser?.profileImageUrl} className='profile-image-create-post-modal' alt='' />
                     <div>{`${sessionUser?.firstName} ${sessionUser?.lastName}`}</div>
                 </div>
-                {/* <ul>
-                    {errors.map((error, i) => (
-                        <li key={i}>{error}</li>
-                    ))}
-                </ul> */}
                 <div className='textarea-div-post-modal'>
                     <textarea
                         value={textContent}
@@ -66,6 +61,14 @@ const CreatePostPage = ({ hideForm }) => {
                         onChange={(e) => setTextContent(e.target.value)}
                         className='text-content-post-modal'
                     />
+                </div>
+                <div className='div-around-postmodal-errors'>
+                    {errors.map((error, i) => (
+                        <div className='div-around-single-error-postmodal'>
+                            <img src='https://media.discordapp.net/attachments/921246913167245363/926208511799615538/unknown.png' className='error-icon' />
+                            <div key={i} className='single-error-postmodal'>{error}</div>
+                        </div>
+                    ))}
                 </div>
                 <div className='image-input-div-post-modal'>
                     <input

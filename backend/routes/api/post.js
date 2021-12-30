@@ -8,9 +8,16 @@ const { User, Friend, Post, Comment } = require('../../db/models');
 
 const router = express.Router();
 
+const validateCreate = [
+    check('imageUrl')
+        .isURL().optional({ nullable: true })
+        .withMessage('Please provide a valid URL address'),
+    handleValidationErrors,
+
+]
 
 
-router.post('/create', restoreUser, asyncHandler(async (req, res) => {
+router.post('/create', validateCreate, restoreUser, asyncHandler(async (req, res) => {
     const { userId, content, imageUrl } = req.body
     const post = await Post.create({
         userId,

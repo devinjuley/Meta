@@ -68,7 +68,8 @@
 
 .signup-title-slogan {
     font-size: 15px;
-    color: #606770
+    color: #606770;
+    margin-bottom: 30px;
 }
 
 .sign-up-errors {
