@@ -195,7 +195,7 @@ function ProfilePage() {
                             </div>
                         </div>
                         <div className='posts-megaparent-div-profile-page'>
-                            <div className='create-a-post-div'>
+                            {(sessionUser.id == id) && (<div className='create-a-post-div'>
                                 <div className='inner-create-post-div'>
                                     <img src={sessionUser?.profileImageUrl} className='create-post-image-mainfeed' alt='' />
                                     <form onSubmit={handleSubmit} className='create-a-post-form-mainfeed' id='create-post-submit-mainfeed'>
@@ -219,14 +219,15 @@ function ProfilePage() {
                                         <img src='https://media.discordapp.net/attachments/921246913167245363/921635080445780018/unknown.png' className='create-a-post-icons' alt='' />
                                         Feeling</button>
                                 </div>
-                            </div>
+                            </div>)}
                             {reversedPosts?.map(post => (
                                 <PostComponent post={post} key={post.id} />
                             ))}
                         </div>
                     </div>
                 </div>
-            </div>)}
+            </div>)
+            }
         </>
     )
 }
