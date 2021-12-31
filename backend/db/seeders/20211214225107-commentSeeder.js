@@ -2,6 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
+    // let commentArray = []
 
     return queryInterface.bulkInsert('Comments', [
       {

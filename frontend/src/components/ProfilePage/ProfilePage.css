@@ -71,6 +71,12 @@
     color: #b0b3b8;
 
 }
+.profile-number-of-friends-below {
+    font-size: 13px;
+    color: #b0b3b8;
+    margin-bottom: 10px;
+
+}
 
 .centering-div-around-name-friends {
     width: 100%;
@@ -224,6 +230,13 @@
     -webkit-font-smoothing: antialiased;
 
 }
+.profile-titles-of-sections-friends {
+    color: #e4e6eb;
+    font-size: 20px;
+    
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+}
 
 .profile-menu-bar {
     padding-left: 30px;
@@ -231,7 +244,7 @@
     padding-top: 10px;
     box-sizing: border-box;
     display: flex;
-    min-width: 900px;
+    min-width: 875px;
     max-width: 940px;
     color: #e4e6eb;
     font-size: 15px;
@@ -240,20 +253,23 @@
 
 .timeline-link-menu {
     margin-right: 30px;
+    cursor: pointer;
 }
 
 .friends-link-menu {
     margin-right: 30px;
+    cursor: pointer;
 
 }
 
 .photos-link-menu {
+    cursor: pointer;
 
 }
 
 .div-around-add-friend-button {
     max-width: 940px;
-    min-width: 900px;
+    min-width: 875px;
     display: flex;
     /* justify-content: center; */
     justify-content: flex-end;

@@ -70,7 +70,7 @@
     background-color: #fff;
     box-sizing: border-box;
     max-width: 384px;
-    height: 365px;
+    height: 360px;
 }
 
 .login-email-field-splash {
@@ -120,6 +120,17 @@
 }
 
 .div-around-login-errors {
-    height: 30px;
-    color: #be4b48
+    display: flex;
+    align-items: center;
+    height: 24px;
+    padding-left: 4px;
+    padding-right: 8px;
+    color: #be4b48;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.div-around-single-error-login {
+    display: flex;
+    align-items: center;
 }

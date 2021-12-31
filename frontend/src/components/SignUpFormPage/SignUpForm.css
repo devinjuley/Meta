@@ -68,20 +68,53 @@
 
 .signup-title-slogan {
     font-size: 15px;
-    color: #606770
+    color: #606770;
+    margin-bottom: 30px;
 }
 
 .sign-up-errors {
-    color: #be4b48;
+    
+}
+
+.div-around-sign-up-single-error {
+    display: flex;
+    align-items: center;
+    color: #fff;
     list-style-type: none;
+    background-color: #be4b48;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.error-icon {
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+    margin-left: 1px;
 }
 
 .ul-around-signup-errors {
     margin-top: 5px;
-    height: 30px;
-    margin-bottom: 10px;
-    width: 326px;
+    height: fit-content;
+    margin-bottom: 150px;
+    width: 312px;
     display: flex;
+    margin-left: 380px;
     flex-direction: column;
-    align-items: flex-start;
+    /* align-items: center; */
+    /* background-color: #be4b48; */
+    position: absolute;
+    
+    min-height: 40px;
+    padding: 5px;
+    padding-left: 8px;
+    box-sizing: border-box;
+}
+
+.outer-div-signup-form {
+    display: flex;
+    height: fit-content;
+    align-items: center;
+    background-color: transparent;
 }

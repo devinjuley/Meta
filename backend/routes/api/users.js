@@ -151,22 +151,41 @@ router.delete('/:sessionUserId(\\d+)/removefriend/:friendId(\\d+)', asyncHandler
 // SIGN UP
 //sign up validators
 const validateSignup = [
+   check('firstName')
+      .notEmpty()
+      .withMessage('Please provide a first name'),
+   check('lastName')
+      .notEmpty()
+      .withMessage('Please provide a last name'),
    check('email')
       .exists({ checkFalsy: true })
       .isEmail()
-      .withMessage('Please provide a valid email.'),
-   // check('username')
-   //    .exists({ checkFalsy: true })
-   //    .isLength({ min: 4 })
-   //    .withMessage('Please provide a username with at least 4 characters.'),
-   // check('username')
-   //    .not()
-   //    .isEmail()
-   //    .withMessage('Username cannot be an email.'),
+      .withMessage('Please provide a valid email'),
+   check('workplace')
+      .notEmpty()
+      .withMessage('Please provide a workplace'),
+   check('city')
+      .notEmpty()
+      .withMessage('Please provide a city'),
+   check('state')
+      .notEmpty()
+      .withMessage('Please provide a state'),
+   check('birthCity')
+      .notEmpty()
+      .withMessage('Please provide a birth city'),
+   check('birthState')
+      .notEmpty()
+      .withMessage('Please provide a birth state'),
    check('password')
       .exists({ checkFalsy: true })
       .isLength({ min: 6 })
-      .withMessage('Password must be 6 characters or more.'),
+      .withMessage('Password must be 6 characters or more'),
+   check('profileImageUrl')
+      .isURL({ require_protocol: false, require_host: false })
+      .withMessage('Please provide a valid URL address'),
+   check('backgroundImageUrl')
+      .isURL({ require_protocol: false, require_host: false })
+      .withMessage('Please provide a valid URL address'),
    handleValidationErrors,
 ];
 
