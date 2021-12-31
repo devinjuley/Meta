@@ -7,6 +7,7 @@ import './MainFeed.css'
 const FriendRequests = ({ request }) => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state?.session?.user)
+    const friends = useSelector(state => state?.mainFeed?.friends)
 
 
     const handleConfirmFriend = () => {
@@ -21,6 +22,11 @@ const FriendRequests = ({ request }) => {
         dispatch(removeFriendRequestThunk(request.id))
     }
 
+    for (let key in friends) {
+        if (key == request.friendId) {
+            dispatch(removeFriendRequestThunk(request.id))
+        }
+    }
 
 
     return (

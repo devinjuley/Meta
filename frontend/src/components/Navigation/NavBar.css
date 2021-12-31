@@ -181,6 +181,7 @@ body {
     width: 60px;
     border-radius: 50px;
     margin-right: 10px;
+    object-fit: cover;
 }
 .div-around-profile-dropdown {
     position: relative;
