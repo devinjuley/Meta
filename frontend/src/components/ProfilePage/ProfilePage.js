@@ -224,14 +224,14 @@ function ProfilePage() {
         )
     } else if (showFriends === true) {
         profileContent = (
-            <div className='profile-friends-list'>
+            <div className='profile-friends-section-friendspage'>
                 <div className='profile-titles-of-sections-friends'>Friends</div>
                 <div className='profile-number-of-friends-below'>{`${friendsCount} friends`}</div>
-                <div className='all-friends-links'>
+                <div className='all-friends-links-friends-section'>
                     {friendsArr?.map(friend => (
-                        <a href={`/profile/${friend?.friendId}`} className='single-friend-link-profile-page' key={friend.id}>
-                            <img src={friend?.User?.profileImageUrl} className='profile-page-friend-image' alt='' />
-                            <div className='friends-firstname-lastname-profile'>
+                        <a href={`/profile/${friend?.friendId}`} className='single-friend-link-friend-section' key={friend.id}>
+                            <img src={friend?.User?.profileImageUrl} className='profile-page-friend-image-friend-section' alt='' />
+                            <div className='friends-firstname-lastname-friends-section'>
                                 {`${friend?.User?.firstName} ${friend?.User?.lastName}`}
                             </div>
                         </a>
