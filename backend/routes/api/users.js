@@ -67,9 +67,9 @@ router.get('/:id(\\d+)/friends', asyncHandler(async (req, res) => {
    })
    const friendsComments = {}
    comments.forEach(comment => {
-      if (friendIds.includes(comment.userId)) {
-         friendsComments[comment.id] = comment
-      }
+
+      friendsComments[comment.id] = comment
+
    })
 
 
