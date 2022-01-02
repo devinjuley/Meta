@@ -211,12 +211,12 @@ function ProfilePage() {
         )
     } else if (showPhotos === true) {
         profileContent = (
-            <div className='profile-photos-list'>
-                <div className='profile-titles-of-sections'>Photos</div>
-                <div className='all-pictures-profile-page'>
+            <div className='profile-photos-list-photostab'>
+                <div className='profile-titles-of-sections-photostab'>Photos</div>
+                <div className='all-pictures-profile-page-photostab'>
                     {images?.map(imageUrl => (
-                        <div className='div-around-image-on-profile-page' key={imageUrl}>
-                            <img src={imageUrl} className='profile-photo-image-url' alt='' />
+                        <div className='div-around-image-on-profile-page-photostab' key={imageUrl}>
+                            <img src={imageUrl} className='profile-photo-image-url-photostab' alt='' />
                         </div>
                     ))}
                 </div>
@@ -224,14 +224,14 @@ function ProfilePage() {
         )
     } else if (showFriends === true) {
         profileContent = (
-            <div className='profile-friends-list'>
-                <div className='profile-titles-of-sections-friends'>Friends</div>
-                <div className='profile-number-of-friends-below'>{`${friendsCount} friends`}</div>
-                <div className='all-friends-links'>
+            <div className='profile-friends-section-friendspage'>
+                <div className='profile-titles-of-sections-friends-friendstab'>Friends</div>
+                <div className='profile-number-of-friends-below-friendstab'>{`${friendsCount} friends`}</div>
+                <div className='all-friends-links-friends-section'>
                     {friendsArr?.map(friend => (
-                        <a href={`/profile/${friend?.friendId}`} className='single-friend-link-profile-page' key={friend.id}>
-                            <img src={friend?.User?.profileImageUrl} className='profile-page-friend-image' alt='' />
-                            <div className='friends-firstname-lastname-profile'>
+                        <a href={`/profile/${friend?.friendId}`} className='single-friend-link-friend-section' key={friend.id}>
+                            <img src={friend?.User?.profileImageUrl} className='profile-page-friend-image-friend-section' alt='' />
+                            <div className='friends-firstname-lastname-friends-section'>
                                 {`${friend?.User?.firstName} ${friend?.User?.lastName}`}
                             </div>
                         </a>

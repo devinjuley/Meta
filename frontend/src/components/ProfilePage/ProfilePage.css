@@ -187,12 +187,25 @@
 
 }
 
+.profile-friends-section-friendspage {
+    background-color: #232425;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    padding: 15px;
+    width: 875px;
+    min-width: 875px;
+    box-sizing: border-box;
+}
+
 .profile-page-friend-image {
     width: 100%;
     height: 101px;
     object-fit: cover;
     border-radius: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
+
 .all-friends-links {
     display: flex;
     flex-wrap: wrap;
@@ -208,6 +221,7 @@
     justify-content: center;
     padding: 2px;
 }
+
 .div-around-image-on-profile-page {
     width: 32%;
     padding: 2px;
@@ -228,8 +242,8 @@
     margin-bottom: 10px;
     font-weight: 600;
     -webkit-font-smoothing: antialiased;
-
 }
+
 .profile-titles-of-sections-friends {
     color: #e4e6eb;
     font-size: 20px;
@@ -347,4 +361,102 @@
 
 .intro-icons {
     margin-right: 5px;
+}
+
+
+.all-friends-links-friends-section {
+    display: flex;
+    flex-wrap: wrap;
+    /* width: fit-content; */
+    /* justify-content: center; */
+}
+
+.single-friend-link-friend-section {
+    text-decoration: none;
+    width: 48.8%;
+    /* height: 100px; */
+    color: #fff;
+    font-size: 13px;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #313235;
+    border-radius: 8px;
+    margin-left: 5px;
+     margin-right: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.profile-page-friend-image-friend-section {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px;
+    /* margin-bottom: 5px; */
+    margin-right: 50px;
+}
+
+.friends-firstname-lastname-friends-section {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.profile-titles-of-sections-friends-friendstab {
+    color: #e4e6eb;
+    font-size: 24px;
+    margin-left: 10px;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+}
+
+.profile-number-of-friends-below-friendstab {
+    font-size: 15px;
+    color: #b0b3b8;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.profile-photos-list-photostab {
+    background-color: #232425;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    margin-bottom: 10px;
+    padding: 15px;
+    width: 875px;
+    min-width: 875px;
+    box-sizing: border-box;
+    /* padding-left: 15px; */
+
+}
+
+.profile-titles-of-sections-photostab {
+    color: #e4e6eb;
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    margin-left: 10px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.all-pictures-profile-page-photostab {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.div-around-image-on-profile-page-photostab {
+    width: 32.8%;
+    padding: 2px;
+}
+
+.profile-photo-image-url-photostab {
+    height: 277px;
+    width: 100%;
+    object-fit: cover;
+    padding: 3px;
+    box-sizing: border-box;
 }

@@ -4,12 +4,14 @@ import { NavLink } from 'react-router-dom';
 import { getMainFeed } from '../../store/mainFeed';
 import { sessionFriendsThunk } from '../../store/friends';
 import { createPostThunk } from '../../store/mainFeed';
+import Picker from 'emoji-picker-react';
 
 import CreatePostModal from '../CreatePost';
 import PostComponent from './PostComponent';
 import FriendRequests from './FriendRequests';
 
 import './MainFeed.css'
+
 
 
 function MainFeed() {
@@ -19,7 +21,8 @@ function MainFeed() {
     const friendsPosts = useSelector(state => state?.mainFeed?.friendsPosts)
     const friendRequests = useSelector(state => state?.mainFeed?.friendRequests)
 
-
+    const [chosenEmoji, setChosenEmoji] = useState(null);
+    const [showPicker, setShowPicker] = useState(false)
     const [textContent, setTextContent] = useState('')
 
     const [isLoaded, setIsLoaded] = useState(false)
@@ -36,7 +39,7 @@ function MainFeed() {
 
         const post = {
             userId: sessionUser?.id,
-            content: textContent,
+            content: textContent + chosenEmoji?.emoji,
             imageUrl: null
         }
 
@@ -50,12 +53,20 @@ function MainFeed() {
         }
     }
 
+    const onEmojiClick = (event, emojiObject) => {
+        setChosenEmoji(emojiObject);
+    };
+
     const postPlaceholder = `What's on your mind, ${sessionUser.firstName}?`
     const friendsArr = Object.assign([], friends)
     const postArr = Object.assign([], friendsPosts)
     const requestArr = Object.assign([], friendRequests)
 
     const reversedPosts = postArr.reverse()
+
+    const handleEmoji = () => {
+        setShowPicker(true)
+    }
 
     return (
         <>
@@ -81,6 +92,14 @@ function MainFeed() {
                         <div className='inner-create-post-div'>
                             <img src={sessionUser?.profileImageUrl} className='create-post-image-mainfeed' alt='' />
                             <form onSubmit={handleSubmit} className='create-a-post-form-mainfeed' id='create-post-submit-mainfeed'>
+                                {/* {!chosenEmoji && (<input
+                                    type='text'
+                                    value={textContent}
+                                    onChange={(e) => setTextContent(e.target.value)}
+                                    placeholder={postPlaceholder}
+                                    className='post-text-content-input'
+                                    id='emojs-for-text-box'
+                                />)} */}
                                 <input
                                     type='text'
                                     value={textContent}
@@ -97,9 +116,10 @@ function MainFeed() {
                                 Post
                             </button>
                             <CreatePostModal />
-                            <button className='feeling-button-mainfeed'>
+                            <button className='feeling-button-mainfeed' onClick={handleEmoji}>
                                 <img src='https://media.discordapp.net/attachments/921246913167245363/921635080445780018/unknown.png' className='create-a-post-icons' alt='' />
                                 Feeling</button>
+                            {/* {showPicker && (<Picker onEmojiClick={onEmojiClick} />)} */}
                         </div>
                     </div>
                     {reversedPosts?.map(post => (

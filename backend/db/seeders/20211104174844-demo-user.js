@@ -2,8 +2,51 @@
 const faker = require('faker');
 const bcrypt = require('bcryptjs');
 
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
+    // const usersArr = [
+    //   {
+    //     firstName: 'Demo',
+    //     lastName: 'User',
+    //     email: 'demo@user.io',
+    //     workplace: 'Meta',
+    //     city: 'Spacetown',
+    //     state: 'Mooncrator',
+    //     birthCity: 'Meta',
+    //     birthState: 'Database',
+    //     profileImageUrl: 'https://media.discordapp.net/attachments/920401341472444467/920401355011682314/unknown.png',
+    //     backgroundImageUrl: 'https://media.discordapp.net/attachments/920401341472444467/920411110610456606/a-space-cartoon-background-scene-free-vector.png?width=1154&height=686',
+    //     hashedPassword: bcrypt.hashSync('password'),
+    //     createdAt: new Date(),
+    //     updatedAt: new Date(),
+    //   }
+    // ]
+
+    // for (let i = 0; i < 20; i++) {
+
+    //   usersArr.push({
+    //     firstName: user.get_firstname,
+    //     lastName: user.get_lastname,
+    //     email: user.email,
+    //     // workplace: faker.company.companyName(),
+    //     // city: faker.address.city(),
+    //     // state: faker.address.state(),
+    //     // birthCity: faker.address.city(),
+    //     // birthState: faker.address.state(),
+    //     // profileImageUrl: faker.image.imageUrl(),
+    //     // backgroundImageUrl: faker.image.imageUrl(),
+    //     hashedPassword: bcrypt.hashSync('Password#11'),
+    //     createdAt: new Date(),
+    //     updatedAt: new Date()
+
+    //   })
+    //   console.log(user)
+    // }
+
+
+
+
     return queryInterface.bulkInsert('Users', [
       {
         firstName: 'Demo',

@@ -1,4 +1,4 @@
-
+import { getMainFeed } from '../../store/mainFeed';
 import { useDispatch, useSelector } from 'react-redux';
 import { acceptRequestThunk, removeFriendRequestThunk } from '../../store/mainFeed';
 import './MainFeed.css'
@@ -7,6 +7,7 @@ import './MainFeed.css'
 const FriendRequests = ({ request }) => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state?.session?.user)
+    const friends = useSelector(state => state?.mainFeed?.friends)
 
 
     const handleConfirmFriend = () => {
@@ -16,11 +17,17 @@ const FriendRequests = ({ request }) => {
         }
         dispatch(acceptRequestThunk(friend))
         dispatch(removeFriendRequestThunk(request.id))
+        dispatch(getMainFeed(sessionUser.id))
     }
     const handleDenyFriend = () => {
         dispatch(removeFriendRequestThunk(request.id))
     }
 
+    for (let key in friends) {
+        if (key == request.friendId) {
+            dispatch(removeFriendRequestThunk(request.id))
+        }
+    }
 
 
     return (
