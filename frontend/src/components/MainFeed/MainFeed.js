@@ -39,7 +39,7 @@ function MainFeed() {
 
         const post = {
             userId: sessionUser?.id,
-            content: textContent + chosenEmoji?.emoji,
+            content: textContent,
             imageUrl: null
         }
 
