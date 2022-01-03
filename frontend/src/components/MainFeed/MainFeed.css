@@ -271,6 +271,7 @@
 .create-post-buttons-div {
     width: 95%;
     display: flex;
+    justify-content: center;
 }
 
 .post-button-mainfeed {
@@ -590,4 +591,10 @@
     display: flex;
     /* justify-content: center; */
     width: 90%;
+}
+
+.emoji-picker-css {
+    position: absolute;
+    margin-left: 321px;
+    margin-top: 50px;
 }
