@@ -54,20 +54,21 @@ function ProfilePage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (textContent !== '') {
+            const post = {
+                userId: sessionUser?.id,
+                content: textContent,
+                imageUrl: null
+            }
 
-        const post = {
-            userId: sessionUser?.id,
-            content: textContent,
-            imageUrl: null
-        }
-
-        let newPost = await dispatch(createPostThunk(post))
-            .catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
-            });
-        if (newPost) {
-            setTextContent('')
+            let newPost = await dispatch(createPostThunk(post))
+                .catch(async (res) => {
+                    const data = await res.json();
+                    if (data && data.errors) setErrors(data.errors);
+                });
+            if (newPost) {
+                setTextContent('')
+            }
         }
     }
 
@@ -197,9 +198,9 @@ function ProfilePage() {
                                 Post
                             </button>
                             <CreatePostModal />
-                            <button className='feeling-button-mainfeed'>
+                            {/* <button className='feeling-button-mainfeed'>
                                 <img src='https://media.discordapp.net/attachments/921246913167245363/921635080445780018/unknown.png' className='create-a-post-icons' alt='' />
-                                Feeling</button>
+                                Feeling</button> */}
                         </div>
                     </div>)}
                     {reversedPosts?.map(post => (

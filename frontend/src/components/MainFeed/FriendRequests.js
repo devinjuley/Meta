@@ -34,12 +34,12 @@ const FriendRequests = ({ request }) => {
         <div>
 
             <div className='div-around-friend-request'>
-                <div>
+                <a href={`/profile/${request?.User?.id}`}>
                     <img src={request?.User?.profileImageUrl} className='friend-request-user-pic' alt='' />
-                </div>
+                </a>
                 <div className='div-around-name-and-buttons-friend-request'>
                     <div className='friend-request-name-and-phrase'>
-                        <div className='friend-request-first-last-name'>{`${request?.User?.firstName} ${request?.User?.lastName} `}<span className='friend-request-phrase'>sent you a friend request.</span></div>
+                        <div className='friend-request-first-last-name'><a href={`/profile/${request?.User?.id}`} className='a-tag-on-name-friendrequest'>{`${request?.User?.firstName} ${request?.User?.lastName} `}</a><span className='friend-request-phrase'>sent you a friend request.</span></div>
 
                     </div>
                     <div className='confirm-delete-buttons-friend-request'>

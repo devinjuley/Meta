@@ -34,6 +34,12 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
+      {
+        sessionUserId: 1,
+        friendId: 8,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], {});
 
   },

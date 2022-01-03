@@ -23,7 +23,7 @@ function MainFeed() {
 
     const [chosenEmoji, setChosenEmoji] = useState(null);
     const [showPicker, setShowPicker] = useState(false)
-    const [textContent, setTextContent] = useState('')
+    let [textContent, setTextContent] = useState('')
 
     const [isLoaded, setIsLoaded] = useState(false)
     const [errors, setErrors] = useState([]);
@@ -37,25 +37,28 @@ function MainFeed() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const post = {
-            userId: sessionUser?.id,
-            content: textContent + chosenEmoji?.emoji,
-            imageUrl: null
-        }
+        if (textContent !== '') {
+            const post = {
+                userId: sessionUser?.id,
+                content: textContent,
+                imageUrl: null
+            }
 
-        let newPost = await dispatch(createPostThunk(post))
-            .catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
-            });
-        if (newPost) {
-            setTextContent('')
+            let newPost = await dispatch(createPostThunk(post))
+                .catch(async (res) => {
+                    const data = await res.json();
+                    if (data && data.errors) setErrors(data.errors);
+                });
+            if (newPost) {
+                setTextContent('')
+                setChosenEmoji(null)
+            }
         }
     }
 
-    const onEmojiClick = (event, emojiObject) => {
-        setChosenEmoji(emojiObject);
-    };
+    // const onEmojiClick = (event, emojiObject) => {
+    //     setChosenEmoji(emojiObject);
+    // };
 
     const postPlaceholder = `What's on your mind, ${sessionUser.firstName}?`
     const friendsArr = Object.assign([], friends)
@@ -64,10 +67,10 @@ function MainFeed() {
 
     const reversedPosts = postArr.reverse()
 
-    const handleEmoji = () => {
-        setShowPicker(true)
-    }
-
+    // const handleEmoji = () => {
+    //     setShowPicker(true)
+    // }
+    const emojiArr = []
     return (
         <>
             {isLoaded && (<div className='main-feed-parent-div'>
@@ -116,10 +119,12 @@ function MainFeed() {
                                 Post
                             </button>
                             <CreatePostModal />
-                            <button className='feeling-button-mainfeed' onClick={handleEmoji}>
+                            {/* <button className='feeling-button-mainfeed' onClick={handleEmoji} input='emojs-for-text-box'>
                                 <img src='https://media.discordapp.net/attachments/921246913167245363/921635080445780018/unknown.png' className='create-a-post-icons' alt='' />
-                                Feeling</button>
-                            {/* {showPicker && (<Picker onEmojiClick={onEmojiClick} />)} */}
+                                Feeling</button> */}
+                            {/* <div className='emoji-picker-css'>
+                                {showPicker && (<Picker onEmojiClick={onEmojiClick} />)}
+                            </div> */}
                         </div>
                     </div>
                     {reversedPosts?.map(post => (
