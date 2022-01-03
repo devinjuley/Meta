@@ -12,7 +12,7 @@ module.exports = {
     }
 
     let commentArray = []
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 225; i++) {
       commentArray.push({
         userId: getRandomInt(1, 21),
         postId: getRandomInt(1, 39),

@@ -598,3 +598,9 @@
     margin-left: 321px;
     margin-top: 50px;
 }
+
+.a-tag-on-name-friendrequest {
+    color: gray;
+    text-decoration: none;
+    font-weight: 500;
+}
