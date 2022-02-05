@@ -166,7 +166,7 @@
     color: #fff;
     margin-bottom: 5px;
     margin-top: 5px;
-
+    cursor: pointer;
 }
 .friend-request-deny-button-friendspage {
     width: 90%;
@@ -176,4 +176,5 @@
     border: none;
     border-radius: 5px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
