@@ -153,7 +153,10 @@ function ProfilePage() {
                             From <span className='intro-spans'>{user?.birthCity}, {user?.birthState}</span></div>
                     </div>
                     <div className='profile-photos-list'>
-                        <div className='profile-titles-of-sections'>Photos</div>
+                        <div className='photo-section-and-link'>
+                            <div className='profile-titles-of-sections'>Photos</div>
+                            <div className='photos-link-see-all' onClick={handlePhotos}>See all photos</div>
+                        </div>
                         <div className='all-pictures-profile-page'>
                             {images?.map(imageUrl => (
                                 <div className='div-around-image-on-profile-page' key={imageUrl}>
@@ -163,7 +166,10 @@ function ProfilePage() {
                         </div>
                     </div>
                     <div className='profile-friends-list'>
-                        <div className='profile-titles-of-sections-friends'>Friends</div>
+                        <div className='friends-section-with-link'>
+                            <div className='profile-titles-of-sections-friends'>Friends</div>
+                            <div className='friends-link-see-all' onClick={handleFriends}>See all friends</div>
+                        </div>
                         <div className='profile-number-of-friends-below'>{`${friendsCount} friends`}</div>
                         <div className='all-friends-links'>
                             {friendsArr?.map(friend => (
