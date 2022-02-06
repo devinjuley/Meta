@@ -460,3 +460,31 @@
     padding: 3px;
     box-sizing: border-box;
 }
+
+.photo-section-and-link {
+    display: flex;
+    align-items: center;
+}
+
+.photos-link-see-all {
+    margin-bottom: 10px;
+    font-size: 17px;
+    color: #4f99fe;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+.friends-section-with-link {
+    display: flex;
+    align-items: center;
+}
+.friends-link-see-all {
+    /* margin-bottom: 9px; */
+    font-size: 17px;
+    color: #4f99fe;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    cursor: pointer;
+}
