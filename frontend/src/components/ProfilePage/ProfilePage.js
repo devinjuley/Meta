@@ -204,9 +204,9 @@ function ProfilePage() {
                                 Post
                             </button>
                             <CreatePostModal />
-                            {/* <button className='feeling-button-mainfeed'>
+                            <button className='feeling-button-mainfeed'>
                                 <img src='https://media.discordapp.net/attachments/921246913167245363/921635080445780018/unknown.png' className='create-a-post-icons' alt='' />
-                                Feeling</button> */}
+                                Feeling</button>
                         </div>
                     </div>)}
                     {reversedPosts?.map(post => (
