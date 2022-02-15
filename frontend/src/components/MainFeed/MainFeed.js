@@ -119,12 +119,12 @@ function MainFeed() {
                                 Post
                             </button>
                             <CreatePostModal />
-                            <button className='feeling-button-mainfeed' onClick={handleEmoji} input='emojs-for-text-box'>
+                            {/* <button className='feeling-button-mainfeed' onClick={handleEmoji} input='emojs-for-text-box'>
                                 <img src='https://media.discordapp.net/attachments/921246913167245363/921635080445780018/unknown.png' className='create-a-post-icons' alt='' />
                                 Feeling</button>
                             <div className='emoji-picker-css'>
                                 {showPicker && (<Picker onEmojiClick={onEmojiClick} />)}
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     {reversedPosts?.map(post => (
